@@ -135,7 +135,7 @@ body {
     right: 0;
     bottom: 0;
     z-index: 1;
-    opacity: 0.15;
+    opacity: 1;
 }
 
 .grid-pattern {
@@ -150,10 +150,10 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(circle, var(--border) 2px, transparent 2px);
+    background-image: radial-gradient(circle, rgba(26,26,26,0,10) 2px, transparent 2px);
     background-size: 80px 80px;
     animation: dataAssemble 3s ease-in-out forwards;
-    opacity: 0.4;
+    opacity: 1;
 }
 
 @keyframes dataAssemble {
