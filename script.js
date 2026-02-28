@@ -5,98 +5,73 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSubtitleSection = document.querySelector('.hero-subtitle-section');
     const dashboardPieces = document.querySelectorAll('.dashboard-piece');
 
-    function getDirection(index) {
-        return index % 2 === 0 ? 'left' : 'right';
-    }
+    function getDirection(i) { return i % 2 === 0 ? 'left' : 'right'; }
 
     function resetPieces() {
-        dashboardPieces.forEach((piece, index) => {
+        dashboardPieces.forEach((piece, i) => {
             piece.classList.remove('assembled');
             piece.style.left = '';
             piece.style.top = '';
-            const dir = getDirection(index);
             piece.classList.remove('flying-in-left', 'flying-in-right');
-            piece.classList.add(dir === 'left' ? 'flying-in-left' : 'flying-in-right');
+            piece.classList.add(getDirection(i) === 'left' ? 'flying-in-left' : 'flying-in-right');
         });
     }
 
     resetPieces();
 
     let assembled = false;
-    let assembleTimeout = null;
 
     window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
+        const s = window.scrollY;
         const wh = window.innerHeight;
+        const trigger = wh * 0.2;
 
-        // Phase 1: fade title at 15% scroll
-        if (scrollY > wh * 0.15) {
-            heroTitleSection.classList.add('fade-out');
-        } else {
-            heroTitleSection.classList.remove('fade-out');
-        }
+        heroTitleSection.classList.toggle('fade-out', s > trigger * 0.75);
 
-        // Full reset when back at top
-        if (scrollY < wh * 0.1) {
-            if (assembled) {
-                assembled = false;
-                if (assembleTimeout) clearTimeout(assembleTimeout);
-                dashboardContainer.classList.remove('visible', 'assembled');
-                heroSubtitleSection.classList.remove('visible');
-                resetPieces();
-            }
-        }
-
-        // Phase 2: fly in dashboard at 15-20% scroll
-        if (scrollY > wh * 0.15) {
+        if (s > trigger) {
             dashboardContainer.classList.add('visible');
-
             if (!assembled) {
                 assembled = true;
-                dashboardPieces.forEach((piece, index) => {
-                    assembleTimeout = setTimeout(() => {
+                dashboardPieces.forEach((piece, i) => {
+                    setTimeout(() => {
                         piece.classList.remove('flying-in-left', 'flying-in-right');
                         piece.classList.add('assembled');
                         piece.style.left = piece.dataset.finalX + 'px';
                         piece.style.top = piece.dataset.finalY + 'px';
-                    }, index * 150);
+                    }, i * 150);
                 });
+            }
+        } else {
+            dashboardContainer.classList.remove('visible', 'assembled');
+            heroSubtitleSection.classList.remove('visible');
+            if (assembled) {
+                assembled = false;
+                resetPieces();
             }
         }
 
-        // Phase 3: fade dashboard at 65%, show subtitle only after fully faded at 80%
-        if (scrollY > wh * 0.65) {
+        if (s > wh * 0.85) {
             dashboardContainer.classList.add('assembled');
-        } else {
-            dashboardContainer.classList.remove('assembled');
-        }
-
-        if (scrollY > wh * 0.85) {
             heroSubtitleSection.classList.add('visible');
-        } else {
+        } else if (s > trigger) {
+            dashboardContainer.classList.remove('assembled');
             heroSubtitleSection.classList.remove('visible');
         }
 
-        // Nav
-        const nav = document.querySelector('.nav');
-        nav.style.background = scrollY > 100
-            ? 'rgba(245, 245, 240, 0.98)'
-            : 'rgba(245, 245, 240, 0.9)';
+        document.querySelector('.nav').style.background = s > 100
+            ? 'rgba(245, 245, 240, 0.98)' : 'rgba(245, 245, 240, 0.9)';
     });
 
-    // Service cards
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry, i) => {
             if (entry.isIntersecting) {
-                setTimeout(() => entry.target.classList.add('visible'), index * 150);
+                setTimeout(() => entry.target.classList.add('visible'), i * 150);
                 observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
+    document.querySelectorAll('.service-card').forEach(c => observer.observe(c));
 
-    document.querySelectorAll('.service-card').forEach(card => observer.observe(card));
-
-    // Contact form
     document.getElementById('contactForm')?.addEventListener('submit', (e) => {
         e.preventDefault();
         const form = e.target;
@@ -112,12 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => msg.remove(), 5000);
     });
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
             e.preventDefault();
-            const target = document.querySelector(anchor.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
 
