@@ -123,12 +123,15 @@ body {
     text-align: center;
     z-index: 15;
     opacity: 0;
-    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
     pointer-events: none;
 }
 
 .hero-subtitle-section.visible {
     opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s ease, visibility 0s linear 0s;
     pointer-events: auto;
 }
 
@@ -424,10 +427,10 @@ body {
     }
 }
 
-/* ══════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââ
    NEW DASHBOARD CARD SYSTEM (db-card)
-   Navy/Cyan/Amber — Corporate BI Theme
-   ══════════════════════════════════════ */
+   Navy/Cyan/Amber â Corporate BI Theme
+   ââââââââââââââââââââââââââââââââââââââ */
 
 .db-card {
     background: linear-gradient(135deg, #0d1f3c 0%, #0a1628 100%);
@@ -606,10 +609,11 @@ body {
     height: 390px;
     z-index: 5;
     opacity: 0;
-    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
 }
 
-.dashboard-container.visible { opacity: 1; }
+.dashboard-container.visible { opacity: 1; visibility: visible; transition: opacity 0.4s ease, visibility 0s linear 0s; }
 .dashboard-container.assembled { opacity: 0.18; }
 
 .dashboard-piece {
