@@ -58,16 +58,24 @@ document.addEventListener('DOMContentLoaded', function() {
   if (cf) cf.addEventListener('submit', function(e) {
     e.preventDefault();
     var form = e.target;
-    var data = Object.fromEntries(new FormData(form));
-    var subject = encodeURIComponent('New Contact Form Submission');
-    var body = encodeURIComponent('Name: ' + data.name + '\nEmail: ' + data.email + '\nPhone: ' + (data.phone || 'Not provided') + '\n\nMessage:\n' + data.message);
-    window.location.href = 'mailto:jqtenterprisesllc@gmail.com?subject=' + subject + '&body=' + body;
-    var msg = document.createElement('div');
-    msg.className = 'form-success';
-    msg.textContent = 'Your email client should open shortly.';
-    form.insertBefore(msg, form.firstChild);
-    form.reset();
-    setTimeout(function() { msg.remove(); }, 5000);
+    var btn = form.querySelector('button[type="submit"], .submit-btn, button');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+    emailjs.sendForm('service_dkzf00m', 'template_6ie98p2', form)
+      .then(function() {
+        var msg = document.createElement('div');
+        msg.className = 'form-success';
+        msg.textContent = 'Message sent! We will be in touch shortly.';
+        form.insertBefore(msg, form.firstChild);
+        form.reset();
+        if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
+        setTimeout(function() { msg.remove(); }, 5000);
+      }, function(error) {
+        var msg = document.createElement('div');
+        msg.className = 'form-success';
+        msg.textContent = 'Something went wrong. Please email us directly.';
+        form.insertBefore(msg, form.firstChild);
+        if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
+      });
   });
   document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     a.addEventListener('click', function(e) {
