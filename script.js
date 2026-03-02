@@ -54,28 +54,36 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
   document.querySelectorAll('.service-card').forEach(function(c) { observer.observe(c); });
+  emailjs.init('Yw-AiHfGeUoivNr5S');
   var cf = document.getElementById('contactForm');
   if (cf) cf.addEventListener('submit', function(e) {
     e.preventDefault();
-    var form = e.target;
-    var btn = form.querySelector('button[type="submit"], .submit-btn, button');
-    if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
-    emailjs.sendForm('service_dkzf00m', 'template_6ie98p2', form)
-      .then(function() {
-        var msg = document.createElement('div');
-        msg.className = 'form-success';
-        msg.textContent = 'Message sent! We will be in touch shortly.';
-        form.insertBefore(msg, form.firstChild);
-        form.reset();
-        if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
-        setTimeout(function() { msg.remove(); }, 5000);
-      }, function(error) {
-        var msg = document.createElement('div');
-        msg.className = 'form-success';
-        msg.textContent = 'Something went wrong. Please email us directly.';
-        form.insertBefore(msg, form.firstChild);
-        if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
-      });
+    var btn = cf.querySelector('button[type=submit]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    var data = Object.fromEntries(new FormData(cf));
+    emailjs.send('service_dkzf00m', 'template_19hynmp', {
+      from_name: data.name,
+      from_email: data.email,
+      phone: data.phone || 'Not provided',
+      message: data.message
+    }).then(function() {
+      var msg = document.createElement('div');
+      msg.className = 'form-success';
+      msg.textContent = 'Message sent! We will be in touch shortly.';
+      cf.insertBefore(msg, cf.firstChild);
+      cf.reset();
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+      setTimeout(function() { msg.remove(); }, 5000);
+    }, function(err) {
+      var msg = document.createElement('div');
+      msg.className = 'form-error';
+      msg.textContent = 'Something went wrong. Please email us directly.';
+      cf.insertBefore(msg, cf.firstChild);
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+    });
   });
   document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     a.addEventListener('click', function(e) {
