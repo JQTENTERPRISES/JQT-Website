@@ -8,28 +8,18 @@ window.addEventListener('scroll', () => {
   else nav.classList.remove('scrolled');
 });
 
-// Hero animations
-const tl = gsap.timeline({ delay: 0.3 });
+// Hero animations — simplified, no DOM manipulation
+const tl = gsap.timeline({ delay: 0.2 });
 
 tl.to('.powered-tag', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
-  .to('.hero-headline .line-1 > *', { y: '0%', duration: 0.7, ease: 'power3.out' }, '-=0.2')
-  .to('.hero-headline .line-2 > *', { y: '0%', duration: 0.7, ease: 'power3.out' }, '-=0.5')
-  .to('.hero-headline .line-3 > *', { y: '0%', duration: 0.7, ease: 'power3.out' }, '-=0.5')
-  .to('.hero-headline .line-4 > *', { y: '0%', duration: 0.7, ease: 'power3.out' }, '-=0.5')
+  .to('.hero-headline', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.2')
   .to('.hero-sub', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
   .to('.hero-actions', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
   .to('.hero-dashboard', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4')
   .to('.scroll-hint', { opacity: 1, duration: 0.6 }, '-=0.2');
 
-// Wrap headline text in spans for animation
-document.querySelectorAll('.hero-headline span').forEach(span => {
-  const text = span.innerHTML;
-  span.innerHTML = '<span>' + text + '</span>';
-});
-
 // Scroll reveal
-const reveals = document.querySelectorAll('.reveal');
-reveals.forEach(el => {
+document.querySelectorAll('.reveal').forEach(el => {
   ScrollTrigger.create({
     trigger: el,
     start: 'top 85%',
@@ -42,17 +32,8 @@ ScrollTrigger.create({
   trigger: '.hero-dashboard',
   start: 'top 80%',
   onEnter: () => {
-    gsap.from('.bar', {
-      height: '0%',
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'power2.out'
-    });
-    gsap.from('.dash-bar-fill', {
-      width: '0%',
-      duration: 1,
-      ease: 'power2.out'
-    });
+    gsap.from('.bar', { height: '0%', duration: 0.8, stagger: 0.1, ease: 'power2.out' });
+    gsap.from('.dash-bar-fill', { width: '0%', duration: 1, ease: 'power2.out' });
   }
 });
 
