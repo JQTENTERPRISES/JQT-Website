@@ -1,95 +1,73 @@
-document.addEventListener('DOMContentLoaded', function() {
-  window.scrollTo(0, 0);
-  var heroTitle = document.querySelector('.hero-title-section');
-  var dashContainer = document.querySelector('.dashboard-container');
-  var heroSub = document.querySelector('.hero-subtitle-section');
-  var pieces = document.querySelectorAll('.dashboard-piece');
-  var assembled = false;
-  function resetPieces() {
-    pieces.forEach(function(p, i) {
-      p.classList.remove('assembled','flying-in-left','flying-in-right');
-      p.style.left = ''; p.style.top = '';
-      p.classList.add(i % 2 === 0 ? 'flying-in-left' : 'flying-in-right');
-    });
-  }
-  resetPieces();
-  window.addEventListener('scroll', function() {
-    var s = window.scrollY;
-    var wh = window.innerHeight;
-    var trigger = wh * 0.2;
-    heroTitle.classList.toggle('fade-out', s > trigger * 0.75);
-    if (s < trigger) {
-      dashContainer.classList.remove('visible','assembled');
-      heroSub.classList.remove('visible');
-      if (assembled) { assembled = false; resetPieces(); }
-      return;
-    }
-    dashContainer.classList.add('visible');
-    if (!assembled) {
-      assembled = true;
-      pieces.forEach(function(p, i) {
-        setTimeout(function() {
-          p.classList.remove('flying-in-left','flying-in-right');
-          p.classList.add('assembled');
-          p.style.left = p.dataset.finalX + 'px';
-          p.style.top = p.dataset.finalY + 'px';
-        }, i * 150);
-      });
-    }
-    if (s > wh * 0.85) {
-      dashContainer.classList.add('assembled');
-      heroSub.classList.add('visible');
-    } else {
-      dashContainer.classList.remove('assembled');
-      heroSub.classList.remove('visible');
-    }
-    document.querySelector('.nav').style.background = s > 100 ? 'rgba(245,245,240,0.98)' : 'rgba(245,245,240,0.9)';
-  });
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry, i) {
-      if (entry.isIntersecting) {
-        setTimeout(function() { entry.target.classList.add('visible'); }, i * 150);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
-  document.querySelectorAll('.service-card').forEach(function(c) { observer.observe(c); });
-  emailjs.init('Yw-AiHfGeUoivNr5S');
-  var cf = document.getElementById('contactForm');
-  if (cf) cf.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var btn = cf.querySelector('button[type=submit]');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-    var data = Object.fromEntries(new FormData(cf));
-    emailjs.send('service_dkzf00m', 'template_19hynmp', {
-      from_name: data.name,
-      from_email: data.email,
-      phone: data.phone || 'Not provided',
-      message: data.message
-    }).then(function() {
-      var msg = document.createElement('div');
-      msg.className = 'form-success';
-      msg.textContent = 'Message sent! We will be in touch shortly.';
-      cf.insertBefore(msg, cf.firstChild);
-      cf.reset();
-      btn.textContent = 'Send Message';
-      btn.disabled = false;
-      setTimeout(function() { msg.remove(); }, 5000);
-    }, function(err) {
-      var msg = document.createElement('div');
-      msg.className = 'form-error';
-      msg.textContent = 'Something went wrong. Please email us directly.';
-      cf.insertBefore(msg, cf.firstChild);
-      btn.textContent = 'Send Message';
-      btn.disabled = false;
-    });
-  });
-  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-    a.addEventListener('click', function(e) {
-      e.preventDefault();
-      var t = document.querySelector(a.getAttribute('href'));
-      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+// JQT Enterprises — Script
+gsap.registerPlugin(ScrollTrigger);
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  if (window.scrollY > 50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// Hero animations
+const tl = gsap.timeline({ delay: 0.3 });
+
+tl.to('.powered-tag', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+  .to('.hero-headline .line-1 > *', { y: '0%', duration: 0.7, ease: 'power3.out' }, '-=0.2')
+  .to('.hero-headline .line-2 > *', { y: '0%', duration: 0.7, ease: 'power3.out' }, '-=0.5')
+  .to('.hero-headline .line-3 > *', { y: '0%', duration: 0.7, ease: 'power3.out' }, '-=0.5')
+  .to('.hero-headline .line-4 > *', { y: '0%', duration: 0.7, ease: 'power3.out' }, '-=0.5')
+  .to('.hero-sub', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+  .to('.hero-actions', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+  .to('.hero-dashboard', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4')
+  .to('.scroll-hint', { opacity: 1, duration: 0.6 }, '-=0.2');
+
+// Wrap headline text in spans for animation
+document.querySelectorAll('.hero-headline span').forEach(span => {
+  const text = span.innerHTML;
+  span.innerHTML = '<span>' + text + '</span>';
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+reveals.forEach(el => {
+  ScrollTrigger.create({
+    trigger: el,
+    start: 'top 85%',
+    onEnter: () => el.classList.add('visible')
   });
 });
+
+// Dashboard bar animation
+ScrollTrigger.create({
+  trigger: '.hero-dashboard',
+  start: 'top 80%',
+  onEnter: () => {
+    gsap.from('.bar', {
+      height: '0%',
+      duration: 0.8,
+      stagger: 0.1,
+      ease: 'power2.out'
+    });
+    gsap.from('.dash-bar-fill', {
+      width: '0%',
+      duration: 1,
+      ease: 'power2.out'
+    });
+  }
+});
+
+// Contact form
+const form = document.getElementById('contactForm');
+if (form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#4ade80';
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+      form.reset();
+    }, 3000);
+  });
+}
