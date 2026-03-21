@@ -1,5 +1,5 @@
 /* ============================================
-   JQT ENTERPRISES Ã¢ÂÂ REDESIGN 2026
+   JQT ENTERPRISES ÃÂ¢ÃÂÃÂ REDESIGN 2026
    Syne (display) + DM Sans (body)
    Dark premium, approachable, authoritative
    ============================================ */
@@ -147,9 +147,9 @@ body {
   font-size: clamp(42px, 5.5vw, 72px);
   font-weight: 800; line-height: 1.05;
   letter-spacing: -0.02em; margin-bottom: 28px;
+  opacity: 0; transform: translateY(20px);
 }
-.hero-headline span { display: block; overflow: hidden; }
-.hero-headline span > * { display: block; transform: translateY(100%); }
+.hero-headline span { display: block; }
 .line-1, .line-2, .line-3 { color: var(--white); }
 .line-4.accent { color: var(--accent); }
 
