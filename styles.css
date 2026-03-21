@@ -1,5 +1,5 @@
 /* ============================================
-   JQT ENTERPRISES ÃÂ¢ÃÂÃÂ REDESIGN 2026
+   JQT ENTERPRISES ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ REDESIGN 2026
    Syne (display) + DM Sans (body)
    Dark premium, approachable, authoritative
    ============================================ */
@@ -76,14 +76,15 @@ body {
 
 /* ---- HERO ---- */
 .hero {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
-  padding: 120px 40px 80px;
+  padding: 100px 40px 60px;
   max-width: 1200px;
   margin: 0 auto;
   gap: 60px;
+  overflow: hidden;
 }
 .hero-bg {
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -118,9 +119,10 @@ body {
 
 .hero-content {
   flex: 1;
-  max-width: 620px;
+  max-width: 560px;
   z-index: 1;
   min-width: 0;
+  overflow: hidden;
 }
 
 .powered-tag {
@@ -129,7 +131,7 @@ body {
   background: rgba(200, 245, 66, 0.05);
   padding: 6px 14px; border-radius: 100px;
   font-size: 12px; font-weight: 500; color: var(--accent);
-  letter-spacing: 0.05em; margin-bottom: 40px;
+  letter-spacing: 0.05em; margin-bottom: 20px;
   opacity: 0; transform: translateY(10px);
 }
 .powered-tag .dot {
@@ -144,9 +146,9 @@ body {
 
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(42px, 5.5vw, 72px);
+  font-size: clamp(28px, 3vw, 48px);
   font-weight: 800; line-height: 1.05;
-  letter-spacing: -0.02em; margin-bottom: 28px;
+  letter-spacing: -0.02em; margin-bottom: 16px;
   opacity: 0; transform: translateY(20px);
 }
 .hero-headline span { display: block; }
@@ -154,8 +156,8 @@ body {
 .line-4.accent { color: var(--accent); }
 
 .hero-sub {
-  font-size: 17px; color: var(--muted); line-height: 1.7;
-  max-width: 480px; margin-bottom: 44px;
+  font-size: 15px; color: var(--muted); line-height: 1.6;
+  max-width: 480px; margin-bottom: 28px;
   opacity: 0; transform: translateY(16px);
 }
 
