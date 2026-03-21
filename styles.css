@@ -1,5 +1,5 @@
 /* ============================================
-   JQT ENTERPRISES — REDESIGN 2026
+   JQT ENTERPRISES â REDESIGN 2026
    Syne (display) + DM Sans (body)
    Dark premium, approachable, authoritative
    ============================================ */
@@ -76,9 +76,9 @@ body {
 
 /* ---- HERO ---- */
 .hero {
-  min-height: 100vh; display: flex; align-items: center;
+  min-height: 100vh; max-height: 100vh; display: flex; align-items: center;
   position: relative; overflow: hidden; padding: 120px 40px 80px;
-  max-width: 1200px; margin: 0 auto;
+  max-width: 1200px; margin: 0 auto; gap: 60px;
 }
 .hero-bg {
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -173,8 +173,8 @@ body {
 
 /* ---- HERO DASHBOARD ---- */
 .hero-dashboard {
-  position: absolute; right: 0; top: 50%;
-  transform: translateY(-50%);
+  position: relative; right: auto; top: auto;
+  transform: none; flex-shrink: 0;
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 12px; width: 380px; opacity: 0;
 }
