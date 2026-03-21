@@ -1,5 +1,5 @@
 /* ============================================
-   JQT ENTERPRISES â REDESIGN 2026
+   JQT ENTERPRISES Ã¢ÂÂ REDESIGN 2026
    Syne (display) + DM Sans (body)
    Dark premium, approachable, authoritative
    ============================================ */
@@ -76,9 +76,14 @@ body {
 
 /* ---- HERO ---- */
 .hero {
-  min-height: 100vh; max-height: 100vh; display: flex; align-items: center;
-  position: relative; overflow: hidden; padding: 120px 40px 80px;
-  max-width: 1200px; margin: 0 auto; gap: 60px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 120px 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 60px;
 }
 .hero-bg {
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -111,7 +116,12 @@ body {
   50% { transform: translate(30px, -30px); }
 }
 
-.hero-content { flex: 1; max-width: 620px; z-index: 1; }
+.hero-content {
+  flex: 1;
+  max-width: 620px;
+  z-index: 1;
+  min-width: 0;
+}
 
 .powered-tag {
   display: inline-flex; align-items: center; gap: 8px;
@@ -173,10 +183,13 @@ body {
 
 /* ---- HERO DASHBOARD ---- */
 .hero-dashboard {
-  position: relative; right: auto; top: auto;
-  transform: none; flex-shrink: 0;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 12px; width: 380px; opacity: 0;
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 360px;
+  opacity: 0;
+  align-self: center;
 }
 .dash-card {
   background: var(--card);
