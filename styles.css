@@ -1,5 +1,5 @@
 /* ============================================
-   JQT ENTERPRISES ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ REDESIGN 2026
+   JQT ENTERPRISES ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ REDESIGN 2026
    Syne (display) + DM Sans (body)
    Dark premium, approachable, authoritative
    ============================================ */
@@ -28,7 +28,6 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
-  overflow-x: hidden;
   cursor: default;
 }
 
@@ -288,7 +287,7 @@ body {
 }
 .services-grid {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 2px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  gap: 2px; border: 1px solid var(--border); border-radius: 16px;
 }
 .service-item {
   padding: 48px; background: var(--dark);
