@@ -122,7 +122,8 @@ body {
   max-width: 560px;
   z-index: 1;
   min-width: 0;
-  overflow: hidden;
+  overflow: visible;
+  padding-bottom: 6px;
 }
 
 .powered-tag {
