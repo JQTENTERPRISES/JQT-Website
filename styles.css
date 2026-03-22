@@ -412,23 +412,15 @@ body {
 }
 
 /* ---- GLOBAL DESCENDER FIX ---- */
-.hero-headline,
-.hero-headline span,
-.section-header h2,
-.service-item h3,
-.work-title,
-.contact-inner h2,
-.problem-text h2 {
-  overflow: visible !important;
-  padding-bottom: 0.15em;
-  line-height: 1.2;
-}
-
-.hero-content,
-.hero {
+h1, h2, h3, h4 {
+  line-height: 1.3 !important;
+  padding-bottom: 0.15em !important;
   overflow: visible !important;
 }
-
-body {
-  overflow-x: hidden;
+.hero-content, .hero, .problem-text, .service-item, .work-item, .contact-inner {
+  overflow: visible !important;
+}
+body { overflow-x: hidden; }
+.hero-actions .btn-primary {
+  color: #ffffff !important;
 }
