@@ -31,11 +31,15 @@ if (form) {
     btn.textContent = "Sending...";
     btn.disabled = true;
     var inputs = form.querySelectorAll("input, textarea");
+    var nameVal = inputs[0] ? inputs[0].value : "";
+    var emailVal = inputs[1] ? inputs[1].value : "";
+    var bizVal = inputs[2] ? inputs[2].value : "";
+    var msgVal = inputs[3] ? inputs[3].value : "";
+    var now = new Date().toLocaleString();
     var params = {
-      from_name: inputs[0] ? inputs[0].value : "",
-      from_email: inputs[1] ? inputs[1].value : "",
-      business_name: inputs[2] ? inputs[2].value : "",
-      message: inputs[3] ? inputs[3].value : ""
+      name: nameVal + " (" + emailVal + ") - " + bizVal,
+      message: msgVal,
+      time: now
     };
     emailjs.send("service_dkzf00m", "template_19hynmp", params)
       .then(function() {
