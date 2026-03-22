@@ -1,5 +1,5 @@
 /* ============================================
-   JQT ENTERPRISES ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ REDESIGN 2026
+   JQT ENTERPRISES ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ REDESIGN 2026
    Syne (display) + DM Sans (body)
    Dark premium, approachable, authoritative
    ============================================ */
@@ -87,6 +87,7 @@ body {
   margin: 0 auto;
   gap: 40px;
   box-sizing: border-box;
+  overflow: visible;
 }
 .hero-bg {
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -127,6 +128,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-bottom: 8px;
 }
 
 .powered-tag {
