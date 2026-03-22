@@ -433,3 +433,21 @@ body { overflow-x: hidden; }
 .hero-headline .line-4 { display: block; padding-bottom: 0.25em; }
 h1, h2, h3 { overflow: visible !important; }
 .accent { display: inline-block; padding-bottom: 0.2em; }
+
+/* ---- G DESCENDER FIX - MARGIN APPROACH ---- */
+.hero-headline {
+  margin-bottom: 32px !important;
+}
+.hero-headline .line-4 {
+  display: block;
+  margin-bottom: 12px;
+}
+.section-header h2,
+.problem-text h2,
+.contact-inner h2 {
+  margin-bottom: 28px !important;
+}
+h1, h2, h3 {
+  overflow: visible !important;
+  -webkit-font-smoothing: antialiased;
+}
