@@ -67,7 +67,7 @@ body {
 }
 .nav-links a:hover { color: var(--white); }
 .nav-cta {
-  background: var(--accent) !important; color: var(--black) !important;
+  background: var(--accent) !important; color: #ffffff !important;
   padding: 10px 22px; border-radius: 4px;
   font-weight: 600 !important; font-size: 13px !important;
   transition: opacity 0.2s !important;
