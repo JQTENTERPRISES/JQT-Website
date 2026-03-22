@@ -1,5 +1,5 @@
 /* ============================================
-   JQT ENTERPRISES ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ REDESIGN 2026
+   JQT ENTERPRISES ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ REDESIGN 2026
    Syne (display) + DM Sans (body)
    Dark premium, approachable, authoritative
    ============================================ */
@@ -28,6 +28,7 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
+  overflow-x: hidden;
   cursor: default;
 }
 
@@ -77,16 +78,13 @@ body {
 .hero {
   height: 100vh;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
   position: relative;
-  padding: 80px 40px;
+  padding: 100px 40px 60px;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 40px;
-  box-sizing: border-box;
-  overflow: visible;
+  gap: 60px;
+  overflow: hidden;
 }
 .hero-bg {
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -124,10 +122,7 @@ body {
   max-width: 560px;
   z-index: 1;
   min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-bottom: 8px;
+  overflow: hidden;
 }
 
 .powered-tag {
@@ -151,7 +146,7 @@ body {
 
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(24px, 2.8vw, 42px);
+  font-size: clamp(28px, 3vw, 48px);
   font-weight: 800; line-height: 1.05;
   letter-spacing: -0.02em; margin-bottom: 16px;
   opacity: 0; transform: translateY(20px);
@@ -194,7 +189,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  width: 340px;
+  width: 360px;
   opacity: 0;
   align-self: center;
 }
@@ -287,7 +282,7 @@ body {
 }
 .services-grid {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 2px; border: 1px solid var(--border); border-radius: 16px;
+  gap: 2px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
 }
 .service-item {
   padding: 48px; background: var(--dark);
