@@ -410,3 +410,25 @@ body {
   .container { padding: 0 24px; }
   .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
 }
+
+/* ---- GLOBAL DESCENDER FIX ---- */
+.hero-headline,
+.hero-headline span,
+.section-header h2,
+.service-item h3,
+.work-title,
+.contact-inner h2,
+.problem-text h2 {
+  overflow: visible !important;
+  padding-bottom: 0.15em;
+  line-height: 1.2;
+}
+
+.hero-content,
+.hero {
+  overflow: visible !important;
+}
+
+body {
+  overflow-x: hidden;
+}
