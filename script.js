@@ -1,54 +1,63 @@
-// JQT Enterprises — Script
 gsap.registerPlugin(ScrollTrigger);
 
-// Nav scroll effect
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('nav');
-  if (window.scrollY > 50) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
+window.addEventListener("scroll", function() {
+  var nav = document.getElementById("nav");
+  if (window.scrollY > 50) nav.classList.add("scrolled");
+  else nav.classList.remove("scrolled");
 });
 
-// Hero animations — simplified, no DOM manipulation
-const tl = gsap.timeline({ delay: 0.2 });
+var tl = gsap.timeline({ delay: 0.2 });
+tl.to(".powered-tag", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
+  .to(".hero-headline", { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.2")
+  .to(".hero-sub", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.3")
+  .to(".hero-actions", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.3")
+  .to(".hero-dashboard", { opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.4")
+  .to(".scroll-hint", { opacity: 1, duration: 0.6 }, "-=0.2");
 
-tl.to('.powered-tag', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
-  .to('.hero-headline', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.2')
-  .to('.hero-sub', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
-  .to('.hero-actions', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
-  .to('.hero-dashboard', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4')
-  .to('.scroll-hint', { opacity: 1, duration: 0.6 }, '-=0.2');
-
-// Scroll reveal
-document.querySelectorAll('.reveal').forEach(el => {
+document.querySelectorAll(".reveal").forEach(function(el) {
   ScrollTrigger.create({
     trigger: el,
-    start: 'top 85%',
-    onEnter: () => el.classList.add('visible')
+    start: "top 85%",
+    onEnter: function() { el.classList.add("visible"); }
   });
 });
 
-// Dashboard bar animation
-ScrollTrigger.create({
-  trigger: '.hero-dashboard',
-  start: 'top 80%',
-  onEnter: () => {
-    gsap.from('.bar', { height: '0%', duration: 0.8, stagger: 0.1, ease: 'power2.out' });
-    gsap.from('.dash-bar-fill', { width: '0%', duration: 1, ease: 'power2.out' });
-  }
-});
-
-// Contact form
-const form = document.getElementById('contactForm');
+emailjs.init("Yw-AiHfGeUoivNr5S");
+var form = document.getElementById("contactForm");
 if (form) {
-  form.addEventListener('submit', function(e) {
+  form.addEventListener("submit", function(e) {
     e.preventDefault();
-    const btn = form.querySelector('button');
-    btn.textContent = 'Message Sent ✓';
-    btn.style.background = '#4ade80';
-    setTimeout(() => {
-      btn.textContent = 'Send Message';
-      btn.style.background = '';
-      form.reset();
-    }, 3000);
+    var btn = form.querySelector("button");
+    btn.textContent = "Sending...";
+    btn.disabled = true;
+    var inputs = form.querySelectorAll("input, textarea");
+    var params = {
+      from_name: inputs[0] ? inputs[0].value : "",
+      from_email: inputs[1] ? inputs[1].value : "",
+      business_name: inputs[2] ? inputs[2].value : "",
+      message: inputs[3] ? inputs[3].value : ""
+    };
+    emailjs.send("service_dkzf00m", "template_19hynmp", params)
+      .then(function() {
+        btn.textContent = "Message Sent";
+        btn.style.background = "#4ade80";
+        btn.style.color = "#000";
+        form.reset();
+        setTimeout(function() {
+          btn.textContent = "Send Message";
+          btn.style.background = "";
+          btn.style.color = "";
+          btn.disabled = false;
+        }, 3000);
+      })
+      .catch(function() {
+        btn.textContent = "Error - Try Again";
+        btn.style.background = "#ef4444";
+        btn.disabled = false;
+        setTimeout(function() {
+          btn.textContent = "Send Message";
+          btn.style.background = "";
+        }, 3000);
+      });
   });
 }
