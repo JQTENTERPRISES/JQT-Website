@@ -424,3 +424,12 @@ body { overflow-x: hidden; }
 .hero-actions .btn-primary {
   color: #ffffff !important;
 }
+
+/* ---- SYNE DESCENDER FIX - FINAL ---- */
+* { box-sizing: border-box; }
+.hero-headline { line-height: 1.35 !important; overflow: visible !important; clip: auto !important; -webkit-line-clamp: unset !important; }
+.hero-content { overflow: visible !important; clip: auto !important; }
+.hero { overflow: visible !important; }
+.hero-headline .line-4 { display: block; padding-bottom: 0.25em; }
+h1, h2, h3 { overflow: visible !important; }
+.accent { display: inline-block; padding-bottom: 0.2em; }
