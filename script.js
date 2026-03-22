@@ -1,4 +1,4 @@
-// JQT Enterprises â Script
+// JQT Enterprises — Script
 gsap.registerPlugin(ScrollTrigger);
 
 // Nav scroll effect
@@ -8,7 +8,7 @@ window.addEventListener('scroll', () => {
   else nav.classList.remove('scrolled');
 });
 
-// Hero animations â simplified, no DOM manipulation
+// Hero animations — simplified, no DOM manipulation
 const tl = gsap.timeline({ delay: 0.2 });
 
 tl.to('.powered-tag', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
@@ -43,7 +43,7 @@ if (form) {
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     const btn = form.querySelector('button');
-    btn.textContent = 'Message Sent â';
+    btn.textContent = 'Message Sent ✓';
     btn.style.background = '#4ade80';
     setTimeout(() => {
       btn.textContent = 'Send Message';
