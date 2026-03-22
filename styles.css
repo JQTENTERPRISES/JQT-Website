@@ -1,19 +1,19 @@
 /* ============================================
-   JQT ENTERPRISES ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ REDESIGN 2026
+   JQT ENTERPRISES  REDESIGN 2026
    Syne (display) + DM Sans (body)
    Dark premium, approachable, authoritative
    ============================================ */
 
 :root {
-  --black: #080808;
-  --dark: #0f0f0f;
-  --card: #141414;
-  --border: rgba(255,255,255,0.07);
-  --white: #ffffff;
-  --off-white: #e8e4dc;
-  --accent: #c8f542;
-  --accent-dim: rgba(200, 245, 66, 0.15);
-  --muted: rgba(255,255,255,0.45);
+  --black: #1a1a18;
+  --dark: #f0ede8;
+  --card: #e8e4de;
+  --border: rgba(26,26,24,0.1);
+  --white: #1a1a18;
+  --off-white: #f0ede8;
+  --accent: #3d5a7a;
+  --accent-dim: rgba(61,90,122,0.1);
+  --muted: rgba(26,26,24,0.45);
   --font-display: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
 }
@@ -23,8 +23,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--black);
-  color: var(--white);
+  background: var(--dark);
+  color: var(--black);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
@@ -49,7 +49,7 @@ body {
   transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
 .nav.scrolled {
-  background: rgba(8,8,8,0.9);
+  background: rgba(240,237,232,0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
@@ -92,8 +92,8 @@ body {
 .grid-overlay {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    linear-gradient(rgba(26,26,24,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,26,24,0.04) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 .orb {
@@ -102,13 +102,13 @@ body {
 }
 .orb-1 {
   width: 600px; height: 600px;
-  background: radial-gradient(circle, #c8f542 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(61,90,122,0.2) 0%, transparent 70%);
   top: -200px; right: -100px;
   animation: orbFloat 8s ease-in-out infinite;
 }
 .orb-2 {
   width: 400px; height: 400px;
-  background: radial-gradient(circle, #3a6b00 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(61,90,122,0.08) 0%, transparent 70%);
   bottom: 0; left: -100px;
   animation: orbFloat 12s ease-in-out infinite reverse;
 }
@@ -128,7 +128,7 @@ body {
 .powered-tag {
   display: inline-flex; align-items: center; gap: 8px;
   border: 1px solid var(--border);
-  background: rgba(200, 245, 66, 0.05);
+  background: rgba(61,90,122,0.06);
   padding: 6px 14px; border-radius: 100px;
   font-size: 12px; font-weight: 500; color: var(--accent);
   letter-spacing: 0.05em; margin-bottom: 20px;
@@ -194,10 +194,10 @@ body {
   align-self: center;
 }
 .dash-card {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: #ffffff;
+  border: 1px solid rgba(26,26,24,0.1);
   border-radius: 12px; padding: 20px;
-  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(26,26,24,0.06);
 }
 .dash-label { font-size: 11px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
 .dash-value { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: 6px; }
@@ -317,9 +317,10 @@ body {
 .powered { padding: 140px 0; background: var(--dark); border-top: 1px solid var(--border); }
 .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .work-item {
-  background: var(--card); border: 1px solid var(--border);
+  background: #ffffff; border: 1px solid rgba(26,26,24,0.1);
   border-radius: 16px; padding: 48px;
   transition: border-color 0.3s;
+  box-shadow: 0 2px 16px rgba(26,26,24,0.05);
 }
 .work-item:hover { border-color: rgba(200, 245, 66, 0.3); }
 .work-tag {
@@ -363,9 +364,9 @@ body {
 .contact-form { display: flex; flex-direction: column; gap: 16px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .contact-form input, .contact-form textarea {
-  background: var(--card); border: 1px solid var(--border);
+  background: #ffffff; border: 1px solid rgba(26,26,24,0.12);
   border-radius: 8px; padding: 16px 20px;
-  color: var(--white); font-family: var(--font-body); font-size: 14px;
+  color: var(--black); font-family: var(--font-body); font-size: 14px;
   outline: none; transition: border-color 0.2s; width: 100%;
   resize: vertical;
 }
