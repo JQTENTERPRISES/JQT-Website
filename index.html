@@ -61,11 +61,14 @@
     }
 
     .nav-logo-fallback {
-      display: none;
-      font-size: 18px;
-      font-weight: 800;
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
       color: #f0ede8;
-      letter-spacing: -0.03em;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
     }
 
     .nav-links {
@@ -163,11 +166,13 @@
     }
 
     .hero-logo-fallback {
-      display: none;
-      font-size: 18px;
-      font-weight: 800;
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
       color: #f0ede8;
-      letter-spacing: -0.03em;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       margin-bottom: 48px;
       opacity: 0;
       animation: fadeUp 0.5s ease forwards 0.1s;
@@ -180,7 +185,7 @@
 
     /* Headline — left aligned, sized to fit ~2 lines */
     .hero-headline {
-      font-size: clamp(34px, 4vw, 56px);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
       font-weight: 800;
       line-height: 1.08;
       letter-spacing: -0.04em;
@@ -667,16 +672,7 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="/" class="nav-logo" id="nav-logo-link">
-      <img
-        src="https://raw.githubusercontent.com/JQTENTERPRISES/JQT-Context/main/assets/jqt_logo.png"
-        alt="JQT"
-        height="36"
-        id="nav-logo-img"
-        onerror="document.getElementById('nav-logo-img').style.display='none'; document.getElementById('nav-logo-text').style.display='block';"
-      >
-      <span class="nav-logo-fallback" id="nav-logo-text">JQT.</span>
-    </a>
+    <a href="/" class="nav-logo-fallback">JQT.</a>
     <div class="nav-links">
       <a href="#build">Services</a>
       <a href="#showcase">Work</a>
@@ -690,14 +686,7 @@
     <canvas id="hero-canvas"></canvas>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <img
-        src="https://raw.githubusercontent.com/JQTENTERPRISES/JQT-Context/main/assets/jqt_logo.png"
-        alt="JQT Enterprises"
-        class="hero-logo"
-        id="hero-logo-img"
-        onerror="document.getElementById('hero-logo-img').style.display='none'; document.getElementById('hero-logo-text').style.display='block';"
-      >
-      <div class="hero-logo-fallback" id="hero-logo-text">JQT.</div>
+      <div class="hero-logo-fallback">JQT.</div>
       <h1 class="hero-headline" id="hero-headline">Your competitors already automated this.</h1>
       <p class="hero-sub">JQT builds the digital infrastructure small businesses actually need.</p>
       <div class="hero-actions">
@@ -869,9 +858,9 @@
           </div>
           <div class="case-content">
             <div class="case-tag">Case Study 02</div>
-            <h3>Laced with Charm</h3>
+            <h3>Blush Nail Studio</h3>
             <div class="case-disclaimer">Projected Demo</div>
-            <p>Laced with Charm is a boutique nail and lash studio in Fort Lauderdale's Las Olas corridor. Their work speaks for itself on Instagram but their digital presence stops there. No website, no online booking, no way for new clients to find them after dark. JQT built the infrastructure to match the quality of their work: a booking-enabled website, full service menu, Instagram integration, and Google Maps embed. Projected impact based on comparable salon launches:</p>
+            <p>Blush Nail Studio is a boutique nail and lash studio in Fort Lauderdale's Las Olas corridor. Their work speaks for itself on Instagram but their digital presence stops there. No website, no online booking, no way for new clients to find them after dark. JQT built the infrastructure to match the quality of their work: a booking-enabled website, full service menu, Instagram integration, and Google Maps embed. Projected impact based on comparable salon launches:</p>
             <div class="case-stats">
               <div class="stat-item">
                 <div class="stat-value">2x</div>
@@ -914,9 +903,9 @@
           </div>
           <div class="case-content">
             <div class="case-tag">Case Study 03</div>
-            <h3>Fresh Cuts Barbershop</h3>
+            <h3>Crown Cuts</h3>
             <div class="case-disclaimer">Projected Demo</div>
-            <p>Fresh Cuts is a neighborhood barbershop in Broward County that runs on reputation and word of mouth alone. No website. No way to book online. Competing against franchise chains with apps and loyalty programs. JQT leveled the playing field with a custom digital presence built in under a week: clean one-page site, appointment request form, Google reviews embed, and clear hours and location. Projected impact based on comparable shop launches:</p>
+            <p>Crown Cuts is a neighborhood barbershop in Broward County that runs on reputation and word of mouth alone. No website. No way to book online. Competing against franchise chains with apps and loyalty programs. JQT leveled the playing field with a custom digital presence built in under a week: clean one-page site, appointment request form, Google reviews embed, and clear hours and location. Projected impact based on comparable shop launches:</p>
             <div class="case-stats">
               <div class="stat-item">
                 <div class="stat-value">4x</div>
