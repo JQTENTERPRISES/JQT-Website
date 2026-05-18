@@ -32,7 +32,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -48,10 +48,24 @@
       transition: background 0.3s;
     }
 
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
     .nav-logo img {
-      height: 32px;
+      height: 36px;
       width: auto;
       display: block;
+    }
+
+    .nav-logo-fallback {
+      display: none;
+      font-size: 18px;
+      font-weight: 800;
+      color: #f0ede8;
+      letter-spacing: -0.03em;
     }
 
     .nav-links {
@@ -84,7 +98,7 @@
       border-color: rgba(61,90,122,0.5) !important;
     }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -94,7 +108,7 @@
       background: var(--bg);
     }
 
-    /* CSS grid background behind everything */
+    /* Subtle CSS graph-paper grid behind everything */
     .hero-grid-bg {
       position: absolute;
       inset: 0;
@@ -105,35 +119,40 @@
       background-size: 72px 72px;
     }
 
-    /* Three.js canvas fills right half */
+    /* Three.js canvas — full viewport, background layer */
     #hero-canvas {
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 55%;
+      inset: 0;
+      width: 100%;
       height: 100%;
       z-index: 1;
+      opacity: 0.4;
     }
 
-    /* Fade from canvas into left text */
-    .hero-fade {
+    /* Darkens the left half so text stays readable */
+    .hero-overlay {
       position: absolute;
-      top: 0; left: 0;
-      width: 60%;
-      height: 100%;
+      inset: 0;
       z-index: 2;
-      background: linear-gradient(to right, #0a0a0a 55%, transparent 100%);
+      background: linear-gradient(
+        to right,
+        rgba(10,10,10,0.88) 0%,
+        rgba(10,10,10,0.72) 40%,
+        rgba(10,10,10,0.3) 70%,
+        rgba(10,10,10,0.1) 100%
+      );
       pointer-events: none;
     }
 
-    /* Left-side text content */
+    /* Text content — left aligned */
     .hero-content {
       position: relative;
       z-index: 3;
-      width: 50%;
+      max-width: 600px;
       padding: 120px 0 80px 80px;
     }
 
+    /* Hero logo */
     .hero-logo {
       height: 36px;
       width: auto;
@@ -143,25 +162,38 @@
       animation: fadeUp 0.5s ease forwards 0.1s;
     }
 
+    .hero-logo-fallback {
+      display: none;
+      font-size: 18px;
+      font-weight: 800;
+      color: #f0ede8;
+      letter-spacing: -0.03em;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards 0.1s;
+    }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* Headline — left aligned, sized to fit ~2 lines */
     .hero-headline {
-      font-size: clamp(38px, 4.8vw, 68px);
+      font-size: clamp(34px, 4vw, 56px);
       font-weight: 800;
-      line-height: 1.05;
+      line-height: 1.08;
       letter-spacing: -0.04em;
       margin-bottom: 24px;
+      text-align: left;
     }
 
     .hero-headline .word {
       display: inline-block;
       opacity: 0;
-      transform: translateY(16px);
+      transform: translateY(14px);
       transition: opacity 0.4s ease, transform 0.4s ease;
-      margin-right: 0.2em;
+      margin-right: 0.18em;
     }
 
     .hero-headline .word.vis {
@@ -170,12 +202,13 @@
     }
 
     .hero-sub {
-      font-size: clamp(15px, 1.6vw, 18px);
+      font-size: clamp(15px, 1.5vw, 17px);
       color: var(--text-muted);
       font-weight: 400;
-      margin-bottom: 44px;
-      max-width: 420px;
-      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 400px;
+      line-height: 1.65;
+      text-align: left;
       opacity: 0;
       animation: fadeUp 0.6s ease forwards 1.9s;
     }
@@ -233,7 +266,7 @@
       transform: translateY(-1px);
     }
 
-    /* SHARED */
+    /* ── SHARED ── */
     section:not(.hero) { padding: 112px 0; background: var(--bg); }
 
     .container {
@@ -258,7 +291,7 @@
       line-height: 1.08;
     }
 
-    /* THE PROBLEM */
+    /* ── THE PROBLEM ── */
     .problem-header {
       text-align: center;
       max-width: 600px;
@@ -323,7 +356,7 @@
       line-height: 1.7;
     }
 
-    /* WHAT WE BUILD */
+    /* ── WHAT WE BUILD ── */
     .build-header {
       text-align: center;
       max-width: 580px;
@@ -400,8 +433,14 @@
       max-width: 420px;
     }
 
-    /* POWERED BY JQT */
+    /* ── CASE STUDIES ── */
     .showcase-header { margin-bottom: 64px; }
+
+    .case-studies {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
 
     .case-card {
       background: rgba(255,255,255,0.025);
@@ -415,7 +454,7 @@
     .case-visual {
       background: #0f0f0f;
       border-right: var(--border);
-      min-height: 400px;
+      min-height: 380px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -474,7 +513,7 @@
 
     .mockup-img-block {
       flex: 1;
-      height: 52px;
+      height: 48px;
       border-radius: 6px;
       background: rgba(61,90,122,0.12);
       border: 1px solid rgba(61,90,122,0.2);
@@ -495,7 +534,7 @@
       border-radius: 100px;
     }
 
-    .case-content { padding: 52px 48px; }
+    .case-content { padding: 48px 48px; }
 
     .case-tag {
       font-size: 11px;
@@ -503,32 +542,42 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent-light);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .case-content h3 {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 800;
       letter-spacing: -0.035em;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       line-height: 1.1;
     }
 
+    .case-disclaimer {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(91,127,160,0.7);
+      margin-bottom: 16px;
+    }
+
     .case-content p {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-muted);
       line-height: 1.75;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
     }
 
     .case-stats {
       display: flex;
-      gap: 36px;
+      gap: 32px;
       flex-wrap: wrap;
+      margin-bottom: 28px;
     }
 
     .stat-value {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 800;
       color: var(--accent-light);
       letter-spacing: -0.03em;
@@ -536,12 +585,13 @@
     }
 
     .stat-label {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-muted);
       margin-top: 5px;
+      line-height: 1.4;
     }
 
-    /* CONTACT */
+    /* ── CONTACT ── */
     .contact { text-align: center; }
 
     .contact h2 {
@@ -559,7 +609,7 @@
       line-height: 1.6;
     }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       padding: 28px 48px;
       border-top: var(--border);
@@ -586,22 +636,14 @@
     /* GSAP initial state */
     .gs-fade { opacity: 0; transform: translateY(28px); }
 
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      .hero-content { width: 60%; padding-left: 48px; }
-      #hero-canvas { width: 50%; }
-      .hero-fade { width: 65%; }
-    }
-
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero-content { width: 100%; padding: 120px 32px 80px; }
-      #hero-canvas { width: 100%; opacity: 0.3; }
-      .hero-fade {
-        width: 100%;
-        background: linear-gradient(to top, #0a0a0a 30%, transparent 100%);
+      .hero-content { padding: 120px 32px 80px; max-width: 100%; }
+      .hero-overlay {
+        background: rgba(10,10,10,0.75);
       }
       .case-card { grid-template-columns: 1fr; }
-      .case-visual { min-height: 260px; border-right: none; border-bottom: var(--border); }
+      .case-visual { min-height: 240px; border-right: none; border-bottom: var(--border); }
     }
 
     @media (max-width: 768px) {
@@ -611,13 +653,13 @@
       .pain-grid { grid-template-columns: 1fr; gap: 16px; }
       .bento { grid-template-columns: 1fr; gap: 14px; }
       .bento-tile.large { grid-column: span 1; }
-      .case-content { padding: 36px 28px; }
+      .case-content { padding: 32px 24px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px; }
     }
 
     @media (max-width: 560px) {
       .hero-actions { flex-direction: column; align-items: flex-start; }
-      .case-stats { gap: 24px; }
+      .case-stats { gap: 20px; }
     }
   </style>
 </head>
@@ -625,8 +667,15 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="/" class="nav-logo">
-      <img src="https://raw.githubusercontent.com/JQTENTERPRISES/JQT-Website/main/logo.png" alt="JQT Enterprises">
+    <a href="/" class="nav-logo" id="nav-logo-link">
+      <img
+        src="https://raw.githubusercontent.com/JQTENTERPRISES/JQT-Context/main/assets/jqt_logo.png"
+        alt="JQT"
+        height="36"
+        id="nav-logo-img"
+        onerror="document.getElementById('nav-logo-img').style.display='none'; document.getElementById('nav-logo-text').style.display='block';"
+      >
+      <span class="nav-logo-fallback" id="nav-logo-text">JQT.</span>
     </a>
     <div class="nav-links">
       <a href="#build">Services</a>
@@ -639,16 +688,17 @@
   <section class="hero" id="hero">
     <div class="hero-grid-bg"></div>
     <canvas id="hero-canvas"></canvas>
-    <div class="hero-fade"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
       <img
-        src="https://raw.githubusercontent.com/JQTENTERPRISES/JQT-Website/main/logo.png"
+        src="https://raw.githubusercontent.com/JQTENTERPRISES/JQT-Context/main/assets/jqt_logo.png"
         alt="JQT Enterprises"
         class="hero-logo"
+        id="hero-logo-img"
+        onerror="document.getElementById('hero-logo-img').style.display='none'; document.getElementById('hero-logo-text').style.display='block';"
       >
-      <h1 class="hero-headline" id="hero-headline">
-        Your competitors already automated this.
-      </h1>
+      <div class="hero-logo-fallback" id="hero-logo-text">JQT.</div>
+      <h1 class="hero-headline" id="hero-headline">Your competitors already automated this.</h1>
       <p class="hero-sub">JQT builds the digital infrastructure small businesses actually need.</p>
       <div class="hero-actions">
         <a href="#showcase" class="btn-primary">See Our Work</a>
@@ -746,49 +796,145 @@
         <div class="section-label">Powered by JQT</div>
         <h2>Real work. Real results.</h2>
       </div>
-      <div class="case-card gs-fade">
-        <div class="case-visual">
-          <div class="case-mockup">
-            <div class="mockup-bar">
-              <div class="mockup-dot"></div>
-              <div class="mockup-dot"></div>
-              <div class="mockup-dot"></div>
-            </div>
-            <div class="mockup-body">
-              <div class="mockup-line accent"></div>
-              <div class="mockup-line full"></div>
-              <div class="mockup-line med"></div>
-              <div class="mockup-img-row">
-                <div class="mockup-img-block"></div>
-                <div class="mockup-img-block"></div>
-                <div class="mockup-img-block"></div>
+
+      <div class="case-studies">
+
+        <!-- CASE STUDY 01: Pollo Tipico -->
+        <div class="case-card gs-fade">
+          <div class="case-visual">
+            <div class="case-mockup">
+              <div class="mockup-bar">
+                <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
               </div>
-              <div class="mockup-line short" style="margin-top:4px"></div>
-              <div class="mockup-line full"></div>
-              <div class="mockup-line med"></div>
+              <div class="mockup-body">
+                <div class="mockup-line accent"></div>
+                <div class="mockup-line full"></div>
+                <div class="mockup-line med"></div>
+                <div class="mockup-img-row">
+                  <div class="mockup-img-block"></div>
+                  <div class="mockup-img-block"></div>
+                  <div class="mockup-img-block"></div>
+                </div>
+                <div class="mockup-line short" style="margin-top:4px"></div>
+                <div class="mockup-line full"></div>
+                <div class="mockup-line med"></div>
+              </div>
             </div>
+            <div class="case-badge">Projected Demo</div>
           </div>
-          <div class="case-badge">Live Site</div>
-        </div>
-        <div class="case-content">
-          <div class="case-tag">Case Study 01</div>
-          <h3>Pollo Tipico</h3>
-          <p>Pollo Tipico came to us with a problem every great local restaurant knows: a loyal customer base, a product people love, and zero digital presence. No website, no online menu, no way to capture new business after hours. We built them a full digital foundation, brand-consistent website, live online menu, contact capture system, and Google Business integration, and had them live in under two weeks.</p>
-          <div class="case-stats">
-            <div class="stat-item">
-              <div class="stat-value">3x</div>
-              <div class="stat-label">Increase in new inquiries</div>
+          <div class="case-content">
+            <div class="case-tag">Case Study 01</div>
+            <h3>Pollo Tipico</h3>
+            <div class="case-disclaimer">Projected Demo</div>
+            <p>Pollo Tipico is a beloved local restaurant in Davie, FL with a loyal following and zero digital presence. No website, no online menu, no way to capture new customers after hours. JQT built a full digital foundation as a projected demo: brand-consistent website, live online menu, contact capture, and Google Business integration. Projected impact based on comparable restaurant launches:</p>
+            <div class="case-stats">
+              <div class="stat-item">
+                <div class="stat-value">3x</div>
+                <div class="stat-label">Projected new visitor reach</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">14d</div>
+                <div class="stat-label">Estimated build to launch</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Client-owned, forever</div>
+              </div>
             </div>
-            <div class="stat-item">
-              <div class="stat-value">14d</div>
-              <div class="stat-label">Kickoff to launch</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">100%</div>
-              <div class="stat-label">Client-owned, forever</div>
-            </div>
+            <a href="#" class="btn-ghost" style="font-size:13px; padding:10px 22px;">View Demo</a>
           </div>
         </div>
+
+        <!-- CASE STUDY 02: Laced with Charm -->
+        <div class="case-card gs-fade">
+          <div class="case-visual">
+            <div class="case-mockup">
+              <div class="mockup-bar">
+                <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+              </div>
+              <div class="mockup-body">
+                <div class="mockup-line accent"></div>
+                <div class="mockup-line full"></div>
+                <div class="mockup-line short"></div>
+                <div class="mockup-img-row">
+                  <div class="mockup-img-block"></div>
+                  <div class="mockup-img-block"></div>
+                </div>
+                <div class="mockup-line med" style="margin-top:4px"></div>
+                <div class="mockup-line full"></div>
+                <div class="mockup-line short"></div>
+              </div>
+            </div>
+            <div class="case-badge">Projected Demo</div>
+          </div>
+          <div class="case-content">
+            <div class="case-tag">Case Study 02</div>
+            <h3>Laced with Charm</h3>
+            <div class="case-disclaimer">Projected Demo</div>
+            <p>Laced with Charm is a boutique nail and lash studio in Fort Lauderdale's Las Olas corridor. Their work speaks for itself on Instagram but their digital presence stops there. No website, no online booking, no way for new clients to find them after dark. JQT built the infrastructure to match the quality of their work: a booking-enabled website, full service menu, Instagram integration, and Google Maps embed. Projected impact based on comparable salon launches:</p>
+            <div class="case-stats">
+              <div class="stat-item">
+                <div class="stat-value">2x</div>
+                <div class="stat-label">Projected booking volume</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">10d</div>
+                <div class="stat-label">Estimated build to launch</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Client-owned, forever</div>
+              </div>
+            </div>
+            <a href="#" class="btn-ghost" style="font-size:13px; padding:10px 22px;">View Demo</a>
+          </div>
+        </div>
+
+        <!-- CASE STUDY 03: Fresh Cuts Barbershop -->
+        <div class="case-card gs-fade">
+          <div class="case-visual">
+            <div class="case-mockup">
+              <div class="mockup-bar">
+                <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+              </div>
+              <div class="mockup-body">
+                <div class="mockup-line accent"></div>
+                <div class="mockup-line med"></div>
+                <div class="mockup-line full"></div>
+                <div class="mockup-img-row">
+                  <div class="mockup-img-block"></div>
+                  <div class="mockup-img-block"></div>
+                  <div class="mockup-img-block"></div>
+                </div>
+                <div class="mockup-line short" style="margin-top:4px"></div>
+                <div class="mockup-line full"></div>
+              </div>
+            </div>
+            <div class="case-badge">Projected Demo</div>
+          </div>
+          <div class="case-content">
+            <div class="case-tag">Case Study 03</div>
+            <h3>Fresh Cuts Barbershop</h3>
+            <div class="case-disclaimer">Projected Demo</div>
+            <p>Fresh Cuts is a neighborhood barbershop in Broward County that runs on reputation and word of mouth alone. No website. No way to book online. Competing against franchise chains with apps and loyalty programs. JQT leveled the playing field with a custom digital presence built in under a week: clean one-page site, appointment request form, Google reviews embed, and clear hours and location. Projected impact based on comparable shop launches:</p>
+            <div class="case-stats">
+              <div class="stat-item">
+                <div class="stat-value">4x</div>
+                <div class="stat-label">Projected online visibility</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">7d</div>
+                <div class="stat-label">Estimated build to launch</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Client-owned, forever</div>
+              </div>
+            </div>
+            <a href="#" class="btn-ghost" style="font-size:13px; padding:10px 22px;">View Demo</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -800,7 +946,7 @@
         <div class="section-label">Get Started</div>
         <h2>Ready to build?</h2>
         <p>Tell us what you are dealing with. We will figure out if we can help, usually within 24 hours.</p>
-        <a href="mailto:hello@jqtenterprises.com" class="btn-primary">hello@jqtenterprises.com</a>
+        <a href="mailto:jqtenterprisesllc@gmail.com" class="btn-primary">jqtenterprisesllc@gmail.com</a>
       </div>
     </div>
   </section>
@@ -818,7 +964,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <script>
-  // ── Three.js waving grid ───────────────────────────────────────────────────
+  // ── Three.js waving grid (full viewport background) ───────────────────────
   (function () {
     var canvas = document.getElementById('hero-canvas');
     var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
@@ -826,33 +972,28 @@
     renderer.setClearColor(0x000000, 0);
 
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-    camera.position.set(0, 12, 22);
+    var W = canvas.clientWidth || window.innerWidth;
+    var H = canvas.clientHeight || window.innerHeight;
+    var camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 1000);
+    camera.position.set(0, 14, 26);
     camera.lookAt(0, 0, 0);
 
-    // Grid geometry
-    var COLS = 40, ROWS = 40, SPACING = 1;
+    var COLS = 48, ROWS = 36, SPACING = 1;
     var geo = new THREE.BufferGeometry();
     var verts = [];
     var indices = [];
-    var baseY = [];
 
     for (var r = 0; r < ROWS; r++) {
       for (var c = 0; c < COLS; c++) {
-        var x = (c - COLS / 2) * SPACING;
-        var z = (r - ROWS / 2) * SPACING;
-        verts.push(x, 0, z);
-        baseY.push(0);
+        verts.push((c - COLS / 2) * SPACING, 0, (r - ROWS / 2) * SPACING);
       }
     }
 
-    // Horizontal lines
     for (var r = 0; r < ROWS; r++) {
       for (var c = 0; c < COLS - 1; c++) {
         indices.push(r * COLS + c, r * COLS + c + 1);
       }
     }
-    // Vertical lines
     for (var c = 0; c < COLS; c++) {
       for (var r = 0; r < ROWS - 1; r++) {
         indices.push(r * COLS + c, (r + 1) * COLS + c);
@@ -863,27 +1004,18 @@
     geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geo.setIndex(indices);
 
-    var mat = new THREE.LineBasicMaterial({
-      color: 0x3d5a7a,
-      transparent: true,
-      opacity: 0.65
-    });
+    var mat = new THREE.LineBasicMaterial({ color: 0x3d5a7a, transparent: true, opacity: 0.9 });
+    scene.add(new THREE.LineSegments(geo, mat));
 
-    var grid = new THREE.LineSegments(geo, mat);
-    scene.add(grid);
-
-    // Mouse tracking (normalized -1 to 1 relative to hero section)
     var mouse = { x: 0, y: 0 };
     document.addEventListener('mousemove', function (e) {
-      var hero = document.getElementById('hero');
-      var rect = hero.getBoundingClientRect();
+      var rect = document.getElementById('hero').getBoundingClientRect();
       mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
     });
 
-    function resizeRenderer() {
-      var w = canvas.clientWidth;
-      var h = canvas.clientHeight;
+    function resize() {
+      var w = canvas.clientWidth, h = canvas.clientHeight;
       if (canvas.width !== w || canvas.height !== h) {
         renderer.setSize(w, h, false);
         camera.aspect = w / h;
@@ -893,75 +1025,49 @@
 
     var clock = new THREE.Clock();
 
-    function animate() {
+    (function animate() {
       requestAnimationFrame(animate);
-      resizeRenderer();
-
+      resize();
       var t = clock.getElapsedTime();
       var pos = geo.attributes.position;
+      var mx = mouse.x * (COLS / 2) * SPACING;
+      var mz = -mouse.y * (ROWS / 2) * SPACING;
 
-      for (var i = 0; i < ROWS * COLS; i++) {
-        var c = i % COLS;
-        var r = Math.floor(i / COLS);
+      for (var i = 0, len = ROWS * COLS; i < len; i++) {
+        var c = i % COLS, r = Math.floor(i / COLS);
         var x = (c - COLS / 2) * SPACING;
         var z = (r - ROWS / 2) * SPACING;
-
-        // Base wave
-        var wave = Math.sin(x * 0.4 + t * 1.2) * 0.5 + Math.cos(z * 0.4 + t * 0.9) * 0.5;
-
-        // Mouse ripple
-        var mx = mouse.x * (COLS / 2) * SPACING;
-        var mz = -mouse.y * (ROWS / 2) * SPACING;
+        var wave = Math.sin(x * 0.38 + t * 1.1) * 0.55 + Math.cos(z * 0.42 + t * 0.85) * 0.45;
         var dist = Math.sqrt((x - mx) * (x - mx) + (z - mz) * (z - mz));
-        var ripple = Math.sin(dist * 0.8 - t * 3.5) * Math.exp(-dist * 0.12) * 1.8;
-
+        var ripple = Math.sin(dist * 0.75 - t * 3.2) * Math.exp(-dist * 0.11) * 2.0;
         pos.setY(i, wave + ripple);
       }
 
       pos.needsUpdate = true;
       geo.computeBoundingSphere();
-
-      // Slight camera drift
-      camera.position.x = Math.sin(t * 0.12) * 1.5;
+      camera.position.x = Math.sin(t * 0.1) * 2;
       camera.lookAt(0, 0, 0);
-
       renderer.render(scene, camera);
-    }
-
-    animate();
+    })();
   })();
 
-  // ── Headline word-by-word animation ───────────────────────────────────────
+  // ── Word-by-word headline animation ───────────────────────────────────────
   (function () {
-    var headline = document.getElementById('hero-headline');
-    var text = headline.textContent.trim();
-    var words = text.split(/\s+/).filter(Boolean);
-    headline.innerHTML = words.map(function (w) {
-      return '<span class="word">' + w + '</span>';
-    }).join(' ');
-
-    headline.querySelectorAll('.word').forEach(function (w, i) {
+    var h = document.getElementById('hero-headline');
+    var words = h.textContent.trim().split(/\s+/).filter(Boolean);
+    h.innerHTML = words.map(function (w) { return '<span class="word">' + w + '</span>'; }).join(' ');
+    h.querySelectorAll('.word').forEach(function (w, i) {
       setTimeout(function () { w.classList.add('vis'); }, 350 + i * 90);
     });
   })();
 
   // ── GSAP ScrollTrigger ────────────────────────────────────────────────────
   gsap.registerPlugin(ScrollTrigger);
-
   gsap.utils.toArray('.gs-fade').forEach(function (el) {
-    gsap.fromTo(el,
-      { opacity: 0, y: 28 },
-      {
-        opacity: 1, y: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 87%',
-          toggleActions: 'play none none none'
-        }
-      }
-    );
+    gsap.fromTo(el, { opacity: 0, y: 28 }, {
+      opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 87%', toggleActions: 'play none none none' }
+    });
   });
   </script>
 
