@@ -638,6 +638,44 @@
       user-select: none;
     }
 
+    /* ── SNAKE GAME ── */
+    #snake-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      pointer-events: none;
+      display: none;
+    }
+
+    #game-hud {
+      position: absolute;
+      top: 88px;
+      right: 32px;
+      z-index: 5;
+      text-align: right;
+      pointer-events: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    #game-score {
+      display: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #f0ede8;
+      margin-bottom: 4px;
+    }
+
+    #game-hint {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(240,237,232,0.28);
+    }
+
     /* GSAP initial state */
     .gs-fade { opacity: 0; transform: translateY(28px); }
 
@@ -684,6 +722,11 @@
   <section class="hero" id="hero">
     <div class="hero-grid-bg"></div>
     <canvas id="hero-canvas"></canvas>
+    <canvas id="snake-canvas"></canvas>
+    <div id="game-hud">
+      <div id="game-score">SCORE: 0</div>
+      <div id="game-hint">SPACE TO PLAY</div>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-logo-fallback">JQT.</div>
@@ -1047,6 +1090,148 @@
     h.innerHTML = words.map(function (w) { return '<span class="word">' + w + '</span>'; }).join(' ');
     h.querySelectorAll('.word').forEach(function (w, i) {
       setTimeout(function () { w.classList.add('vis'); }, 350 + i * 90);
+    });
+  })();
+
+  // ── Hidden Snake game (SPACE to activate) ────────────────────────────────
+  (function () {
+    if ('ontouchstart' in window || window.innerWidth < 768) return;
+
+    var hero    = document.getElementById('hero');
+    var canvas  = document.getElementById('snake-canvas');
+    var ctx     = canvas.getContext('2d');
+    var scoreEl = document.getElementById('game-score');
+    var hintEl  = document.getElementById('game-hint');
+
+    var CELL = 20;
+    var active = false, flashing = false, gameTimer = null;
+    var snake, dir, nextDir, food, score;
+
+    function cols() { return Math.floor(canvas.width  / CELL); }
+    function rows() { return Math.floor(canvas.height / CELL); }
+
+    function resize() {
+      var r = hero.getBoundingClientRect();
+      canvas.width  = r.width;
+      canvas.height = r.height;
+    }
+
+    function randFood() {
+      var attempts = 0, c = cols(), r = rows(), pos;
+      do {
+        pos = { x: Math.floor(Math.random() * c), y: Math.floor(Math.random() * r) };
+        attempts++;
+      } while (attempts < 200 && snake.some(function (s) { return s.x === pos.x && s.y === pos.y; }));
+      food = pos;
+    }
+
+    function init() {
+      var cx = Math.floor(cols() / 2), cy = Math.floor(rows() / 2);
+      snake   = [{ x: cx, y: cy }, { x: cx - 1, y: cy }, { x: cx - 2, y: cy }];
+      dir     = { x: 1, y: 0 };
+      nextDir = { x: 1, y: 0 };
+      score   = 0;
+      scoreEl.textContent = 'SCORE: 0';
+      randFood();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Food — cream dot
+      ctx.fillStyle = '#f0ede8';
+      ctx.beginPath();
+      ctx.arc(food.x * CELL + CELL / 2, food.y * CELL + CELL / 2, CELL * 0.28, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Snake — slate blue, slight fade toward tail
+      snake.forEach(function (seg, i) {
+        var alpha = Math.max(1 - (i / snake.length) * 0.55, 0.35).toFixed(2);
+        ctx.fillStyle = 'rgba(61,90,122,' + alpha + ')';
+        var p = 2;
+        ctx.fillRect(seg.x * CELL + p, seg.y * CELL + p, CELL - p * 2, CELL - p * 2);
+      });
+    }
+
+    function step() {
+      if (flashing) return;
+      dir = nextDir;
+      var head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+
+      if (head.x < 0 || head.x >= cols() || head.y < 0 || head.y >= rows() ||
+          snake.some(function (s) { return s.x === head.x && s.y === head.y; })) {
+        triggerFlash(); return;
+      }
+
+      snake.unshift(head);
+      if (head.x === food.x && head.y === food.y) {
+        score++;
+        scoreEl.textContent = 'SCORE: ' + score;
+        randFood();
+      } else {
+        snake.pop();
+      }
+      draw();
+    }
+
+    function triggerFlash() {
+      flashing = true;
+      clearInterval(gameTimer);
+      var count = 0;
+      var fi = setInterval(function () {
+        count++;
+        canvas.style.opacity = count % 2 === 0 ? '1' : '0.12';
+        if (count >= 6) {
+          clearInterval(fi);
+          canvas.style.opacity = '1';
+          flashing = false;
+          init(); draw();
+          gameTimer = setInterval(step, 135);
+        }
+      }, 75);
+    }
+
+    function activate() {
+      active = true;
+      resize();
+      canvas.style.display = 'block';
+      hintEl.textContent = 'ESC TO EXIT';
+      scoreEl.style.display = 'block';
+      init(); draw();
+      gameTimer = setInterval(step, 135);
+    }
+
+    function deactivate() {
+      active = false;
+      clearInterval(gameTimer);
+      flashing = false;
+      canvas.style.opacity = '1';
+      canvas.style.display = 'none';
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hintEl.textContent = 'SPACE TO PLAY';
+      scoreEl.style.display = 'none';
+    }
+
+    window.addEventListener('resize', function () { if (active) { resize(); draw(); } });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.code === 'Space') {
+        var r = hero.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.5 && r.bottom > window.innerHeight * 0.3) {
+          e.preventDefault();
+          active ? deactivate() : activate();
+          return;
+        }
+      }
+      if (!active) return;
+      if (e.code === 'Escape') { deactivate(); return; }
+      if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code)) e.preventDefault();
+      var d = null;
+      if ((e.code === 'ArrowUp'    || e.code === 'KeyW') && dir.y !==  1) d = { x:  0, y: -1 };
+      if ((e.code === 'ArrowDown'  || e.code === 'KeyS') && dir.y !== -1) d = { x:  0, y:  1 };
+      if ((e.code === 'ArrowLeft'  || e.code === 'KeyA') && dir.x !==  1) d = { x: -1, y:  0 };
+      if ((e.code === 'ArrowRight' || e.code === 'KeyD') && dir.x !== -1) d = { x:  1, y:  0 };
+      if (d) nextDir = d;
     });
   })();
 
