@@ -562,11 +562,18 @@ function tick(){
 }
 document.querySelector('.avenue-bar').addEventListener('click',e=>{
   const b=e.target.closest('.chip');if(!b)return;
-  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+  stopCycle();
+  document.querySelectorAll('.avenue-bar .chip').forEach(c=>c.setAttribute('aria-pressed','false'));
   b.setAttribute('aria-pressed','true');render(b.dataset.v);
 });
 new IntersectionObserver((es,obs)=>{es.forEach(e=>{if(e.isIntersecting){boardSeen=true;countKpis();obs.disconnect();}});},{threshold:.4}).observe($('board'));
-render('hotel');setInterval(tick,1800);
+/* board auto-cycles through industries so JQT never reads as a single-vertical (hotel) product; stops on any user interaction */
+const CYCLE=['hotel','aviation','property','field'];let cycling=!RM,cycleIdx=Math.floor(Math.random()*CYCLE.length);
+function setBoardPressed(v){document.querySelectorAll('.avenue-bar .chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.v===v?'true':'false'));}
+function stopCycle(){cycling=false;}
+render(CYCLE[cycleIdx]);setBoardPressed(CYCLE[cycleIdx]);
+setInterval(()=>{if(!cycling)return;cycleIdx=(cycleIdx+1)%CYCLE.length;render(CYCLE[cycleIdx]);setBoardPressed(CYCLE[cycleIdx]);},5200);
+setInterval(tick,1800);
 
 /* ---- ASK JQT (scripted operator, no backend) ----
    Deterministic but conversational. Opens a diagnostic, quantifies the leak in
@@ -591,7 +598,7 @@ function say(text,opts){opts=opts||{};const arr=Array.isArray(text)?text:[text];
 function boardName(v){return{hotel:"Hotels",aviation:"Aviation",property:"Property Management",field:"Field Operations"}[v]||"your operation";}
 function opWord(v){return{hotel:"hotel",aviation:"aviation",property:"property",field:"field-service"}[v]||"";}
 /* the bot literally flips the live dashboard above it to match the visitor's world */
-function driveBoard(v){try{render(v);document.querySelectorAll('.avenue-bar .chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.v===v?'true':'false'));}catch(e){}}
+function driveBoard(v){try{stopCycle();render(v);setBoardPressed(v);}catch(e){}}
 
 const MENU=[["Hotels",()=>diagnose('hotel')],["Aviation",()=>diagnose('aviation')],["Property mgmt",()=>diagnose('property')],["Field ops",()=>diagnose('field')],["Something else",otherIntake]];
 function greet(){say("Hey — I'm JQT's assistant, and I'll skip the pitch. What I'm actually good at is spotting where an operation is quietly leaking time and money. Which one are you running?",{chips:MENU});}
