@@ -228,7 +228,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
     </div>
     <div class="nav-right">
       <button class="toggle" id="themeBtn" title="Theme">◐</button>
-      <a class="btn btn-primary" href="#cta">Book a call</a>
+      <a class="btn btn-primary" href="#cta" onclick="bookCall();return false;">Book a call</a>
     </div>
   </div>
 </nav>
@@ -237,20 +237,35 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
   <div class="wrap">
     <div class="eyebrow">Forward deployed operations</div>
     <h1 class="h1">We embed in your operation and <span class="serif">own the outcome.</span></h1>
-    <p class="lede">The work that keeps your business moving, the rooms to turn, the credentials about to expire, the orders that slip, lives in someone's head and a dozen spreadsheets. JQT turns that into a system we build, run, and answer for.</p>
+    <p class="lede">JQT builds the operating system your business runs on, then stays to run it. When it works, that is our doing. When it slips, that is our problem.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="#cta">Book a call</a>
+      <a class="btn btn-primary" href="#cta" onclick="bookCall();return false;">Book a call</a>
       <a class="btn btn-ghost" href="#system">See it run</a>
     </div>
   </div>
 </header>
 
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">The reality</div>
+      <h2 class="h2">Most operations run on memory, <span class="serif">not on a system.</span></h2>
+      <p class="sub">This was never a software problem. The work that keeps you running was never turned into a system, so it survives on memory and good people instead of something dependable. That holds, right up until the day it does not.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><div class="no">i.</div><div><h3>It lives in one person's head</h3><p>That person gets sick, takes vacations, and eventually leaves. Everything they know leaves with them.</p></div></div>
+      <div class="step"><div class="no">ii.</div><div><h3>It is scattered across tools</h3><p>The spreadsheet says one thing, the group chat says another, and the whiteboard stopped being true on Tuesday. There is no version anyone trusts.</p></div></div>
+      <div class="step"><div class="no">iii.</div><div><h3>No one owns the outcome</h3><p>The software vendor shipped. The consultant presented. The agency invoiced. By Monday morning the operation is your problem again, because it never stopped being your problem.</p></div></div>
+    </div>
+  </div>
+</section>
+
 <section class="board-section" id="system">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="eyebrow">The system, live</div>
-      <h2 class="h2">One operating system. Built for the work you actually run.</h2>
-      <p class="sub">Not a screenshot. A live board modeled on the real systems operators trust. Pick an avenue and watch it run.</p>
+      <h2 class="h2">This is what replacing memory <span class="serif">looks like.</span></h2>
+      <p class="sub">One operating system, built for the work you actually run. The board below is not a mockup or a highlight reel. It is the same live system our clients run their day on. Flip it to your industry and look at Monday morning.</p>
     </div>
     <div class="avenue-bar reveal">
       <span class="lbl">Pick an avenue</span>
@@ -272,32 +287,17 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">The reality</div>
-      <h2 class="h2">Most operations run on memory, <span class="serif">not on a system.</span></h2>
-      <p class="sub">This was never a software problem. The work that keeps you running was never turned into a system, so it survives on memory and good people instead of something dependable. That holds, right up until the day it doesn't.</p>
-    </div>
-    <div class="steps reveal">
-      <div class="step"><div class="no">i.</div><div><h3>It lives in one person's head</h3><p>The one who knows how it truly works is your single point of failure. When they are out, quality drops and nobody can say why.</p></div></div>
-      <div class="step"><div class="no">ii.</div><div><h3>It is scattered across tools</h3><p>A spreadsheet here, a group chat there, a whiteboard nobody photographed. No source of truth, no record when it matters.</p></div></div>
-      <div class="step"><div class="no">iii.</div><div><h3>No one owns the outcome</h3><p>Vendors ship a feature and leave. By Monday the result is your problem again. We refuse to work that way, and that is the whole point.</p></div></div>
-    </div>
-  </div>
-</section>
-
 <section id="approach" style="border-top:1px solid var(--line)">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="eyebrow">The approach</div>
       <h2 class="h2">We do not ship software and walk away.</h2>
-      <p class="sub">Forward deployed means we sit inside the operation, build the system that runs it, and stay on the hook for whether it works. Closer to Palantir for your business than to another agency.</p>
+      <p class="sub">Forward deployed means we sit inside the operation, build the system that runs it, and stay on the hook for whether it works. We are selling you someone to hold accountable, not another license.</p>
     </div>
     <div class="steps reveal" id="approachSteps">
-      <div class="step astep"><div class="no">01</div><div><h3>Embed</h3><p>We work inside your operation until we understand it better than any outside vendor could. The edge cases, the people, the real workflow on the worst day, not the brochure version.</p></div></div>
-      <div class="step astep"><div class="no">02</div><div><h3>Build</h3><p>We productize the core. The board, the rules, the alerts, the audit trail, shaped into a clean system that is yours to keep, not software you rent forever.</p></div></div>
-      <div class="step astep"><div class="no">03</div><div><h3>Run and own it</h3><p>We own the outcome, not just the deliverable. It works in the real world under real pressure, or we are the ones who answer for it. That accountability is the product.</p></div></div>
+      <div class="step astep"><div class="no">01</div><div><h3>Embed</h3><p>We work inside your operation, on the floor, in the audits, on the morning calls, until we understand it better than anyone who has ever tried to sell you something.</p></div></div>
+      <div class="step astep"><div class="no">02</div><div><h3>Build</h3><p>We turn what we learned into a system: the live board, the rules, the alerts, the audit trail. Built for your operation, and yours to keep. Not licensed. Not rented. Yours.</p></div></div>
+      <div class="step astep"><div class="no">03</div><div><h3>Run and own it</h3><p>We stay. We run the system with your team and we answer for the result under real pressure. Anyone can sell you software. We are selling you someone to hold accountable.</p></div></div>
     </div>
   </div>
 </section>
@@ -306,23 +306,23 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="eyebrow">What we build</div>
-      <h2 class="h2">Three things, all yours, all powered by JQT.</h2>
+      <h2 class="h2">Three things. All built for you. <span class="serif">All answered for by JQT.</span></h2>
       <p class="sub">One offer, not a scattered menu. Whatever we build for you is built around your operation and stays yours to keep.</p>
     </div>
     <div class="builds reveal">
       <div class="build">
         <div><h3>The operating system</h3><div class="em">the live board above</div></div>
-        <p>The board behind your operation. Status, alerts, and an audit trail. The work finally made real, in one place everyone can see.</p>
+        <p>The live board your operation runs on. Status, alerts, and an audit trail. The single version of the truth, in one place everyone can see.</p>
         <span class="own">Owned by you. Powered by JQT.</span>
       </div>
       <div class="build">
         <div><h3>The always on assistant</h3><div class="em">try it, bottom right</div></div>
-        <p>An AI that answers your customers and your team instantly, on your site, trained on your operation, built so it never makes up an answer.</p>
+        <p>The one you may be talking to right now. Scripted by us, on purpose, because no single AI model should ever be a load-bearing part of your operation.</p>
         <span class="own">Owned by you. Powered by JQT.</span>
       </div>
       <div class="build">
-        <div><h3>Your website</h3><div class="em">the one you are on</div></div>
-        <p>The site you are looking at is the kind we build. Fast, clean, and yours to keep. People should know a site like this can be built for them too.</p>
+        <div><h3>Your front door</h3><div class="em">the one you are on</div></div>
+        <p>A website wired into the same system, not a brochure but an entrance. The assistant lives in it, the board feeds it, and it works while you sleep.</p>
         <span class="own">Owned by you. Powered by JQT.</span>
       </div>
     </div>
@@ -337,10 +337,10 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
       <p class="sub">Different floors, same discipline. Click any one to see what we put on it.</p>
     </div>
     <div class="ind reveal" id="ind">
-      <button class="cell"><span class="exp">+</span><div class="k">Hotels and hospitality</div><h3>Every room accounted for, every shift</h3><p>Live floor status, housekeeper assignments, cleaning timers, and inspection passes in one board.</p><div class="more"><p>We connect to your property system, assign and time every clean, and flag a room the moment it slips, so the front desk always knows what is truly ready.</p></div></button>
-      <button class="cell"><span class="exp">+</span><div class="k">Aviation</div><h3>Credentials current, audits ready</h3><p>Badge holders, access levels, threat assessments, and expirations tracked to the day.</p><div class="more"><p>We alert before anything lapses and keep a record built for the regulator, not the spreadsheet, so an audit is answered on the first request instead of the third.</p></div></button>
-      <button class="cell"><span class="exp">+</span><div class="k">Property management</div><h3>Work orders that actually close</h3><p>Maintenance and unit turns on one make ready board, vendors assigned, response times visible.</p><div class="more"><p>We route each order to the right vendor, watch the clock on response times, and keep make readies moving, so a vacant unit is earning again in days, not weeks.</p></div></button>
-      <button class="cell"><span class="exp">+</span><div class="k">Field operations</div><h3>The right crew, on time, accounted for</h3><p>Dispatch, arrival windows, crew status, and completion in a single view.</p><div class="more"><p>We plan the day, hold the arrival windows, and show every crew in one place, so a dispatcher can absorb a curveball without the whole day slipping.</p></div></button>
+      <button class="cell"><span class="exp">+</span><div class="k">Hotels and hospitality</div><h3>Every room accounted for, every shift</h3><p>Every room accounted for. Every turn on a clock. No guest waiting on a room that has been ready for an hour.</p><div class="more"><p>We connect to your property system, assign and time every clean, and flag a room the moment it slips, so the front desk always knows what is truly ready.</p></div></button>
+      <button class="cell"><span class="exp">+</span><div class="k">Aviation</div><h3>Credentials current, audits ready</h3><p>Every credential current. Every audit answered from the record, not from memory. No one on the AOA who should not be there.</p><div class="more"><p>We alert before anything lapses and keep a record built for the regulator, not the spreadsheet, so an audit is answered on the first request instead of the third.</p></div></button>
+      <button class="cell"><span class="exp">+</span><div class="k">Property management</div><h3>Work orders that actually close</h3><p>Every work order closed or escalating, never drifting. Vacant days counted, because vacant days cost money.</p><div class="more"><p>We route each order to the right vendor, watch the clock on response times, and keep make readies moving, so a vacant unit is earning again in days, not weeks.</p></div></button>
+      <button class="cell"><span class="exp">+</span><div class="k">Field operations</div><h3>The right crew, on time, accounted for</h3><p>The right crew, on the right job, on time, and proof of it at the end of the day.</p><div class="more"><p>We plan the day, hold the arrival windows, and show every crew in one place, so a dispatcher can absorb a curveball without the whole day slipping.</p></div></button>
     </div>
   </div>
 </section>
@@ -361,7 +361,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
     <div class="reveal">
       <div class="eyebrow" style="margin-bottom:18px">Why JQT</div>
       <div class="big">Built by operators, <span class="serif">not an agency that read about it.</span></div>
-      <p class="sub" style="margin-top:22px">JQT is a team drawn from the places where mistakes are expensive: aviation and security operations, compliance and credentialing, automation and software. We have run the real thing, so the systems come from inside the work, not from a brochure.</p>
+      <p class="sub" style="margin-top:22px">We have run the badge office, held the radio, and answered to the inspector. We built JQT because we were the people the software kept failing.</p>
     </div>
     <ul class="reveal">
       <li><b>Aviation and security operations</b>High stakes environments where a missed detail is a breach, not a bug.</li>
@@ -387,12 +387,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
 
 <section id="pricing" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
-    <div class="sec-head reveal"><div class="eyebrow">Pricing</div><h2 class="h2">Priced to the value <span class="serif">it creates.</span></h2></div>
+    <div class="sec-head reveal"><div class="eyebrow">Pricing</div><h2 class="h2">Priced against the leak, <span class="serif">not against the market.</span></h2></div>
     <div class="price reveal">
       <div class="left">
-        <div class="big">Value, not a flat fee.</div>
-        <p class="sub" style="margin-top:18px">We scope each operation around what it saves and earns you, then price it as a fraction of that, not as a flat software bill. You start with one operation and expand across your portfolio, and we size it with you openly on a call.</p>
-        <a class="btn btn-primary" href="#cta" style="margin-top:26px;display:inline-block">Book a call</a>
+        <div class="big">We do not sell seats or licenses.</div>
+        <p class="sub" style="margin-top:18px">We scope what the problem costs you, and we price a fraction of that, so the system pays for itself out of money you were already losing. Start with one operation. Expand when the numbers make the argument for us.</p>
+        <a class="btn btn-primary" href="#cta" onclick="bookCall();return false;" style="margin-top:26px;display:inline-block">Book a call</a>
       </div>
       <div class="right">
         <ul>
@@ -412,8 +412,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
     <div class="eyebrow reveal" style="margin-bottom:24px">Start here</div>
     <h2 class="reveal">Tell us the operation that keeps slipping. We will own it.</h2>
     <div class="hero-cta reveal" style="margin-top:40px">
-      <a class="btn btn-primary" href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a>
-      <button class="btn btn-ghost" onclick="openChat()">Ask JQT first</button>
+      <button class="btn btn-primary" onclick="bookCall()">Book a call</button>
+      <a class="btn btn-ghost" href="mailto:hello@jqtenterprises.com">Email us instead</a>
     </div>
   </div>
 </section>
@@ -432,7 +432,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
         <a href="#industries">Hotels</a><a href="#industries">Aviation</a><a href="#industries">Property Management</a><a href="#industries">Field Operations</a>
       </div>
       <div><h4>Connect</h4>
-        <a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a><a href="https://instagram.com/jqtenterprises" target="_blank" rel="noopener">Instagram</a><a href="#cta">Book a call</a>
+        <a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a><a href="https://instagram.com/jqtenterprises" target="_blank" rel="noopener">Instagram</a><a href="#cta" onclick="bookCall();return false;">Book a call</a>
       </div>
     </div>
     <div class="foot-bottom"><span>© 2026 JQT Enterprises, LLC</span><span>Fort Lauderdale, Florida</span></div>
@@ -586,7 +586,11 @@ let greeted=false;const lead={industry:'',scale:'',pain:''};
 function openChat(){panel.classList.add('open');fab.style.display='none';
   if(!greeted){greeted=true;greet();}setTimeout(()=>$('chatInput').focus(),90);}
 function closeChat(){panel.classList.remove('open');fab.style.display='block';}
+/* "Book a call" everywhere routes here: open the assistant and go straight to booking the free teardown (the real booking mechanism, since no calendar is wired yet) */
+function bookCall(){greeted=true;openChat();teardownForm();}
 function add(t,cls){const d=document.createElement('div');d.className='msg '+cls;d.textContent=t;body.appendChild(d);body.scrollTop=body.scrollHeight;return d;}
+/* align the START of a new bot turn to the top of the chat, so a multi-message reply reads top-down instead of forcing a scroll-up */
+function scrollToMsg(el){requestAnimationFrame(function(){const c=body.getBoundingClientRect(),m=el.getBoundingClientRect();body.scrollTop+=(m.top-c.top)-10;});}
 function chipRow(items){const r=document.createElement('div');r.className='chips';
   items.forEach(([label,fn])=>{const b=document.createElement('button');b.className='chip-q';b.type='button';b.textContent=label;
     b.onclick=()=>{add(label,'user');r.remove();fn();};r.appendChild(b);});
@@ -594,70 +598,72 @@ function chipRow(items){const r=document.createElement('div');r.className='chips
 /* say(): typing indicator with human-ish variable delay, then one or more lines + optional chips */
 function say(text,opts){opts=opts||{};const arr=Array.isArray(text)?text:[text];
   const ty=add('JQT is typing','bot typing'),delay=460+Math.min(arr.join(' ').length*6,900)+Math.random()*240;
-  setTimeout(()=>{ty.remove();arr.forEach(t=>add(t,'bot'));if(opts.chips)chipRow(opts.chips);if(opts.then)opts.then();},delay);}
+  setTimeout(()=>{ty.remove();let first=null;arr.forEach(t=>{const n=add(t,'bot');if(!first)first=n;});if(opts.chips)chipRow(opts.chips);if(first)scrollToMsg(first);if(opts.then)opts.then();},delay);}
 function boardName(v){return{hotel:"Hotels",aviation:"Aviation",property:"Property Management",field:"Field Operations"}[v]||"your operation";}
 function opWord(v){return{hotel:"hotel",aviation:"aviation",property:"property",field:"field-service"}[v]||"";}
 /* the bot literally flips the live dashboard above it to match the visitor's world */
-function driveBoard(v){try{stopCycle();render(v);setBoardPressed(v);}catch(e){}}
+function driveBoard(v){try{stopCycle();render(v);setBoardPressed(v);const b=$('board');if(b)b.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}}
 
 const MENU=[["Hotels",()=>diagnose('hotel')],["Aviation",()=>diagnose('aviation')],["Property mgmt",()=>diagnose('property')],["Field ops",()=>diagnose('field')],["Something else",otherIntake]];
-function greet(){say("Hey — I'm JQT's assistant, and I'll skip the pitch. What I'm actually good at is spotting where an operation is quietly leaking time and money. Which one are you running?",{chips:MENU});}
+function greet(){say("Hey. I'll make you a bet: tell me what kind of operation you run, and I'll tell you where it's leaking money. If I'm wrong, you've lost thirty seconds. Which is it?",{chips:MENU});}
 function pickIndustry(){say("Which one is closest to you?",{chips:MENU});}
-function otherIntake(){lead.industry='';say("We go deepest in hotels, aviation, property, and field ops — but the pattern's the same anywhere a team runs on whiteboards, group texts, and spreadsheets. In one line: what keeps slipping?",{then:()=>$('chatInput').focus()});}
+function otherIntake(){lead.industry='';say("Fair. Most operations don't fit a dropdown. Here's the pattern anyway, because it's nearly universal: whatever you run, the process lives in somebody's head or across five tools that don't talk to each other, and nobody's on the hook when it slips. If that sounds like your week, tell me in a sentence what the operation is and I'll pass it straight to the team. They've built for messier than whatever you're about to type.",{then:()=>$('chatInput').focus()});}
 
 /* 1. DIAGNOSE - name the leak, show the live proof, ask for scale */
 const DIAG={
- hotel:{leak:"In a hotel it's almost always the same leak: the front desk never truly knows which rooms are ready. Guests wait, checkouts slip, clean rooms sit empty — late check-ins, comped nights, and the review that costs you the next booking.",
-   q:"Ballpark — how many rooms are you running?",chips:[["Under 50",()=>scale('hotel','under 50 rooms','low')],["50–150",()=>scale('hotel','50–150 rooms','mid')],["150+",()=>scale('hotel','150+ rooms','high')]]},
- aviation:{leak:"In aviation the leak is credentials you can't see coming — badges, STAs and training that lapse without warning. One expired credential on the AOA is a finding, a fine, and a person you're paying who legally can't work.",
-   q:"Roughly how many badge holders do you manage?",chips:[["Under 100",()=>scale('aviation','under 100 holders','low')],["100–500",()=>scale('aviation','100–500 holders','mid')],["500+",()=>scale('aviation','500+ holders','high')]]},
- property:{leak:"In property management the leak is the gap between a unit going vacant and it earning again — work orders lost in texts, vendors un-chased, turns that drag. Every extra day a unit sits empty is rent you'll never bill.",
-   q:"How many units are you responsible for?",chips:[["Under 100",()=>scale('property','under 100 units','low')],["100–500",()=>scale('property','100–500 units','mid')],["500+",()=>scale('property','500+ units','high')]]},
- field:{leak:"In field operations the leak is the dispatch board living in one person's head — one no-show or curveball and the whole day slips: techs idle, customers wait, and jobs you could've billed roll to tomorrow.",
-   q:"How many crews or techs are you dispatching?",chips:[["Under 10",()=>scale('field','under 10 techs','low')],["10–30",()=>scale('field','10–30 techs','mid')],["30+",()=>scale('field','30+ techs','high')]]}
+ hotel:{leak:"Hotels leak in one place more than anywhere else: nobody actually knows which rooms are ready. Housekeeping knows one version, the front desk knows another, and the truth lives on a paper sheet somewhere on the third floor. So clean rooms sit empty while guests wait in the lobby, and that late check-in you comped last month wasn't a staffing problem, it was an information problem.",
+   q:"How big is the property? I ask because this leak scales with room count almost exactly.",chips:[["Under 50",()=>scale('hotel','under 50 rooms','low')],["50-150",()=>scale('hotel','50-150 rooms','mid')],["150+",()=>scale('hotel','150+ rooms','high')]]},
+ aviation:{leak:"In aviation the leak has a date on it: the badge, STA, or training cert that expires while nobody's watching. You don't find out until the audit does, and one lapsed credential on the AOA isn't a paperwork issue. It's a finding, a fine, and a person you're paying who legally can't work.",
+   q:"How many badge-holders are you tracking? The math changes a lot with volume.",chips:[["Under 100",()=>scale('aviation','under 100 holders','low')],["100-500",()=>scale('aviation','100-500 holders','mid')],["500+",()=>scale('aviation','500+ holders','high')]]},
+ property:{leak:"Property management leaks in the gap between \"the tenant moved out\" and \"the unit earns again.\" The work order's in somebody's texts, the vendor said Thursday and meant nothing, and the turn that should take five days takes twelve. Every one of those extra days is rent that doesn't exist. You can't bill it later. It's just gone.",
+   q:"How many units? That tells me what a single lost day actually costs you.",chips:[["Under 50",()=>scale('property','under 50 units','low')],["50-200",()=>scale('property','50-200 units','mid')],["200+",()=>scale('property','200+ units','high')]]},
+ field:{leak:"Field operations usually run on one real system: the dispatcher's memory. Which works, right up until the no-show, the truck problem, or the customer who moves the window. Then the whole day gets reshuffled inside someone's head, techs sit idle, and jobs you'd already won quietly roll to tomorrow. The killer is that nobody ever counts the rolled jobs.",
+   q:"How many techs or crews are you running?",chips:[["Under 10",()=>scale('field','under 10 techs','low')],["10-30",()=>scale('field','10-30 techs','mid')],["30+",()=>scale('field','30+ techs','high')]]}
 };
+function unitNoun(v){return{hotel:"rooms",aviation:"badges",property:"units",field:"jobs"}[v]||"work";}
 function diagnose(ind){lead.industry=ind;const d=DIAG[ind];driveBoard(ind);
-  say([d.leak,"Watch the board just above this chat — I switched it to "+boardName(ind)+". That's a real JQT system, not a screenshot; it's the exact view your team would run on. "+d.q],{chips:d.chips});}
+  say([d.leak,"One more thing. Look at the board above this chat. I switched it to the "+boardName(ind)+" view while you were reading. That's not a screenshot or a demo reel; it's a real JQT system, running. Your team's version looks like that, with your "+unitNoun(ind)+" in it.",d.q],{chips:d.chips});}
 
 /* 2. SCALE - quantify the leak in their terms, ask for the specific pain */
 const COST={
- hotel:{low:"Even under 50 rooms, 15–20 unclear minutes per room per day is hours of housekeeping and front-desk time you're paying for twice — plus the check-in that becomes a bad review.",
-   mid:"At 50–150 rooms, 20 wasted minutes per housekeeper per shift is easily 20+ paid hours a week going nowhere — before a single comped night.",
-   high:"At 150+ rooms it compounds hard: a handful of rooms stuck 'status unknown' each day quietly runs into thousands a month in delayed check-ins, comps and overtime."},
- aviation:{low:"Even under 100 holders, one missed expiration is a failed audit item — and audits don't grade on a curve. The cost isn't the badge, it's the finding.",
-   mid:"At 100–500 holders, tracking expirations by spreadsheet means someone's always working yesterday's data — and the one that slips through is the one the auditor finds.",
-   high:"At 500+ holders, manual credential tracking is a liability, not a task — the volume guarantees something lapses, and 'we missed one' is a fine."},
- property:{low:"Even under 100 units, a turn that drags 3 extra days is rent you'll never bill again — across a year that's a whole unit's income gone.",
-   mid:"At 100–500 units, work orders living in text threads mean slower turns and vendors nobody chased — days of vacancy per turn that never had to happen.",
-   high:"At 500+ units, every day shaved off the average turn is real portfolio income — 'keeping up' versus units earning again in days, not weeks."},
- field:{low:"Even under 10 techs, one blown dispatch a day is a billable job rolling to tomorrow — that's margin walking out the door.",
-   mid:"At 10–30 techs, a board in one person's head means idle crews and missed windows you can't even see — every gap is a job that didn't get billed.",
-   high:"At 30+ techs, the dispatch bottleneck is your ceiling — you can't grow past what one coordinator holds in their head. The system is the unlock."}
+ hotel:{low:"Under 50 rooms, the leak isn't hours, it's nights. At your size, one comped night or one bad review does damage a big box would never feel. When margins are that tight, \"the front desk didn't know the room was ready\" isn't a hiccup. It's the month's profit on one mistake.",
+   mid:"At 50-150 rooms, run the boring math: if the ready-room confusion costs each housekeeper twenty minutes a shift (walking to check, waiting on a callback, redoing a list), that's 20-plus paid hours a week producing nothing. Before a single comped night. Your exact number will be different, but I've never seen it be zero.",
+   high:"At 150+ rooms you're past the point where anyone can hold room status in their head, so the property runs on radio calls and hope. At that scale the leak isn't minutes, it's a full-time employee's worth of payroll spent reconciling what a board would just show. Plus the comped nights. Plus the reviews."},
+ aviation:{low:"Under 100 badge-holders, the trap is that a spreadsheet feels like enough, until the one person who maintains it takes a week off. It only takes one lapsed credential to meet an inspector, and at your size \"we track it manually\" is exactly one vacation away from \"we missed one.\"",
+   mid:"At 100-500 badge-holders, renewals stop being events and become weather. There's always one coming. Manual tracking means someone's real job is quietly chasing dates, and a single miss is a finding, a fine, and a badged employee you're paying to stand still.",
+   high:"At 500+ badge-holders, manual tracking isn't a task anymore, it's a liability. The volume mathematically guarantees a lapse, and \"we missed one\" is not an answer an inspector accepts. At that scale you don't need more diligence. You need a system that can't forget."},
+ property:{low:"Under 50 units, every vacant day is personal. One unit sitting empty an extra week can be the difference between a month that worked and one that didn't. And the smaller the portfolio, the more of the turn process lives in exactly one person's phone.",
+   mid:"At 50-200 units, do the math on one lost day: average rent, divided by thirty, times every turn that dragged this year. Most operators your size are donating two to five days per turn to lost work orders and un-chased vendors. That's not a maintenance problem, it's a tracking problem, and tracking problems are cheap to fix compared to what they cost.",
+   high:"At 200+ units the leak compounds: enough turns are in flight at once that nobody can say which ones are stalled or why. Days go missing wholesale. At your scale, shaving one day off average turn time is real money every single month, and it's usually hiding in plain sight."},
+ field:{low:"Under 10 techs, one no-show is ten-plus percent of your capacity gone before coffee. Small crews don't get averages to hide in. The day either holds or it doesn't, and right now whether it holds depends on one person's memory under pressure.",
+   mid:"At 10-30 techs, count the jobs that rolled to tomorrow last month. Not cancelled, just rolled. Each one is billable work you'd already won, pushed by a reshuffle that happened in someone's head. At your size that's typically a low-five-figures-a-month leak, and it never shows up on any report. Which is exactly why it survives.",
+   high:"At 30+ techs, the dispatch board living in one person's head isn't impressive anymore, it's a single point of failure with a truck fleet attached. When that person is out, or just having a bad morning, the whole day's margin is improvising. Scale is supposed to smooth out bad days. Without a system, it multiplies them."}
 };
-const painQ="Last thing before I show you how we'd start — what stings the most?";
+const painQ="One more question, and it's the one I actually care about. I've been doing math at you, but you're the one running this thing. What stings the most right now?";
 const PAIN={
- hotel:[["Turnover speed",()=>setPain('turnover speed')],["Inspections",()=>setPain('inspections')],["Staffing no-shows",()=>setPain('staffing no-shows')]],
- aviation:[["Expirations",()=>setPain('credential expirations')],["Audit prep",()=>setPain('audit prep')],["Access levels",()=>setPain('access control')]],
- property:[["Slow turns",()=>setPain('slow unit turns')],["Work orders",()=>setPain('work-order chaos')],["Vendor chasing",()=>setPain('chasing vendors')]],
- field:[["Dispatch chaos",()=>setPain('dispatch chaos')],["Idle crews",()=>setPain('idle crews')],["Missed windows",()=>setPain('missed arrival windows')]]
+ hotel:[["Room turnover speed",()=>setPain('room turnover speed')],["Inspections & quality",()=>setPain('inspection and quality slips')],["Staffing no-shows",()=>setPain('staffing no-shows')],["Reviews & comps",()=>setPain('guest fallout from reviews and comps')]],
+ aviation:[["Expiring credentials",()=>setPain('expiring credentials')],["Audit readiness",()=>setPain('audit readiness')],["New-hire badging",()=>setPain('new-hire badging lag')],["Training compliance",()=>setPain('training compliance')]],
+ property:[["Turn time",()=>setPain('turn time on vacants')],["Work orders going dark",()=>setPain('work orders going dark')],["Vendor follow-through",()=>setPain('vendor follow-through')],["Owner reporting",()=>setPain('owner reporting')]],
+ field:[["No-shows & callouts",()=>setPain('no-shows and callouts')],["Jobs rolling over",()=>setPain('jobs rolling to tomorrow')],["Scheduling chaos",()=>setPain('scheduling chaos')],["Crew visibility",()=>setPain('not knowing where crews are')]]
 };
 function scale(ind,label,bucket){lead.scale=label;say([COST[ind][bucket],painQ],{chips:PAIN[ind]});}
 function setPain(p){lead.pain=p;offer();}
 
 /* 3. OFFER - reciprocity + honest scarcity, then the close */
-function offer(){const disp=boardName(lead.industry);
-  say(["Here's how we'd start, and it's free: a 20-minute operations teardown. We map where your "+opWord(lead.industry)+" operation is actually leaking — starting with the "+lead.pain+" you flagged — and you keep the map whether or not we ever work together. No deck, no pitch.",
-    "One honest thing: we take on only a few operations at a time, on purpose — deep beats wide — so we're picky about fit. "+disp+" is squarely in ours. Want me to set the teardown up?"],
-   {chips:[["Set up my teardown",teardownForm],["First — what's it cost?",priceIntent],["Not right now",softExit]]});}
-function priceIntent(){say(["Straight answer: there's no sticker price, on purpose. A flat fee would overcharge a 30-room inn and undercharge a 300-room resort. We price against what the leak is costing you — so it lands as a fraction of what you're already losing. Setup's free, month to month.",
-    "The teardown is where the real number goes on the table. Want me to set it up?"],
+function offer(){const op=opWord(lead.industry);
+  say(["Okay, "+lead.pain+". That's where I'd start too, and here's exactly what starting looks like: a 20-minute operations teardown. Not a demo, not a deck. We get on a call, map where your "+op+" operation is actually leaking, "+lead.pain+" first, and put rough numbers on each leak. You keep the map either way. If you never talk to us again, you'll still know where the money's going.",
+    "It costs nothing, which is the part people get suspicious about, so here's the honest reason: the teardown is how we decide whether to take an operation on. We only run a few at a time, deep beats wide, so we're choosing too. And for what it's worth, a "+op+" operation at your scale, losing money on "+lead.pain+", is exactly the shape we do our best work on.",
+    "Want me to set it up?"],
+   {chips:[["Set it up",teardownForm],["First, what's it cost?",priceIntent],["Not right now",softExit]]});}
+function priceIntent(){say(["Straight answer: there's no sticker price, and that's deliberate. A flat fee would overcharge a 30-room inn and undercharge a 300-room resort. Same software, wildly different stakes. So we price against the leak: we put a number on what the problem costs you, and the fee is a fraction of that. If we can't find a leak worth more than we cost, we'll tell you so in the teardown and you've lost twenty minutes. That's the real reason the teardown comes first. Neither of us should be guessing.",
+    "Want me to set it up?"],
    {chips:[["Yes, set it up",teardownForm],["Not yet",softExit]]});}
-function softExit(){say("All good — no pressure here. Whenever you want the map I'll be right here, or reach the team at hello@jqtenterprises.com. Anything else I can answer?",
+function softExit(){say("No pressure. Honestly, the worst version of this is you booking a call you didn't want. Do one thing before you go, though: take the number I gave you earlier and check it against last month. If I was wrong, no harm done. If I was right, you know where to find me.",
    {chips:[["What does JQT actually do?",()=>info('do')],["Who's behind it?",()=>info('who')],["Actually, set up the teardown",teardownForm]]});}
 
 /* lead capture - no backend; builds a fully-qualified brief as a mailto */
 const LD_STY="background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:9px 11px;color:var(--text);font-family:inherit;font-size:13.5px;outline:none;width:100%;box-sizing:border-box";
-function teardownForm(){say("Love it. Two quick things and I'll write up your brief so the teardown starts at the 20-yard line, not square one:",{then:leadForm});}
+function teardownForm(){say(["Two things and you're done: your first name, and the best way to reach you, email or cell, your call.","And here's what actually happens next, because \"someone will reach out\" usually means a sales guy with a sequence: a real person at JQT reads what you told me and replies personally, usually same day, with a couple of times for the teardown. No drip campaign."],{then:leadForm});}
 function leadForm(){const w=add('','bot');w.style.maxWidth='100%';
   w.innerHTML='<div style="display:flex;flex-direction:column;gap:8px">'
    +'<input id="ldName" placeholder="Your name" style="'+LD_STY+'">'
@@ -666,24 +672,57 @@ function leadForm(){const w=add('','bot');w.style.maxWidth='100%';
    +'<a href="https://instagram.com/jqtenterprises" target="_blank" rel="noopener" style="text-align:center;font-size:12.5px;color:var(--accent);font-weight:600">or DM us on Instagram</a></div>';
   body.scrollTop=body.scrollHeight;
   w.querySelector('#ldSend').onclick=()=>sendBrief(w);}
+/* ---- LEAD CAPTURE MECHANISM (deterministic, zero-AI) ----
+   Set LEAD_ENDPOINT to a plain POST endpoint (e.g. the Cloudflare Worker /api/lead you
+   already built, or a form service) to capture leads server-side. While it is empty we
+   never fail silently: we render the full brief with a one-tap email, a copy button, and
+   Instagram, so a fully-qualified lead is never lost the way a bare mailto could be. */
+const LEAD_ENDPOINT="";
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function briefText(name,contact){const op=lead.industry?boardName(lead.industry):'General inquiry';
+  return 'New lead from the Ask JQT assistant.\n\nName: '+(name||'(not given)')+'\nBest contact: '+contact+'\nOperation: '+op+(lead.scale?' ('+lead.scale+')':'')+'\nBiggest pain: '+(lead.pain||'(not specified)')+'\nRequested: free 20-minute operations teardown\n\n, captured on jqtenterprises.com';}
+function briefFields(name,contact){return {name:name||'(not given)',contact:contact,operation:lead.industry?boardName(lead.industry):'General inquiry',scale:lead.scale||'',pain:lead.pain||'',source:'Ask JQT assistant'};}
+function confirmSent(name){say("Got it"+(name?', '+name:'')+". Your brief is on its way to a human. In the meantime, poke around the board up top, that's what you'd be buying, if you ever buy anything.");}
+function showFallback(name,contact){
+  const brief=briefText(name,contact),
+    sub=encodeURIComponent('JQT teardown request, '+(lead.industry?boardName(lead.industry):'General inquiry')),
+    mail='mailto:hello@jqtenterprises.com?subject='+sub+'&body='+encodeURIComponent(brief);
+  const c=add('','bot');c.style.maxWidth='100%';
+  c.innerHTML='<div style="display:flex;flex-direction:column;gap:8px">'
+   +'<div style="font-size:13px">Last step, send me this brief whichever way is easiest:</div>'
+   +'<a href="'+mail+'" class="btn btn-primary" style="font-size:13px;padding:10px 14px;text-align:center;text-decoration:none">Email my brief to JQT</a>'
+   +'<button id="ldCopy" class="btn btn-ghost" type="button" style="font-size:13px;padding:10px 14px">Copy the brief</button>'
+   +'<a href="https://instagram.com/jqtenterprises" target="_blank" rel="noopener" style="text-align:center;font-size:12.5px;color:var(--accent);font-weight:600">or DM us on Instagram</a>'
+   +'<textarea readonly style="'+LD_STY+';height:132px;resize:vertical;font-size:12px;line-height:1.5">'+esc(brief)+'</textarea></div>';
+  body.scrollTop=body.scrollHeight;
+  try{window.location.href=mail;}catch(e){}
+  c.querySelector('#ldCopy').onclick=function(){const ta=c.querySelector('textarea');ta.select();
+    try{navigator.clipboard.writeText(brief);}catch(e){try{document.execCommand('copy');}catch(e2){}}
+    this.textContent='Copied, paste it to hello@jqtenterprises.com';};
+}
 function sendBrief(w){const name=(w.querySelector('#ldName').value||'').trim(),contact=(w.querySelector('#ldContact').value||'').trim();
   if(!contact){w.querySelector('#ldContact').focus();return;}
-  const op=lead.industry?boardName(lead.industry):'General inquiry',
-    sub=encodeURIComponent('JQT teardown request — '+op),
-    txt=encodeURIComponent('New lead from the Ask JQT assistant.\n\nName: '+(name||'(not given)')+'\nBest contact: '+contact+'\nOperation: '+op+(lead.scale?' ('+lead.scale+')':'')+'\nBiggest pain: '+(lead.pain||'(not specified)')+'\nRequested: free 20-minute operations teardown\n\n— captured on jqtenterprises.com');
-  window.location.href='mailto:hello@jqtenterprises.com?subject='+sub+'&body='+txt;
   w.remove();
-  say(["Done — I put your brief together and opened an email for you to send. Once it's off, the team will reach out to lock the 20 minutes.","If the email didn't open, we're at hello@jqtenterprises.com or @jqtenterprises on Instagram."]);}
+  if(LEAD_ENDPOINT){
+    fetch(LEAD_ENDPOINT,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(briefFields(name,contact))})
+      .then(function(r){if(!r.ok)throw 0;confirmSent(name);})
+      .catch(function(){showFallback(name,contact);});
+    return;
+  }
+  showFallback(name,contact);
+}
 
 /* informational answers + free-text routing */
 const INFO={
- do:"We build and run the operating system behind your work — the live board that runs your operation, an always-on assistant like me for your site, and the site itself. You own all of it, powered by JQT, and we stay on the hook for the outcome.",
- forward:"'Forward deployed' means we don't hand you software and walk away. We embed in your operation, build the system that runs it, and stay accountable for whether it works under real pressure. Closer to Palantir for your business than an agency.",
- who:"JQT is a team out of aviation and security operations, compliance and credentialing, and automation. Operators who've run the real thing — that's the unfair advantage behind how we build.",
- website:"Yes — this site is the kind of thing we build: fast, clean, owned by you, powered by JQT. This assistant included."
+ do:"We build and run the operating system behind your work, the live board that runs your operation, an always-on assistant like me for your site, and the site itself. You own all of it, powered by JQT, and we stay on the hook for the outcome.",
+ forward:"'Forward deployed' means we don't hand you software and walk away. We embed in your operation, build the system that runs it, and stay accountable for whether it works under real pressure. We don't just ship it, we're the ones who answer for it.",
+ who:"JQT is a team out of aviation and security operations, compliance and credentialing, and automation. Operators who've run the real thing, that's the unfair advantage behind how we build.",
+ website:"Yes, this site is the kind of thing we build: fast, clean, owned by you, powered by JQT. This assistant included."
 };
 function info(k){say(INFO[k],{chips:[["Find my operation's leak",pickIndustry],["Book a free teardown",teardownForm]]});}
+function whoami(){say("Scripted, actually. Every word you're reading was written in advance by the team, on purpose. JQT doesn't let any single AI model become a load-bearing part of an operation, and that includes this one. Same reason we don't let your operation run on one person's memory. If you want improvisation, that's what the teardown call is for. There's a human on that end.",{chips:[["Find my leak",pickIndustry],["Book the teardown",teardownForm]]});}
 const RX=[
+ [/\bai\b|\bbot\b|chatbot|robot|automated|chatgpt|\bgpt\b|are you (a |an )?(human|real|person)|is this (a )?(human|real|person)|talking to a (bot|machine|computer|person|human)/,whoami],
  [/forward deploy|palantir/,()=>info('forward')],
  [/price|cost|pricing|how much|\$|expensive|afford|rate|\bfee\b|budget/,priceIntent],
  [/hotel|housekeep|room|hospitality|motel|resort|front desk/,()=>diagnose('hotel')],
@@ -696,11 +735,11 @@ const RX=[
  [/what.*(do|offer|build)|service|\bhelp\b|how.*work/,()=>info('do')],
  [/^(hi|hello|hey|yo|sup|hiya)\b|good (morning|afternoon|evening)/,greet2]
 ];
-function greet2(){say("Hey! Tell me what kind of operation you're running and I'll show you where it's probably leaking — or pick one:",{chips:MENU});}
+function greet2(){say("Hey! Tell me what kind of operation you're running and I'll show you where it's probably leaking, or pick one:",{chips:MENU});}
 function route(q){q=q.toLowerCase();for(const[re,fn]of RX)if(re.test(q))return fn;return null;}
 function sendChat(){const i=$('chatInput');const v=i.value.trim();if(!v)return;add(v,'user');i.value='';
   const fn=route(v);if(fn){fn();return;}
-  say("Good question — the fastest way to a straight answer is a quick teardown. Or point me at your world:",{chips:[["What does JQT do?",()=>info('do')],["Pricing",priceIntent],["Find my leak",pickIndustry]]});}
+  say("Good question, the fastest way to a straight answer is a quick teardown. Or point me at your world:",{chips:[["What does JQT do?",()=>info('do')],["Pricing",priceIntent],["Find my leak",pickIndustry]]});}
 </script>
 </body>
 </html>
