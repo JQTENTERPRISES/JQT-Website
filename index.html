@@ -741,6 +741,8 @@ function route(q){q=q.toLowerCase();for(const[re,fn]of RX)if(re.test(q))return f
 function sendChat(){const i=$('chatInput');const v=i.value.trim();if(!v)return;add(v,'user');i.value='';
   const fn=route(v);if(fn){fn();return;}
   say("Good question, the fastest way to a straight answer is a quick teardown. Or point me at your world:",{chips:[["What does JQT do?",()=>info('do')],["Pricing",priceIntent],["Find my leak",pickIndustry]]});}
+/* Deep link that opens the assistant straight into booking. Used by the Kept page's "Book a call": jqtenterprises.com/#book */
+window.addEventListener('load',function(){if(location.hash==='#book'){setTimeout(bookCall,250);}});
 </script>
 </body>
 </html>
