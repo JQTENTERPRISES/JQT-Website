@@ -50,12 +50,22 @@
     --dirty:#b06a4f;--dirty-dim:rgba(176,106,79,.14);
     --flag:#cd5744;
 
-    --sans: "Inter", ui-sans-serif, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    --serif: "Instrument Serif", "Hoefler Text", "Didot", Georgia, "Times New Roman", serif;
-    --mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    /* ---- TYPEFACE SYSTEM ------------------------------------------------
+       One swap point. Change the three --font-* values and the whole page
+       follows: --sans / --serif / --mono are aliases, and no rule anywhere
+       below names a family directly. A self-hosted face drops in here.
+       --------------------------------------------------------------------- */
+    --font-body: "Inter", ui-sans-serif, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --font-display: "Instrument Serif", "Hoefler Text", "Didot", Georgia, "Times New Roman", serif;
+    --font-mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --sans: var(--font-body);
+    --serif: var(--font-display);
+    --mono: var(--font-mono);
   }
 
   *{box-sizing:border-box}
+  section[id]{scroll-margin-top:72px}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;line-height:1.5;overflow-x:hidden}
   .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
@@ -369,7 +379,7 @@
   .cl-row .cm .ok{color:var(--ok)}
   .cl-row .cm .fl{color:var(--flag)}
   .cl-row .hash{font-family:var(--mono);font-size:10px;color:var(--d-tx-sub);white-space:nowrap;letter-spacing:.02em}
-  .cl-row .hash i{font-style:normal;color:var(--navy-lift);opacity:.85}
+  .cl-row .hash i{font-style:normal;color:var(--navy-lift);opacity:.85;margin-left:5px}
   @media(max-width:640px){.cl-row{grid-template-columns:52px 1fr}.cl-row .hash{grid-column:2;margin-top:2px}}
   .chain-f{padding:13px 16px;border-top:1px solid var(--d-hair);background:var(--d-surf-2);
     font-size:12.5px;color:var(--d-tx-mut);line-height:1.55;display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
@@ -427,6 +437,7 @@
     border:1px solid var(--line);border-radius:10px;padding:16px 18px;line-height:1.9;margin:0 0 16px}
   .sec.alt .napkin .math{background:var(--paper)}
   .napkin .math span{color:var(--ink-sub)}
+  @media(max-width:600px){.napkin .math span{display:block;padding-left:1.6em;line-height:1.6}}
 
   /* faq */
   .faq2{margin-top:40px;max-width:50em;border-top:1px solid var(--line)}
@@ -660,9 +671,9 @@
         <div class="what">Same company. Same product. Reviewed by the person who has to use it with one hand.</div>
       </div>
     </div>
-    <p class="gap-src">Public app store ratings for a leading property operations vendor, read the week Kept's floor app was designed.</p>
+    <p class="gap-src">Public app store ratings for a leading property operations vendor. We read them off the stores rather than out of a report, and so can you.</p>
 
-    <p class="lede" style="margin-top:34px">Read the one star reviews and the complaint is never a missing feature. It is always one of four things.</p>
+    <p class="lede" style="margin-top:34px">Read the one star reviews and the complaint is rarely a missing feature. It is nearly always one of these four.</p>
     <ul class="plain-list">
       <li><b>It is slower than paper.</b> So the crew quietly goes back to pen and a group chat, and the paper version wins, because paper is the one thing everybody can share.</li>
       <li><b>It logs her out mid shift.</b> She is holding a bucket on the third floor. She is not going to her inbox for a code.</li>
@@ -670,7 +681,7 @@
       <li><b>The photos land in her personal camera roll.</b> Which is a small thing until you ask someone to photograph a stranger's bathroom.</li>
     </ul>
 
-    <p class="lede" style="margin-top:34px">The property Kept was built in already owned one of these. It was installed. It was paid for. It was dead. What actually ran the floor was a radio and a printed list, which is what runs most floors, in every brand, at every price point.</p>
+    <p class="lede" style="margin-top:34px">The property Kept was built in already owned one of these. It was installed. It was paid for. It was dead. What actually ran the floor was a radio and a printed list, which is what still runs a lot of floors, across brands and across price points.</p>
 
     <div class="wager">
       <div class="cap">The one number Kept is judged on</div>
