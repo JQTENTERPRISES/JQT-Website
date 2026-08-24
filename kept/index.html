@@ -3,11 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kept: the hotel operations board your floor actually opens · JQT</title>
-<meta name="description" content="Kept turns the morning room report you already run into a live board your floor actually opens. A room is not clean until the checklist is. Powered by JQT.">
+<title>Kept: hotel operations software your floor actually opens · JQT</title>
+<meta name="description" content="Kept is hotel housekeeping and operations software built for the person holding the phone. A room is not clean until the checklist is, and every action lands on an append-only log anchored daily. Live at a real property. $499 to $799 per month. Built by JQT.">
+<link rel="canonical" href="https://jqtenterprises.com/kept/">
 <meta property="og:title" content="Kept: the board your floor actually opens">
-<meta property="og:description" content="The hotel operations board your team actually opens. Powered by JQT.">
+<meta property="og:description" content="Hotel operations software built for the person holding the phone. Who did what, proven. Live at a real property. Powered by JQT.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://jqtenterprises.com/kept/">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2331496b'/%3E%3Cg fill='none' stroke='%23eaf1fb' stroke-width='7.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 9v46'/%3E%3Cpath d='M15 33 41 9'/%3E%3Cpath d='M15 33 29 49 56 15'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -289,6 +292,178 @@
   .site-foot .fcol a{display:block;color:#aeb9c6;font-size:13.5px;padding:4px 0;transition:color .15s}
   .site-foot .fcol a:hover{color:#fff}
   .foot-btm{margin-top:42px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:14px;flex-wrap:wrap;justify-content:space-between;font-size:12px;color:#71818f;font-family:var(--mono);letter-spacing:.03em}
+
+  /* ===== v2: Kept as the centerpiece ===== */
+  .live-strip{display:flex;align-items:flex-start;gap:10px;margin:22px 0 0;padding:12px 14px;
+    border:1px solid var(--line);background:var(--paper-2);border-radius:11px;max-width:36em}
+  .live-strip .ls-dot{width:8px;height:8px;border-radius:50%;background:var(--ok-ink);flex:0 0 auto;margin-top:6px;
+    box-shadow:0 0 0 0 rgba(47,134,89,.5);animation:pulse2 2.6s infinite}
+  @keyframes pulse2{0%{box-shadow:0 0 0 0 rgba(47,134,89,.45)}70%{box-shadow:0 0 0 8px rgba(47,134,89,0)}100%{box-shadow:0 0 0 0 rgba(47,134,89,0)}}
+  @media(prefers-reduced-motion:reduce){.live-strip .ls-dot{animation:none}}
+  .live-strip .ls-t{font-size:13.5px;line-height:1.5;color:var(--ink-mut)}
+  .live-strip .ls-t b{color:var(--ink);font-weight:600}
+  .live-strip a{color:var(--navy);font-weight:600;border-bottom:1px solid rgba(61,90,122,.35)}
+
+  .sec{border-top:1px solid var(--line);background:var(--paper)}
+  .sec.alt{background:var(--paper-2)}
+  .sec-in{padding:76px 0 80px}
+  @media(max-width:640px){.sec-in{padding:56px 0 58px}}
+  .sec h2{font-weight:600;letter-spacing:-.022em;font-size:clamp(1.55rem,3.2vw,2.35rem);margin:0;
+    max-width:17em;line-height:1.12;text-wrap:balance;color:var(--ink)}
+  .sec h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--navy);letter-spacing:0}
+  .sec .lede{color:var(--ink-mut);max-width:42em;margin:18px 0 0;font-size:15.5px;line-height:1.62}
+  .sec .lede b{color:var(--ink);font-weight:600}
+
+  /* the 4.6 / 3.2 evidence */
+  .gap-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px;max-width:640px}
+  @media(max-width:560px){.gap-row{grid-template-columns:1fr}}
+  .gap-c{border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:22px 22px 20px}
+  .sec.alt .gap-c{background:var(--paper)}
+  .gap-c .n{font-size:clamp(2.6rem,7vw,3.4rem);font-weight:600;letter-spacing:-.04em;line-height:1;
+    font-variant-numeric:tabular-nums}
+  .gap-c .who{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ink-sub);margin-bottom:12px}
+  .gap-c .what{font-size:13.5px;color:var(--ink-mut);margin-top:10px;line-height:1.5}
+  .gap-c.hi .n{color:var(--ok-ink)}
+  .gap-c.lo{border-color:rgba(161,84,58,.32);background:linear-gradient(180deg,rgba(161,84,58,.05),transparent 60%),var(--paper)}
+  .gap-c.lo .n{color:var(--clay-ink)}
+  .gap-src{font-family:var(--mono);font-size:11.5px;color:var(--ink-sub);margin:14px 0 0;max-width:44em;line-height:1.6}
+
+  .plain-list{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:0;max-width:44em;
+    border-top:1px solid var(--line)}
+  .plain-list li{padding:15px 0;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--ink-mut);line-height:1.55}
+  .plain-list li b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
+
+  .wager{margin-top:40px;border:1px solid var(--line-2);border-left:3px solid var(--navy);
+    background:var(--paper);border-radius:0 14px 14px 0;padding:26px 28px}
+  .sec.alt .wager{background:var(--paper)}
+  .wager .cap{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--navy);margin-bottom:14px}
+  .wager .q{font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.42;color:var(--ink);font-weight:500;max-width:30em;margin:0}
+  .wager p{margin:16px 0 0;font-size:14.5px;color:var(--ink-mut);line-height:1.6;max-width:42em}
+  @media(max-width:640px){.wager{padding:22px 20px}}
+
+  /* the record: three parts + chain */
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:42px}
+  @media(max-width:880px){.three{grid-template-columns:1fr}}
+  .pt{border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:26px 24px 24px;display:flex;flex-direction:column}
+  .sec.alt .pt{background:var(--paper)}
+  .pt .no{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--navy);margin-bottom:16px}
+  .pt h3{margin:0 0 10px;font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .pt p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-mut)}
+  .pt p + p{margin-top:11px}
+
+  .chain{margin-top:22px;background:var(--d-surf);border:1px solid rgba(20,30,50,.12);border-radius:16px;
+    overflow:hidden;box-shadow:0 26px 60px -30px rgba(24,38,64,.45)}
+  .chain-h{padding:13px 16px;border-bottom:1px solid var(--d-hair);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .chain-h .ct{font-size:12.5px;font-weight:600;color:var(--d-tx)}
+  .shield{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(84,160,119,.4);
+    background:var(--ok-dim);padding:4px 10px;border-radius:20px}
+  .chain-b{padding:6px 0}
+  .cl-row{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:baseline;padding:11px 16px;
+    border-bottom:1px solid var(--d-hair)}
+  .cl-row:last-child{border-bottom:none}
+  .cl-row .ct{font-family:var(--mono);font-size:10.5px;color:var(--d-tx-sub);letter-spacing:.03em}
+  .cl-row .cm{font-size:13px;color:var(--d-tx-mut);line-height:1.4;min-width:0}
+  .cl-row .cm b{color:var(--d-tx);font-weight:600}
+  .cl-row .cm .ok{color:var(--ok)}
+  .cl-row .cm .fl{color:var(--flag)}
+  .cl-row .hash{font-family:var(--mono);font-size:10px;color:var(--d-tx-sub);white-space:nowrap;letter-spacing:.02em}
+  .cl-row .hash i{font-style:normal;color:var(--navy-lift);opacity:.85}
+  @media(max-width:640px){.cl-row{grid-template-columns:52px 1fr}.cl-row .hash{grid-column:2;margin-top:2px}}
+  .chain-f{padding:13px 16px;border-top:1px solid var(--d-hair);background:var(--d-surf-2);
+    font-size:12.5px;color:var(--d-tx-mut);line-height:1.55;display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+  .chain-f b{color:var(--d-tx);font-weight:600}
+  .chain-f .anch{font-family:var(--mono);font-size:10.5px;color:var(--navy-lift);letter-spacing:.04em;
+    border:1px solid var(--d-hair-2);padding:3px 8px;border-radius:20px;white-space:nowrap}
+
+  .owner-test{margin-top:34px;border:1px solid var(--line);background:var(--paper-2);border-radius:14px;padding:24px 26px;max-width:46em}
+  .sec.alt .owner-test{background:var(--paper)}
+  .owner-test .cap{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--navy);margin-bottom:12px}
+  .owner-test p{margin:0;font-size:14.5px;line-height:1.62;color:var(--ink-mut)}
+  .owner-test p b{color:var(--ink);font-weight:600}
+  .owner-test p + p{margin-top:12px}
+
+  /* surfaces */
+  .surf{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:42px}
+  @media(max-width:880px){.surf{grid-template-columns:1fr}}
+  .sf{border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:0;overflow:hidden;display:flex;flex-direction:column}
+  .sec.alt .sf{background:var(--paper)}
+  .sf-top{background:var(--d-surf);padding:16px 20px 15px;border-bottom:1px solid var(--line)}
+  .sf-top .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-lift)}
+  .sf-top h3{margin:6px 0 0;font-size:17px;font-weight:600;color:var(--d-tx);letter-spacing:-.01em}
+  .sf-top .u{margin:5px 0 0;font-size:12.5px;color:var(--d-tx-sub);font-family:var(--mono);letter-spacing:.02em}
+  .sf-b{padding:20px;font-size:14px;line-height:1.62;color:var(--ink-mut)}
+  .sf-b p{margin:0}
+  .sf-b p + p{margin-top:10px}
+
+  /* carry cards */
+  .carry{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:42px}
+  @media(max-width:760px){.carry{grid-template-columns:1fr}}
+  .cy{border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:24px}
+  .sec.alt .cy{background:var(--paper)}
+  .cy h3{margin:0 0 9px;font-size:16.5px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .cy p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-mut)}
+  .cy p + p{margin-top:10px}
+
+  .caveat{margin-top:18px;border:1px solid var(--line-2);background:var(--paper);border-radius:12px;padding:20px 22px;max-width:46em}
+  .caveat .cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--clay-ink);margin-bottom:10px}
+  .caveat p{margin:0;font-size:13.5px;line-height:1.62;color:var(--ink-mut)}
+
+  /* pricing */
+  .price-row{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:38px;margin-top:42px;align-items:start}
+  @media(max-width:860px){.price-row{grid-template-columns:1fr;gap:28px}}
+  .price-tag{border:1px solid var(--line-2);background:var(--paper);border-radius:16px;padding:30px}
+  .sec.alt .price-tag{background:var(--paper)}
+  .price-tag .amt{font-size:clamp(2.1rem,5vw,2.9rem);font-weight:600;letter-spacing:-.035em;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+  .price-tag .per{font-size:13.5px;color:var(--ink-sub);margin-top:12px;line-height:1.5}
+  .price-tag ul{list-style:none;margin:22px 0 0;padding:20px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+  .price-tag li{font-size:14px;color:var(--ink-mut);display:flex;gap:10px;align-items:flex-start;line-height:1.45}
+  .price-tag li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--navy);flex:0 0 auto;margin-top:7px}
+  .napkin p{margin:0 0 14px;font-size:15px;line-height:1.65;color:var(--ink-mut);max-width:38em}
+  .napkin p:last-child{margin-bottom:0}
+  .napkin p b{color:var(--ink);font-weight:600}
+  .napkin .math{font-family:var(--mono);font-size:13px;color:var(--ink);background:var(--paper-2);
+    border:1px solid var(--line);border-radius:10px;padding:16px 18px;line-height:1.9;margin:0 0 16px}
+  .sec.alt .napkin .math{background:var(--paper)}
+  .napkin .math span{color:var(--ink-sub)}
+
+  /* faq */
+  .faq2{margin-top:40px;max-width:50em;border-top:1px solid var(--line)}
+  .faq2 details{border-bottom:1px solid var(--line)}
+  .faq2 summary{list-style:none;cursor:pointer;padding:19px 34px 19px 0;position:relative;
+    font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.4}
+  .faq2 summary::-webkit-details-marker{display:none}
+  .faq2 summary::after{content:"+";position:absolute;right:4px;top:17px;font-size:19px;font-weight:400;color:var(--ink-sub);transition:transform .18s}
+  .faq2 details[open] summary::after{content:"\2212"}
+  .faq2 summary:hover{color:var(--navy)}
+  .faq2 .a{padding:0 0 20px;font-size:14.5px;line-height:1.65;color:var(--ink-mut);max-width:44em}
+  .faq2 .a p{margin:0}
+  .faq2 .a p + p{margin-top:10px}
+
+  /* jqt band */
+  .jband{border-top:1px solid var(--line);background:var(--d-ink);color:var(--d-tx)}
+  .jband-in{padding:66px 0 70px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:44px;align-items:center}
+  @media(max-width:860px){.jband-in{grid-template-columns:1fr;gap:30px;padding:52px 0 56px}}
+  .jband .eyebrow{color:var(--navy-lift)}
+  .jband .eyebrow i{background:var(--navy-lift)}
+  .jband h2{font-weight:600;letter-spacing:-.022em;font-size:clamp(1.5rem,3.1vw,2.15rem);margin:0;
+    max-width:15em;line-height:1.14;text-wrap:balance;color:var(--d-tx)}
+  .jband h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--navy-lift);letter-spacing:0}
+  .jband p{margin:18px 0 0;font-size:15px;line-height:1.65;color:var(--d-tx-mut);max-width:38em}
+  .jband a.jlink{display:inline-block;margin-top:22px;font-size:14.5px;font-weight:600;color:var(--navy-lift);
+    border-bottom:1px solid rgba(143,180,221,.4);padding-bottom:2px}
+  .jband a.jlink:hover{border-bottom-color:var(--navy-lift)}
+  .jcard{border:1px solid var(--d-hair-2);background:var(--d-surf);border-radius:16px;padding:28px}
+  .jcard .cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--d-tx-sub);margin-bottom:18px}
+  .jcard .lock{display:flex;align-items:center;gap:16px}
+  .jcard .lock .kw{font-family:var(--serif);font-style:italic;font-size:48px;color:var(--navy-lift);line-height:.8}
+  .jcard .lock .pb{border-left:1px solid var(--d-hair-2);padding-left:16px;font-size:12px;color:var(--d-tx-sub);font-family:var(--mono);letter-spacing:.03em;line-height:1.5}
+  .jcard .lock .pb b{color:var(--d-tx);font-weight:600}
+  .jcard .steps{list-style:none;margin:24px 0 0;padding:20px 0 0;border-top:1px solid var(--d-hair);display:flex;flex-direction:column;gap:12px}
+  .jcard .steps li{font-size:13.5px;color:var(--d-tx-mut);line-height:1.45;display:flex;gap:12px}
+  .jcard .steps li span{font-family:var(--mono);font-size:10.5px;color:var(--navy-lift);letter-spacing:.1em;padding-top:2px;flex:0 0 auto}
+  .jcard .steps li b{color:var(--d-tx);font-weight:600}
 </style>
 
 <script type="application/ld+json">
@@ -297,10 +472,34 @@
   "@type": "SoftwareApplication",
   "name": "Kept",
   "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
+  "applicationSubCategory": "Hotel housekeeping and operations software",
+  "operatingSystem": "Web, iOS and Android via browser",
   "url": "https://jqtenterprises.com/kept/",
-  "description": "Kept is hotel operations software built by JQT Enterprises. It turns the morning room report a hotel already runs into a live board the floor actually opens: a room is not clean until its checklist is done, and every action is timestamped and logged. Kept is not a property management system; it works alongside the PMS a hotel already has. Housekeeping is the live module, with inventory and maintenance next.",
-  "featureList": "Live housekeeping board, checklist-gated room status, timestamped activity log",
+  "description": "Kept is hotel housekeeping and operations software built by JQT Enterprises for the person holding the phone rather than the person signing the invoice. A room is not clean until its checklist is complete: the mark clean button does not press until every step has been tapped. Every action appends to a hash-chained, append-only audit log whose head is anchored daily with public RFC 3161 timestamp authorities, so the record is tamper-evident rather than merely reported. Kept runs on staff members' own phones with a first name and a four digit PIN, in English, Spanish and Haitian Creole, and works offline in dead spots. It is not a property management system: it reads the morning room status report a hotel already runs and produces an end of shift sheet that mirrors the PMS columns, and never writes into the PMS. Kept holds no guest data.",
+  "featureList": [
+    "Checklist-gated room status, so clean is proven rather than asserted",
+    "Append-only hash-chained audit log, anchored daily to public timestamp authorities",
+    "Housekeeper phone app: first name plus four digit PIN, English, Spanish and Haitian Creole, works offline",
+    "Front desk view of what is actually sellable, plus a priority note to the floor",
+    "Manager back office: live board, one-tap assignment, morning import and end of shift export",
+    "Maintenance log, work orders, and multi-day multi-room projects that hold rooms across mornings",
+    "Out of order status that carries forward with its reason",
+    "Supplies: housekeepers tap LOW or OUT, the buy list assembles itself",
+    "Staff safety alert that already knows which room the housekeeper is in"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "price": "499",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "minPrice": "499",
+      "maxPrice": "799",
+      "priceCurrency": "USD",
+      "description": "Per property, per month, by size of property and scope of operation."
+    },
+    "availability": "https://schema.org/LimitedAvailability"
+  },
   "publisher": {
     "@type": "Organization",
     "name": "JQT Enterprises",
@@ -308,16 +507,36 @@
   }
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Does Kept replace our PMS?","acceptedAnswer":{"@type":"Answer","text":"No. Kept reads the morning room status report a hotel already runs and produces an end of shift sheet that mirrors the PMS columns for the lead to re key in one pass. It never writes into the PMS."}},
+    {"@type":"Question","name":"Do we have to train the staff to use Kept?","acceptedAnswer":{"@type":"Answer","text":"No. Day one is a sticky note with a first name and four digits, and one sentence from the manager: your rooms are on your phone today. If Kept needs a training class, it has already failed the test it exists to pass, because the next property's crew will not get one either."}},
+    {"@type":"Question","name":"What languages does Kept support for housekeepers?","acceptedAnswer":{"@type":"Answer","text":"The floor app runs in English, Spanish and Haitian Creole, and the room checklist is icon led, so the tap does not depend on the word."}},
+    {"@type":"Question","name":"What happens if the morning room status report is late or malformed?","acceptedAnswer":{"@type":"Answer","text":"The day opens anyway with every room dirty. A room wrongly listed dirty costs a walk through. A room wrongly listed clean costs a guest walking into an unmade bed. Kept picks the cheaper mistake on purpose."}},
+    {"@type":"Question","name":"Does Kept work where there is no signal?","acceptedAnswer":{"@type":"Answer","text":"Taps are held on the phone and sent when the signal returns, and the screen says so plainly. The single exception is the staff safety alert, which is never queued: if it cannot reach the server the housekeeper is told to use the radio instead."}},
+    {"@type":"Question","name":"Can staff or managers edit Kept's log afterwards?","acceptedAnswer":{"@type":"Answer","text":"No, and neither can JQT. The log is append only and hash chained, so an altered entry breaks every entry after it. Once a day its head is anchored with public RFC 3161 timestamp authorities, so a rebuilt history is visible rather than plausible."}},
+    {"@type":"Question","name":"How much does Kept cost?","acceptedAnswer":{"@type":"Answer","text":"499 to 799 US dollars per property per month, by size of property and how much of the operation is put on it."}},
+    {"@type":"Question","name":"Does Kept run multiple properties?","acceptedAnswer":{"@type":"Answer","text":"Not today. Kept runs one property properly. Multi property is designed and unbuilt."}},
+    {"@type":"Question","name":"Who built Kept?","acceptedAnswer":{"@type":"Answer","text":"JQT Enterprises, a forward deployed engineering firm in Fort Lauderdale, Florida. JQT embedded in a working hotel, built Kept inside its actual mornings, and still answers for it after go live."}}
+  ]
+}
+</script>
+</script>
 </head>
 <body>
 <nav>
   <div class="wrap nav-in">
     <a class="brand" href="/">JQT</a>
     <div class="nav-links">
-      <a href="/#system">Platform</a>
-      <a href="/kept/" class="on">Kept</a>
-      <a href="/#industries">Industries</a>
-      <a href="/#pricing">Pricing</a>
+      <a href="#why">Why it works</a>
+      <a href="#record">The record</a>
+      <a href="#surfaces">What it runs on</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/">JQT</a>
     </div>
     <a href="/#book" class="nav-cta">Book a call</a>
   </div>
@@ -326,7 +545,7 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="eyebrow"><i></i>Kept &middot; hotel operations</div>
+      <div class="eyebrow"><i></i>Kept &middot; hotel operations &middot; built by JQT</div>
       <h1>The board your floor<br><em>actually opens</em>.</h1>
       <p class="sub">Kept turns the morning room report you already run into a working board your team drives from the front desk and from their own phones. A room is not clean until the checklist is, and the moment it is, the whole property knows. No printouts. No radio guesswork. No wondering what is ready to sell.</p>
       <div class="cta-row">
@@ -335,14 +554,19 @@
         <span class="powered">Powered by <b>JQT</b></span>
       </div>
       <p class="cred">Built alongside the people who run a real hotel floor, not around a conference table.</p>
+      <div class="live-strip">
+        <span class="ls-dot"></span>
+        <span class="ls-t"><b>Live, not a prototype.</b> Kept runs the morning at the property it was built in, on the crew's own phones, with nobody trained to use it. That last part is the test, and it is <a href="#why">explained below</a>.</span>
+      </div>
     </div>
 
     <div class="board-stage">
       <div class="board" id="board">
         <div class="mods">
           <div class="mod on">Housekeeping</div>
-          <div class="mod" title="Coming next">Inventory <span class="soon">soon</span></div>
-          <div class="mod" title="Coming next">Maintenance <span class="soon">soon</span></div>
+          <div class="mod">Maintenance</div>
+          <div class="mod">Supplies</div>
+          <div class="mod">Audit log</div>
         </div>
         <div class="board-top">
           <div class="board-title">Floors 1 to 3 <span class="live">Live</span></div>
@@ -417,13 +641,280 @@
 </section>
 
 
+
+<section class="sec alt" id="why">
+  <div class="wrap sec-in">
+    <div class="eyebrow"><i></i>Why the last one failed</div>
+    <h2>The buyer rates it 4.6. The person holding the phone rates it <em>3.2</em>.</h2>
+    <p class="lede">Those are two ratings for one company's product in this category. The manager's app scores 4.6. The housekeeper's app scores 3.2. That gap is not a backlog and it is not bad luck. It is what happens when a product is sold to the person who signs and shipped to the person who cleans.</p>
+
+    <div class="gap-row">
+      <div class="gap-c hi">
+        <div class="who">The manager's app</div>
+        <div class="n">4.6</div>
+        <div class="what">Bought, demoed, renewed. Reviewed by the person who chose it.</div>
+      </div>
+      <div class="gap-c lo">
+        <div class="who">The housekeeper's app</div>
+        <div class="n">3.2</div>
+        <div class="what">Same company. Same product. Reviewed by the person who has to use it with one hand.</div>
+      </div>
+    </div>
+    <p class="gap-src">Public app store ratings for a leading property operations vendor, read the week Kept's floor app was designed.</p>
+
+    <p class="lede" style="margin-top:34px">Read the one star reviews and the complaint is never a missing feature. It is always one of four things.</p>
+    <ul class="plain-list">
+      <li><b>It is slower than paper.</b> So the crew quietly goes back to pen and a group chat, and the paper version wins, because paper is the one thing everybody can share.</li>
+      <li><b>It logs her out mid shift.</b> She is holding a bucket on the third floor. She is not going to her inbox for a code.</li>
+      <li><b>It eats her battery.</b> It is her phone. She is not carrying a charger through fourteen rooms.</li>
+      <li><b>The photos land in her personal camera roll.</b> Which is a small thing until you ask someone to photograph a stranger's bathroom.</li>
+    </ul>
+
+    <p class="lede" style="margin-top:34px">The property Kept was built in already owned one of these. It was installed. It was paid for. It was dead. What actually ran the floor was a radio and a printed list, which is what runs most floors, in every brand, at every price point.</p>
+
+    <div class="wager">
+      <div class="cap">The one number Kept is judged on</div>
+      <p class="q">On her second room, does she tap each step as she finishes it, standing in the room, or does she stand at the door at two in the afternoon and tap the whole day at once?</p>
+      <p>In flow taps mean the times are real and you own a record. Batch taps mean Kept became the old app with better colors. That is the whole test, it is the only one that matters, and you can check it yourself in an afternoon without asking us anything.</p>
+      <p>Which is why nobody gets trained. On day one the manager hands out a sticky note with a first name and four digits and says one sentence: your rooms are on your phone today. That is the entire rollout. If Kept needs a class, it has already lost, because the next property's crew will not get one either.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="record">
+  <div class="wrap sec-in">
+    <div class="eyebrow"><i></i>The record</div>
+    <h2>Who did what. <em>Proven.</em></h2>
+    <p class="lede">Every system in this category will hand you a report. A report is a claim. Below is the difference between a report and a record, in three parts, each one something you can check without taking our word for it.</p>
+
+    <div class="three">
+      <div class="pt">
+        <div class="no">01</div>
+        <h3>The gate</h3>
+        <p>Mark clean does not press until every step of the room checklist has been tapped. Not greyed out with an override for the manager. It does not press.</p>
+        <p>A room that is clean because someone said so from a chair at 4pm is the thing your current data is made of. This is the mechanic that ends it.</p>
+      </div>
+      <div class="pt">
+        <div class="no">02</div>
+        <h3>The chain</h3>
+        <p>Every action appends to a log that cannot be quietly edited. Not by staff, not by the manager, not by us.</p>
+        <p>Each entry is built from the one before it, so altering an old line breaks every line after it, visibly, on a page your manager can open while you stand there.</p>
+      </div>
+      <div class="pt">
+        <div class="no">03</div>
+        <h3>The anchor</h3>
+        <p>Once a day the head of that chain goes to public timestamp authorities and the signed reply is kept.</p>
+        <p>The chain catches an edited row. The anchor catches the harder case: someone deletes the log and rebuilds a tidy fake whose hashes all recompute. To fake history you would also have to alter records held by a certificate authority. Verify one with openssl, without Kept, and without us.</p>
+      </div>
+    </div>
+
+    <div class="chain">
+      <div class="chain-h">
+        <span class="ct">Audit log</span>
+        <span class="shield">&#10003; Log verified</span>
+      </div>
+      <div class="chain-b">
+        <div class="cl-row"><span class="ct">10:12a</span><span class="cm">Room <b>508</b> <span class="ok">marked clean</span> &middot; 6 of 6 zones &middot; Maria</span><span class="hash">e4a1&hellip;<i>&larr; 9c72</i></span></div>
+        <div class="cl-row"><span class="ct">10:09a</span><span class="cm">Room <b>330</b> <span class="fl">flagged</span> &middot; AC not cooling &middot; photo &middot; Rosa</span><span class="hash">9c72&hellip;<i>&larr; 1bd8</i></span></div>
+        <div class="cl-row"><span class="ct">10:04a</span><span class="cm">Room <b>214</b> started &middot; Rosa</span><span class="hash">1bd8&hellip;<i>&larr; 55af</i></span></div>
+        <div class="cl-row"><span class="ct">9:36a</span><span class="cm">Morning report imported &middot; 98 rooms &middot; Anita</span><span class="hash">55af&hellip;<i>&larr; 03e6</i></span></div>
+      </div>
+      <div class="chain-f">
+        <span class="anch">Anchored 04:02a</span>
+        <span><b>Chain head sent to public timestamp authorities</b> and the signed reply stored. It prints on every export, so a copy of what the log said leaves the building daily.</span>
+      </div>
+    </div>
+
+    <div class="owner-test">
+      <div class="cap">How an owner checks it in thirty seconds</div>
+      <p>Ask your manager to show you a room that ran over forty minutes last week, and what happened in it. A trashed checkout, a broken AC, a deep clean.</p>
+      <p><b>If she can answer from the board while you are standing there, the record is alive.</b> If she cannot, then no software in your building is working, and that includes ours. It is a fair test either way, which is why it is the one we hand you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="surfaces">
+  <div class="wrap sec-in">
+    <div class="eyebrow"><i></i>What your people touch</div>
+    <h2>Three screens. <em>One job each.</em></h2>
+    <p class="lede">Kept is not one app with a role switch. It is three front doors, and the hardest design work went into keeping everything complicated behind the one your floor never opens.</p>
+
+    <div class="surf">
+      <div class="sf">
+        <div class="sf-top"><div class="k">The floor</div><h3>A phone she already owns</h3><div class="u">first name + 4 digits</div></div>
+        <div class="sf-b">
+          <p>No email, no password, no code from an inbox, no expiring anything. She sees her rooms and nothing else, in English, Spanish, or Haitian Creole, with an icon checklist so the tap does not depend on the word.</p>
+          <p>It installs to her home screen. In the dead spots it keeps her taps on the phone and catches up the moment the signal returns.</p>
+        </div>
+      </div>
+      <div class="sf">
+        <div class="sf-top"><div class="k">The front desk</div><h3>What is actually sellable</h3><div class="u">one live picture</div></div>
+        <div class="sf-b">
+          <p>Not what the report said this morning. What is true right now, and who is standing in the room.</p>
+          <p>Plus one field for the thing only the desk knows: early arrival, guest waiting at the counter, VIP in 214. That field exists to end the phone call upstairs, which is the call Kept was built to eliminate.</p>
+        </div>
+      </div>
+      <div class="sf">
+        <div class="sf-top"><div class="k">The office</div><h3>The whole property</h3><div class="u">everything complicated lives here</div></div>
+        <div class="sf-b">
+          <p>The board, assignment in one tap, the maintenance log and its work orders, supplies, the morning import, the end of shift sheet, and the audit log with its verification.</p>
+          <p>Access is granted per person rather than baked into a job title, so a lead housekeeper who also covers the desk is one grant your manager makes herself, not a support ticket.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="carry">
+  <div class="wrap sec-in">
+    <div class="eyebrow"><i></i>The parts that break every other morning</div>
+    <h2>Yesterday should not have to be <em>re typed</em>.</h2>
+    <p class="lede">Most housekeeping tools are built around one clean day at a time. Real properties are not, and the gap between those two facts is where the manager's morning goes.</p>
+
+    <div class="carry">
+      <div class="cy">
+        <h3>Out of order carries forward</h3>
+        <p>With its reason attached. Nobody re marks the same four rooms every single morning, and no room quietly slips back into inventory because today's report did not know it was out.</p>
+      </div>
+      <div class="cy">
+        <h3>Projects hold rooms across days</h3>
+        <p>Recarpet 214. Repaint floor two. Ordered steps, a real deadline, many rooms at once, and a hold that survives every morning import until the work actually passes.</p>
+        <p>Modeled on how a PMS already treats an out of order room: a date range with a declared return status, not a checkbox somebody has to remember to tick again.</p>
+      </div>
+      <div class="cy">
+        <h3>Supplies without a scanner</h3>
+        <p>She taps LOW or OUT. That is her entire relationship with inventory, because a slower workflow is a dead workflow and barcodes on a housekeeping cart are how you get neither the count nor the clean.</p>
+        <p>The buy list assembles itself, and a floor alert overrides the ledger, because the shelf is more honest than the spreadsheet.</p>
+      </div>
+      <div class="cy">
+        <h3>A safety button that knows the room</h3>
+        <p>It already knows where she is, because she started the room. Locating the person is the expensive half of every system in this category, and here it is a column that has been filling itself in all day.</p>
+        <p>The alert is never queued offline. If it cannot reach the server she is told plainly, in her own language, to use the radio, because a queued panic alert is a lie told to someone in trouble. Raised, seen, and stood down each land on the chain, because nobody came and nobody was told are different facts.</p>
+      </div>
+    </div>
+
+    <div class="caveat">
+      <div class="cap">Said plainly, because this is a legal area</div>
+      <p>Florida has no statewide employee safety device mandate. The brand this property flies is an AHLA 5 Star Promise signatory, so a staff safety device here is a brand standard expectation, not a legal one. Several mandates elsewhere call for dedicated Bluetooth hardware, which a phone is not. So Kept does not describe this as ESD compliance, in the product or on this page, and it will not start. If you are in a city with a real ordinance, we will tell you what Kept does and does not satisfy before you buy it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="limits">
+  <div class="wrap sec-in">
+    <div class="eyebrow"><i></i>The honest part</div>
+    <h2>Three things Kept <em>does not do</em>.</h2>
+    <p class="lede">You will find these out anyway. Better on a web page you are reading for free than on the third call.</p>
+
+    <div class="three">
+      <div class="pt">
+        <div class="no">01</div>
+        <h3>It does not replace your PMS</h3>
+        <p>Kept reads the morning room status report you already run, and at the end of the shift produces a sheet that mirrors your PMS columns so your lead re keys the clean rooms in one pass.</p>
+        <p>It never writes into your PMS. That is a decision, not a gap: writing into a PMS means a certification cycle, and you would be waiting on that instead of running your floor.</p>
+      </div>
+      <div class="pt">
+        <div class="no">02</div>
+        <h3>It holds no guest data</h3>
+        <p>Room numbers, staff first names, checklists, and photographs of broken things. No guest names, no reservations, no cards.</p>
+        <p>There is nothing in it worth stealing, which is the correct amount of guest data for a housekeeping tool to be carrying around on twelve personal phones.</p>
+      </div>
+      <div class="pt">
+        <div class="no">03</div>
+        <h3>It runs one property</h3>
+        <p>Multi property is designed and it is not built. If you own eight hotels, the honest answer today is that Kept would run one of them properly while we build the rest of the answer in front of you.</p>
+        <p>Some owners want exactly that. Most do not. Assume this is the state of it until we tell you otherwise in writing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="pricing">
+  <div class="wrap sec-in">
+    <div class="eyebrow"><i></i>Pricing</div>
+    <h2>Priced against what the confusion <em>already costs you</em>.</h2>
+
+    <div class="price-row">
+      <div class="price-tag">
+        <div class="amt">$499 to $799</div>
+        <div class="per">per property, per month, by size of property and how much of the operation you put on it.</div>
+        <ul>
+          <li>The floor app, the front desk view, and the back office</li>
+          <li>Checklist gated clean, on every room, every shift</li>
+          <li>Append only audit log, anchored daily</li>
+          <li>Maintenance log, work orders, and multi day projects</li>
+          <li>Supplies, buy list, and floor alerts</li>
+          <li>Staff safety alerts routed to the desk</li>
+          <li>Morning import and end of shift export shaped to your PMS columns</li>
+          <li>JQT still answering for it after go live</li>
+        </ul>
+      </div>
+      <div class="napkin">
+        <p>Here is the arithmetic, so you can redo it on the back of a folio instead of trusting a slide.</p>
+        <div class="math">
+          6 housekeepers<br>
+          &times; 20 minutes a shift <span>walking down to ask, waiting on a callback, redoing a list that moved</span><br>
+          = 2 hours a day<br>
+          = 14 hours a week<br>
+          <b>&asymp; 60 paid hours a month producing nothing.</b>
+        </div>
+        <p>Put your own wage number on that. Then add the comped night. Then add the clean room that sat unsold for three hours on a full Saturday because the desk did not know it was ready.</p>
+        <p><b>Your number will be different from ours. It will not be zero.</b> If we look at your floor and cannot find a leak worth more than the fee, we will say so on the call and you will have lost twenty minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="faq">
+  <div class="wrap sec-in">
+    <div class="eyebrow"><i></i>Questions owners ask first</div>
+    <h2>The things you would ask on the call anyway.</h2>
+
+    <div class="faq2">
+      <details open><summary>Does Kept replace our PMS?</summary><div class="a"><p>No. It reads the morning room status report you already run and produces an end of shift sheet that mirrors your PMS columns for your lead to re key in one pass. It never writes into your PMS.</p></div></details>
+      <details><summary>Do we have to train the staff?</summary><div class="a"><p>No, and we would rather you did not. Day one is a sticky note with a first name and four digits, and one sentence from the manager: your rooms are on your phone today. If Kept needs a class, it has already failed the test it exists to pass.</p></div></details>
+      <details><summary>Our housekeepers do not all read English.</summary><div class="a"><p>The floor app runs in English, Spanish, and Haitian Creole, and the room checklist is icon led, so the tap does not depend on the word. That was a requirement on day one, not a translation project bolted on later.</p></div></details>
+      <details><summary>What if the morning report is late, missing, or malformed?</summary><div class="a"><p>The day opens anyway, with every room dirty. A room wrongly listed dirty costs a walk through. A room wrongly listed clean costs a guest walking into an unmade bed. Kept picks the cheaper mistake on purpose, and the manager reconciles from the board rather than from a phone call.</p></div></details>
+      <details><summary>Does it work in the stairwells and the back corners?</summary><div class="a"><p>Her taps are held on the phone and sent when the signal comes back, and the screen says so plainly rather than pretending. The single exception is the safety alert, which is never queued: if it cannot reach the server she is told to use the radio instead.</p></div></details>
+      <details><summary>Can staff or managers edit the log afterwards?</summary><div class="a"><p>No, and neither can we. The log is append only and hash chained, so an altered entry breaks every entry after it. Once a day its head is anchored with public timestamp authorities, so a rebuilt history is visible rather than plausible.</p></div></details>
+      <details><summary>What does it cost?</summary><div class="a"><p>$499 to $799 per property per month, by size of property and how much of the operation you put on it. We put a number on what the confusion is costing you first. If we cannot find one bigger than the fee, we will tell you so.</p></div></details>
+      <details><summary>Does Kept run a portfolio?</summary><div class="a"><p>Not today. It runs one property properly. Multi property is designed and unbuilt, and you should assume that is the state of it until we say otherwise in writing.</p></div></details>
+      <details><summary>What happens if our manager leaves?</summary><div class="a"><p>The record does not leave with her. That is most of the point. Access is granted per person and revoked per person, a new manager is opened up from the back office rather than from a support queue, and the history she inherits is the same history that was there the day before.</p></div></details>
+      <details><summary>Who built this?</summary><div class="a"><p>JQT Enterprises, a forward deployed engineering firm in Fort Lauderdale, Florida. We embedded in a working hotel, built Kept inside its actual mornings rather than around a conference table, and we still answer for it after go live.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="jband" id="jqt">
+  <div class="wrap jband-in">
+    <div>
+      <div class="eyebrow"><i></i>Why this exists</div>
+      <h2>Kept is what JQT does, pointed at <em>one industry</em>.</h2>
+      <p>JQT embeds in an operation, builds the system that operation runs on, and stays to run it. What we learn on one floor becomes a product the next floor can open on day one. Kept is the first of those, which makes it the proof as well as the product: hotel operations, built inside a working hotel, live and answering for itself.</p>
+      <p>The next one will not be a hotel. It will be built exactly the same way.</p>
+      <a class="jlink" href="/">See how JQT works &rarr;</a>
+    </div>
+    <div class="jcard">
+      <div class="cap">The model</div>
+      <div class="lock"><span class="kw">kept</span><span class="pb">Powered by<br><b>JQT</b></span></div>
+      <ul class="steps">
+        <li><span>01</span><div><b>Embed.</b> Work the floor until we understand it better than anyone selling to it.</div></li>
+        <li><span>02</span><div><b>Build.</b> Turn the real morning into a system, inside the real morning.</div></li>
+        <li><span>03</span><div><b>Own it.</b> Stay on the hook for whether it holds under pressure.</div></li>
+        <li><span>04</span><div><b>Extract the core.</b> What survives becomes the product the next property gets on day one.</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section class="cta-band">
   <div class="wrap cta-in">
     <div class="eyebrow"><i></i>See it on your own floor</div>
     <h2>Run your next morning <em>on Kept</em>.</h2>
-    <p>We take the room report you already run, put it through Kept, and show you your own floor live before you change a thing. Housekeeping first. The rest earns its way in.</p>
+    <p>Send us tomorrow's room status report, the one you already run. We put it through Kept and show you your own floor, your own room numbers, gaps and all, before you change anything or pay anything. Twenty minutes. You keep the map either way, including the part where we tell you the leak is too small to bother us about.</p>
     <div class="cta-actions">
       <a class="btn btn-p" href="/#book">Book a call</a>
+      <a class="btn btn-g" href="/#hotel">Find the leak first</a>
       <span class="powered">Powered by <b>JQT</b></span>
     </div>
   </div>
@@ -434,16 +925,21 @@
     <div class="foot-top">
       <div class="fb">
         <div class="fb-kept">kept</div>
-        <p>Hotel operations, built by JQT. Housekeeping now, inventory and maintenance next.</p>
+        <p>Hotel operations software, built by JQT inside a working hotel. Housekeeping, maintenance, supplies, and a record that holds up.</p>
       </div>
       <div class="fcol">
         <h4>Kept</h4>
-        <a href="/kept/">Overview</a>
         <a href="#how">The difference</a>
-        <a href="/#build">What JQT builds</a>
+        <a href="#why">Why it gets used</a>
+        <a href="#record">The record</a>
+        <a href="#surfaces">What it runs on</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">Questions</a>
       </div>
       <div class="fcol">
-        <h4>Connect</h4>
+        <h4>JQT</h4>
+        <a href="/">How JQT works</a>
+        <a href="/#approach">The approach</a>
         <a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a>
         <a href="https://instagram.com/jqtenterprises" target="_blank" rel="noopener">Instagram</a>
         <a href="/#book">Book a call</a>
