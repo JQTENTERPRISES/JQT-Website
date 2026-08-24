@@ -3,8 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JQT · Forward Deployed Operations</title>
-<meta name="description" content="JQT builds and runs the operating systems behind your operation. Forward deployed: we embed, build, and own the outcome. Hotels, aviation, property management, field operations.">
+<title>JQT · Forward deployed operations, and Kept for hotels</title>
+<meta name="description" content="JQT embeds in an operation, builds the system it runs on, and stays to own the outcome. The first one shipped: Kept, hotel housekeeping and operations software, live at a real property. Fort Lauderdale, Florida.">
+<link rel="canonical" href="https://jqtenterprises.com/">
+<meta property="og:title" content="JQT · We embed in your operation and own the outcome">
+<meta property="og:description" content="Forward deployed engineering, productized. The first proof is Kept: hotel operations software, live at a real property.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jqtenterprises.com/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -206,6 +212,67 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
 .chat-send{background:var(--accent);color:var(--on-accent);border:none;border-radius:9px;width:44px;cursor:pointer;font-size:16px}
 .chat-note{font-size:10.5px;color:var(--faint);text-align:center;padding:0 12px 10px}
 
+/* ===== Kept as the proof (homepage) ===== */
+.nav-links a.kept-link{display:inline-flex;align-items:center;gap:7px;color:var(--text);font-weight:600}
+.nav-links a.kept-link::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);flex:0 0 auto}
+.hero-proof{display:flex;align-items:center;gap:10px;margin-top:26px;font-size:13.5px;color:var(--muted);
+  flex-wrap:wrap;line-height:1.5}
+.hero-proof .hp-dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:0 0 auto;
+  animation:hpp 2.6s infinite}
+@keyframes hpp{0%{box-shadow:0 0 0 0 rgba(47,143,91,.45)}70%{box-shadow:0 0 0 7px rgba(47,143,91,0)}100%{box-shadow:0 0 0 0 rgba(47,143,91,0)}}
+.hero-proof b{color:var(--text);font-weight:600}
+.hero-proof a{color:var(--accent);font-weight:600;border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+.hero-proof a:hover{border-bottom-color:var(--accent)}
+
+.proof-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:48px;align-items:start;margin-top:46px}
+@media(max-width:900px){.proof-grid{grid-template-columns:1fr;gap:34px}}
+.proof-pts{list-style:none;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.proof-pts li{padding:19px 0;border-bottom:1px solid var(--line)}
+.proof-pts li b{display:block;font-size:15.5px;font-weight:600;color:var(--ink);margin-bottom:5px;letter-spacing:-.01em}
+.proof-pts li span{display:block;font-size:14px;line-height:1.6;color:var(--muted)}
+.proof-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:30px}
+
+.kept-window{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  box-shadow:0 30px 70px -34px rgba(20,30,50,.4)}
+.kw-bar{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--surface2);border-bottom:1px solid var(--line)}
+.kw-bar .dots{display:flex;gap:5px}
+.kw-bar .dots i{width:9px;height:9px;border-radius:50%;background:var(--line2);display:block}
+.kw-url{flex:1;display:flex;align-items:center;gap:7px;background:var(--bg);border:1px solid var(--line);
+  border-radius:7px;padding:5px 10px;font-size:11.5px;color:var(--muted);
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.01em;min-width:0}
+.kw-url svg{flex:0 0 auto;opacity:.7}
+.kw-url span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kw-url b{color:var(--text);font-weight:600}
+.kw-body{background:#131D29;padding:16px}
+.kw-head{display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap}
+.kw-head .t{font-size:12.5px;font-weight:600;color:#E9EFF6}
+.kw-head .lv{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:#54A077;display:inline-flex;align-items:center;gap:6px}
+.kw-head .lv::before{content:"";width:6px;height:6px;border-radius:50%;background:#54A077}
+.kw-head .cnt{margin-left:auto;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:10.5px;color:#9AABC0}
+.kw-head .cnt b{color:#E9EFF6}
+.kw-rooms{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+@media(max-width:420px){.kw-rooms{grid-template-columns:repeat(5,1fr)}}
+.kw-rooms i{display:block;height:30px;border-radius:5px;background:#182533;border-left:3px solid #B06A4F;
+  font-style:normal;font-size:10.5px;color:#9AABC0;display:flex;align-items:center;justify-content:center;
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;font-variant-numeric:tabular-nums}
+.kw-rooms i.ok{border-left-color:#54A077;color:#E9EFF6}
+.kw-rooms i.wk{border-left-color:#CF9A37;color:#E9EFF6}
+.kw-foot{margin-top:14px;padding-top:13px;border-top:1px solid rgba(255,255,255,.09);
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:11.5px;color:#9AABC0;
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.02em}
+.kw-foot .sh{display:inline-flex;align-items:center;gap:6px;color:#54A077;border:1px solid rgba(84,160,119,.4);
+  background:rgba(84,160,119,.14);padding:3px 9px;border-radius:20px;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.kept-cap{margin-top:14px;font-size:12.5px;color:var(--faint);line-height:1.55;text-align:center}
+
+.ind .cell .liveflag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ok);background:var(--okbg);
+  border:1px solid color-mix(in srgb,var(--ok) 35%,transparent);padding:3px 9px;border-radius:20px;margin-bottom:10px}
+.ind .cell .liveflag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.ind .cell .nextflag{display:inline-flex;align-items:center;font-size:10.5px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);
+  padding:3px 9px;border-radius:20px;margin-bottom:10px}
+
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 
@@ -233,7 +300,32 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
   },
   "sameAs": [
     "https://instagram.com/jqtenterprises"
-  ]
+  ],
+  "knowsAbout": [
+    "hotel housekeeping operations",
+    "forward deployed engineering",
+    "operational systems of record",
+    "tamper-evident audit logging"
+  ],
+  "makesOffer": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "minPrice": "499",
+      "maxPrice": "799",
+      "priceCurrency": "USD",
+      "description": "Per property, per month."
+    },
+    "itemOffered": {
+      "@type": "SoftwareApplication",
+      "name": "Kept",
+      "url": "https://jqtenterprises.com/kept/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Hotel housekeeping and operations software built by JQT. A room is not clean until its checklist is complete, and every action lands on an append-only audit log anchored daily to public timestamp authorities. Runs on staff phones in English, Spanish and Haitian Creole. It is not a property management system and holds no guest data."
+    }
+  }
 }
 </script>
 </head>
@@ -243,8 +335,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
   <div class="nav-in">
     <div class="brand"><span>J</span><span>Q</span><span>T</span></div>
     <div class="nav-links">
+      <a href="/kept/" class="kept-link">Kept</a>
       <a href="#system">Platform</a>
-      <a href="/kept/">Kept</a>
       <a href="#build">What we build</a>
       <a href="#industries">Industries</a>
       <a href="#pricing">Pricing</a>
@@ -265,6 +357,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
       <a class="btn btn-primary" href="#cta" onclick="bookCall();return false;">Book a call</a>
       <a class="btn btn-ghost" href="#system">See it run</a>
     </div>
+    <p class="hero-proof"><span class="hp-dot"></span> <span><b>Live now:</b> Kept, the hotel operations system we built inside a working hotel, is running that property's mornings. <a href="/kept/">See Kept</a></span></p>
   </div>
 </header>
 
@@ -283,12 +376,78 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
   </div>
 </section>
 
+
+<section id="kept" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">The proof</div>
+      <h2 class="h2">The first one shipped. <span class="serif">It is called Kept.</span></h2>
+      <p class="sub">Forward deployed is easy to say. Here is what it produced. We embedded in a hotel, worked the mornings, and built the housekeeping and operations system that property runs on. It is live on the public internet today, on the crew's own phones, and it keeps a record of who did what that nobody can quietly edit, including us.</p>
+    </div>
+
+    <div class="proof-grid reveal">
+      <div>
+        <ul class="proof-pts">
+          <li>
+            <b>Live, not a pitch deck</b>
+            <span>Real domain, real certificate, real property, real mornings. You can watch a shift close on it. Most of what gets sold in this category has never survived a Saturday.</span>
+          </li>
+          <li>
+            <b>Built for the person holding the phone</b>
+            <span>In this category the manager's app rates 4.6 and the housekeeper's app rates 3.2. Same vendor. Everyone builds for the buyer and abandons the person doing the work, which is why the software gets bought and never opened. Nobody is trained on Kept. That is the test, not a shortcut.</span>
+          </li>
+          <li>
+            <b>A room is not clean until the checklist is</b>
+            <span>The button does not press until every step has been tapped, and every action appends to a log whose head is anchored daily with public timestamp authorities. Who did what, proven, not reported.</span>
+          </li>
+          <li>
+            <b>The core is reusable, which is the whole point</b>
+            <span>Hotel number two does not start from zero. Neither does the industry after hotels. One operating system per industry, earned on a real floor first, is the model. Kept is the first proof that it works.</span>
+          </li>
+        </ul>
+        <div class="proof-cta">
+          <a class="btn btn-primary" href="/kept/">See what Kept does</a>
+          <a class="btn btn-ghost" href="#hotel" onclick="keptLeak();return false;">I run a hotel. Find my leak.</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="kept-window">
+          <div class="kw-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="kw-url">
+              <svg width="10" height="12" viewBox="0 0 10 12" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1" y="5" width="8" height="6" rx="1.4"/><path d="M3 5V3.4a2 2 0 0 1 4 0V5"/></svg>
+              <span><b>kept.jqtenterprises.com</b>/office</span>
+            </span>
+          </div>
+          <div class="kw-body">
+            <div class="kw-head">
+              <span class="t">Floors 1 to 3</span>
+              <span class="lv">Live</span>
+              <span class="cnt">Clean <b>7</b> &nbsp; Left <b>5</b></span>
+            </div>
+            <div class="kw-rooms">
+              <i class="ok">101</i><i>104</i><i class="ok">106</i><i>107</i><i class="wk">108</i><i>109</i>
+              <i>110</i><i class="wk">112</i><i class="ok">121</i><i class="ok">123</i><i class="ok">125</i><i>127</i>
+            </div>
+            <div class="kw-foot">
+              <span class="sh">&#10003; Log verified</span>
+              <span>anchored 04:02a</span>
+            </div>
+          </div>
+        </div>
+        <p class="kept-cap">Kept, running. The full product page has the record, the pricing, and the three things it deliberately does not do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="board-section" id="system">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="eyebrow">The system, live</div>
-      <h2 class="h2">This is what replacing memory <span class="serif">looks like.</span></h2>
-      <p class="sub">One operating system, built for the work you actually run. The board below is not a mockup or a highlight reel. It is the same live system our clients run their day on. Flip it to your industry and look at Monday morning.</p>
+      <div class="eyebrow">The same engine, other floors</div>
+      <h2 class="h2">Hotels first. <span class="serif">Then the next floor.</span></h2>
+      <p class="sub">Kept is the hotel shape of one engine: status, ownership, deadlines, handoffs, and a record behind all of it. Below is that engine pointed at four kinds of operation. The hotel view is the one that shipped as a product. The other three are what the same core looks like when we embed in an aviation office, a portfolio, or a dispatch board. Pick the one that resembles your Monday.</p>
     </div>
     <div class="avenue-bar reveal">
       <span class="lbl">Pick an avenue</span>
@@ -334,7 +493,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
     </div>
     <div class="builds reveal">
       <div class="build">
-        <div><h3>The operating system</h3><div class="em">the live board above</div></div>
+        <div><h3>The operating system</h3><div class="em">Kept is the hotel one</div></div>
         <p>The live board your operation runs on. Status, alerts, and an audit trail. The single version of the truth, in one place everyone can see.</p>
         <span class="own">Owned by you. Powered by JQT.</span>
       </div>
@@ -357,13 +516,13 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
     <div class="sec-head reveal">
       <div class="eyebrow">Industries</div>
       <h2 class="h2">Built for operations that do not forgive mistakes.</h2>
-      <p class="sub">Different floors, same discipline. Click any one to see what we put on it.</p>
+      <p class="sub">Different floors, same discipline. We take one industry at a time, all the way to a product, before we take the next. Hotels is the one that is finished. Click any one to see what we put on it.</p>
     </div>
     <div class="ind reveal" id="ind">
-      <button class="cell"><span class="exp">+</span><div class="k">Hotels and hospitality</div><h3>Every room accounted for, every shift</h3><p>Every room accounted for. Every turn on a clock. No guest waiting on a room that has been ready for an hour.</p><div class="more"><p>We connect to your property system, assign and time every clean, and flag a room the moment it slips, so the front desk always knows what is truly ready.</p></div></button>
-      <button class="cell"><span class="exp">+</span><div class="k">Aviation</div><h3>Credentials current, audits ready</h3><p>Every credential current. Every audit answered from the record, not from memory. No one on the AOA who should not be there.</p><div class="more"><p>We alert before anything lapses and keep a record built for the regulator, not the spreadsheet, so an audit is answered on the first request instead of the third.</p></div></button>
-      <button class="cell"><span class="exp">+</span><div class="k">Property management</div><h3>Work orders that actually close</h3><p>Every work order closed or escalating, never drifting. Vacant days counted, because vacant days cost money.</p><div class="more"><p>We route each order to the right vendor, watch the clock on response times, and keep make readies moving, so a vacant unit is earning again in days, not weeks.</p></div></button>
-      <button class="cell"><span class="exp">+</span><div class="k">Field operations</div><h3>The right crew, on time, accounted for</h3><p>The right crew, on the right job, on time, and proof of it at the end of the day.</p><div class="more"><p>We plan the day, hold the arrival windows, and show every crew in one place, so a dispatcher can absorb a curveball without the whole day slipping.</p></div></button>
+      <button class="cell"><span class="exp">+</span><span class="liveflag">Shipped as Kept</span><div class="k">Hotels and hospitality</div><h3>Every room accounted for, every shift</h3><p>Every room accounted for. Every turn on a clock. No guest waiting on a room that has been ready for an hour.</p><div class="more"><p>This one has a name and a live address. Kept reads the morning room status report you already run, gives each housekeeper her rooms on her own phone, gates clean behind the checklist, and keeps a record of it that cannot be quietly rewritten. <a href="/kept/" style="color:var(--accent);font-weight:600">Read the Kept page</a></p></div></button>
+      <button class="cell"><span class="exp">+</span><span class="nextflag">Next in line</span><div class="k">Aviation</div><h3>Credentials current, audits ready</h3><p>Every credential current. Every audit answered from the record, not from memory. No one on the AOA who should not be there.</p><div class="more"><p>We alert before anything lapses and keep a record built for the regulator, not the spreadsheet, so an audit is answered on the first request instead of the third.</p></div></button>
+      <button class="cell"><span class="exp">+</span><span class="nextflag">Next in line</span><div class="k">Property management</div><h3>Work orders that actually close</h3><p>Every work order closed or escalating, never drifting. Vacant days counted, because vacant days cost money.</p><div class="more"><p>We route each order to the right vendor, watch the clock on response times, and keep make readies moving, so a vacant unit is earning again in days, not weeks.</p></div></button>
+      <button class="cell"><span class="exp">+</span><span class="nextflag">Next in line</span><div class="k">Field operations</div><h3>The right crew, on time, accounted for</h3><p>The right crew, on the right job, on time, and proof of it at the end of the day.</p><div class="more"><p>We plan the day, hold the arrival windows, and show every crew in one place, so a dispatcher can absorb a curveball without the whole day slipping.</p></div></button>
     </div>
   </div>
 </section>
@@ -398,7 +557,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
   <div class="wrap">
     <div class="sec-head reveal"><div class="eyebrow">Questions</div><h2 class="h2">The things people ask first.</h2></div>
     <div class="faq reveal">
-      <details open><summary>What does forward deployed actually mean?</summary><p>It means we do not hand you a tool and disappear. We embed inside your operation, build the system that runs it, and stay responsible for whether it works in practice. The accountability does not transfer back to you on launch day.</p></details>
+      <details open><summary>What have you actually shipped?</summary><p>Kept, hotel housekeeping and operations software, built inside a working hotel and live at that property today. A room is not clean until the checklist is, every action lands on an append only log anchored daily to public timestamp authorities, and it runs on the crew's own phones with a first name and four digits. It costs $499 to $799 per property per month. The full page for it is at <a href="/kept/" style="color:var(--accent);font-weight:600">jqtenterprises.com/kept</a>.</p></details>
+      <details><summary>What does forward deployed actually mean?</summary><p>It means we do not hand you a tool and disappear. We embed inside your operation, build the system that runs it, and stay responsible for whether it works in practice. The accountability does not transfer back to you on launch day.</p></details>
       <details><summary>Which industries do you work in?</summary><p>Today we are deepest in hotels, aviation, property management, and field operations. The underlying system is one engine, so any operation that runs on status, deadlines, and handoffs is a fit. If you are not sure, ask.</p></details>
       <details><summary>Do we own the system, or rent it?</summary><p>You own the core we build for your operation. It is shaped around how you actually work, not a generic template you lease forever and lose the day you stop paying.</p></details>
       <details><summary>How is it priced?</summary><p>Priced to the value it creates, per operation, not a flat software fee. We scope what it saves and earns you, then price it as a fraction of that. You start with one operation and expand across your portfolio, and we size it openly with you on a call.</p></details>
@@ -415,6 +575,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
       <div class="left">
         <div class="big">We do not sell seats or licenses.</div>
         <p class="sub" style="margin-top:18px">We scope what the problem costs you, and we price a fraction of that, so the system pays for itself out of money you were already losing. Start with one operation. Expand when the numbers make the argument for us.</p>
+        <p class="sub" style="margin-top:14px">A real number, so this does not read as evasion: Kept, the one that has shipped, is $499 to $799 per property per month. <a href="/kept/" style="color:var(--accent);font-weight:600">The arithmetic behind that is on its page</a>, and you can redo it on the back of a folio.</p>
         <a class="btn btn-primary" href="#cta" onclick="bookCall();return false;" style="margin-top:26px;display:inline-block">Book a call</a>
       </div>
       <div class="right">
@@ -448,11 +609,14 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
         <div class="brand"><span>J</span><span>Q</span><span>T</span></div>
         <p>Forward deployed operations. We build it, run it, and own the outcome.</p>
       </div>
+      <div><h4>Kept</h4>
+        <a href="/kept/">Kept for hotels</a><a href="/kept/#record">The record</a><a href="/kept/#pricing">Kept pricing</a><a href="/kept/#faq">Kept questions</a>
+      </div>
       <div><h4>Platform</h4>
         <a href="#system">Live system</a><a href="#build">What we build</a><a href="#approach">Approach</a><a href="#pricing">Pricing</a>
       </div>
       <div><h4>Industries</h4>
-        <a href="#industries">Hotels</a><a href="#industries">Aviation</a><a href="#industries">Property Management</a><a href="#industries">Field Operations</a>
+        <a href="/kept/">Hotels</a><a href="#industries">Aviation</a><a href="#industries">Property Management</a><a href="#industries">Field Operations</a>
       </div>
       <div><h4>Connect</h4>
         <a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a><a href="https://instagram.com/jqtenterprises" target="_blank" rel="noopener">Instagram</a><a href="#cta" onclick="bookCall();return false;">Book a call</a>
@@ -764,7 +928,15 @@ function sendChat(){const i=$('chatInput');const v=i.value.trim();if(!v)return;a
   const fn=route(v);if(fn){fn();return;}
   say("Good question, the fastest way to a straight answer is a quick teardown. Or point me at your world:",{chips:[["What does JQT do?",()=>info('do')],["Pricing",priceIntent],["Find my leak",pickIndustry]]});}
 /* Deep link that opens the assistant straight into booking. Used by the Kept page's "Book a call": jqtenterprises.com/#book */
-window.addEventListener('load',function(){if(location.hash==='#book'){setTimeout(bookCall,250);}});
+/* A visitor arriving from the Kept page has already told us they run a hotel.
+   #hotel opens the assistant straight into the hotel diagnosis instead of
+   making them answer a question they have already answered by being here. */
+function keptLeak(){greeted=true;openChat();diagnose('hotel');}
+window.addEventListener('load',function(){
+  var hsh=location.hash;
+  if(hsh==='#book'){setTimeout(bookCall,250);}
+  else if(hsh==='#hotel'){setTimeout(keptLeak,250);}
+});
 </script>
 </body>
 </html>
