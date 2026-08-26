@@ -361,6 +361,8 @@
   .pt h3{margin:0 0 10px;font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
   .pt p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-mut)}
   .pt p + p{margin-top:11px}
+  .pt p b{color:var(--ink);font-weight:600}
+  .mono{font-family:var(--mono);font-size:.92em;background:var(--paper-2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;white-space:nowrap}
 
   .chain{margin-top:22px;background:var(--d-surf);border:1px solid rgba(20,30,50,.12);border-radius:16px;
     overflow:hidden;box-shadow:0 26px 60px -30px rgba(24,38,64,.45)}
@@ -696,7 +698,7 @@
   <div class="wrap sec-in">
     <div class="eyebrow"><i></i>The record</div>
     <h2>Who did what. <em>Proven.</em></h2>
-    <p class="lede">Every system in this category will hand you a report. A report is a claim. Below is the difference between a report and a record, in three parts, each one something you can check without taking our word for it.</p>
+    <p class="lede">Every system in this category will hand you a report. A report is a claim, and it is worth exactly as much as the vendor who printed it. Below is the difference between a report and a record, in three parts, each one something you can check without taking our word for it. The third one you can still check after we are gone.</p>
 
     <div class="three">
       <div class="pt">
@@ -714,8 +716,9 @@
       <div class="pt">
         <div class="no">03</div>
         <h3>The anchor</h3>
-        <p>Once a day the head of that chain goes to public timestamp authorities and the signed reply is kept.</p>
-        <p>The chain catches an edited row. The anchor catches the harder case: someone deletes the log and rebuilds a tidy fake whose hashes all recompute. To fake history you would also have to alter records held by a certificate authority. Verify one with openssl, without Kept, and without us.</p>
+        <p>Once a day the head of that chain is sent to public RFC 3161 timestamp authorities, DigiCert and FreeTSA, and their signed reply is stored exactly as it came back.</p>
+        <p>The chain catches an edited row. The anchor catches the harder case: someone deletes the log and rebuilds a tidy fake whose hashes all recompute correctly. To fake history you would now also have to alter records held by a certificate authority.</p>
+        <p><b>And the proof outlives us.</b> RFC 3161 is the same standard used to sign software and notarise documents. The reply is ordinary DER on your disk, so an auditor checks it years from now with <span class="mono">openssl ts&nbsp;-verify</span>, on a laptop, with no Kept account, no vendor, and no us. If we disappear, your record still stands up.</p>
       </div>
     </div>
 
@@ -732,7 +735,7 @@
       </div>
       <div class="chain-f">
         <span class="anch">Anchored 04:02a</span>
-        <span><b>Chain head sent to public timestamp authorities</b> and the signed reply stored. It prints on every export, so a copy of what the log said leaves the building daily.</span>
+        <span><b>Chain head sent to DigiCert and FreeTSA</b> and the signed reply stored as received. It prints on every export, so a copy of what the log said leaves the building daily, readable without Kept.</span>
       </div>
     </div>
 
