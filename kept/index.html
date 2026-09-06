@@ -545,9 +545,9 @@
     "priceSpecification": {
       "@type": "PriceSpecification",
       "minPrice": "199",
-      "maxPrice": "799",
+      "maxPrice": "499",
       "priceCurrency": "USD",
-      "description": "Per property, per month. Three tiers: Floor at 199, Operations at 449, Property at 799. The append only record and its daily anchoring are in every tier."
+      "description": "Per property, per month. Three tiers: Floor at 199, Operations at 349, Property at 499, for a property of up to 150 rooms. The append only record and its daily anchoring are in every tier."
     },
     "availability": "https://schema.org/LimitedAvailability"
   },
@@ -570,7 +570,7 @@
     {"@type":"Question","name":"What happens if the morning room status report is late or malformed?","acceptedAnswer":{"@type":"Answer","text":"The day opens anyway with every room dirty. A room wrongly listed dirty costs a walk through. A room wrongly listed clean costs a guest walking into an unmade bed. Kept picks the cheaper mistake on purpose."}},
     {"@type":"Question","name":"Does Kept work where there is no signal?","acceptedAnswer":{"@type":"Answer","text":"Taps are held on the phone and sent when the signal returns, and the screen says so plainly. The single exception is the staff safety alert, which is never queued: if it cannot reach the server the housekeeper is told to use the radio instead."}},
     {"@type":"Question","name":"Can staff or managers edit Kept's log afterwards?","acceptedAnswer":{"@type":"Answer","text":"No, and neither can JQT. The log is append only and hash chained, so an altered entry breaks every entry after it. Once a day its head is anchored with public RFC 3161 timestamp authorities, so a rebuilt history is visible rather than plausible."}},
-    {"@type":"Question","name":"How much does Kept cost?","acceptedAnswer":{"@type":"Answer","text":"Kept starts at 199 US dollars per property per month. Three tiers: Floor at 199, Operations at 449, Property at 799, set by how much of the operation you put on it. The append only audit log and its daily anchoring to public timestamp authorities are included at every tier and are never an upgrade."}},
+    {"@type":"Question","name":"How much does Kept cost?","acceptedAnswer":{"@type":"Answer","text":"Kept starts at 199 US dollars per property per month. Three tiers: Floor at 199, Operations at 349, Property at 499, for a property of up to 150 rooms, set by how much of the operation you put on it. The append only audit log and its daily anchoring to public timestamp authorities are included at every tier and are never an upgrade."}},
     {"@type":"Question","name":"Does Kept run multiple properties?","acceptedAnswer":{"@type":"Answer","text":"Not today. Kept runs one property properly. Multi property is designed and unbuilt."}},
     {"@type":"Question","name":"Who built Kept?","acceptedAnswer":{"@type":"Answer","text":"JQT Enterprises, a forward deployed engineering firm in Fort Lauderdale, Florida. JQT embedded in a working hotel, built Kept inside its actual mornings, and still answers for it after go live."}}
   ]
@@ -895,7 +895,7 @@
     <div class="price-row">
       <div class="price-tag">
         <div class="amt">From $199</div>
-        <div class="per">per property, per month. Three tiers, and the record is in all of them.</div>
+        <div class="per">per property, per month, for a property up to 150 rooms. Larger properties are quoted. Three tiers, and the record is in all of them.</div>
 
         <div class="tier">
           <div class="th"><b>Floor</b><span>$199</span></div>
@@ -911,23 +911,23 @@
         </div>
 
         <div class="tier">
-          <div class="th"><b>Operations</b><span>$449</span></div>
+          <div class="th"><b>Operations</b><span>$349</span></div>
           <p>Everything in Floor, plus the parts that break every other morning.</p>
           <ul>
             <li>Maintenance log and work orders</li>
             <li>Multi day projects that hold rooms across mornings</li>
             <li>Supplies, floor alerts, and a buy list that assembles itself</li>
             <li>Lost and found with a custody trail</li>
+            <li>The weekly owner report, with the chain verification on it</li>
           </ul>
         </div>
 
         <div class="tier">
-          <div class="th"><b>Property</b><span>$799</span></div>
-          <p>Everything in Operations, plus what an owner reads on a Monday.</p>
+          <div class="th"><b>Property</b><span>$499</span></div>
+          <p>Everything in Operations, plus the management layer on top.</p>
           <ul>
-            <li>The weekly owner report, with the chain verification on it</li>
             <li>Assignment weighting and rebalance, learned from your own history</li>
-            <li>Inventory levels, par tracking, and forecasting</li>
+            <li>Inventory par levels, reorder maths, and forecasting</li>
             <li>Priority support, and JQT still answering for it after go live</li>
           </ul>
         </div>
