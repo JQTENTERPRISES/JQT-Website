@@ -195,9 +195,30 @@
   @media(prefers-reduced-motion:reduce){.ns-card{opacity:1;transform:none;transition:none}}
   .noise .ns-card{border:1px solid var(--line);background:var(--paper);padding:24px;border-radius:12px}
   .signal .ns-card{border:1px solid rgba(20,30,50,.1);background:var(--d-surf);padding:24px;border-radius:16px;box-shadow:0 22px 50px -26px rgba(24,38,64,.4);transition-delay:.1s}
-  .bubbles{display:flex;flex-direction:column;gap:10px}
-  .bub{background:var(--paper-2);border:1px solid var(--line);border-left:2px solid var(--dirty);padding:9px 13px;font-size:13.5px;color:var(--ink-mut);line-height:1.35;align-self:flex-start;max-width:88%;border-radius:9px}
-  .bub:nth-child(even){align-self:flex-end;border-left:1px solid var(--line);border-right:2px solid var(--dirty);text-align:right}
+  /* A group chat, not a two-person SMS thread. The earlier version alternated
+     left and right, which is the shape of a conversation between two people and
+     reads as a text message exchange. A group chat arrives: every message comes
+     in from the left, each one wearing the face of whoever sent it, and the
+     point being made here is that five different people are all asking one
+     person the same question. Alternating sides hid that. */
+  .chat{display:flex;flex-direction:column;gap:11px}
+  .msg{display:flex;gap:9px;align-items:flex-start}
+  .ava{width:27px;height:27px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+       font-size:10px;font-weight:700;letter-spacing:.02em;color:#fff;margin-top:2px}
+  .msg:nth-child(1) .ava,.msg:nth-child(5) .ava{background:var(--navy)}
+  .msg:nth-child(2) .ava{background:var(--clay-ink)}
+  .msg:nth-child(3) .ava,.msg:nth-child(4) .ava{background:#6b7a8d}
+  /* The square top-left corner is the tail. It points at the avatar, which is
+     what makes a rounded rectangle read as speech rather than as a card. */
+  .mb{background:var(--paper-2);border:1px solid var(--line);padding:8px 13px 10px;
+      border-radius:3px 12px 12px 12px;max-width:86%}
+  .who{display:block;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+       color:var(--ink-sub);margin-bottom:4px}
+  .who .mt{font-weight:500;letter-spacing:.02em;text-transform:none;font-family:var(--mono);margin-left:7px}
+  .mtx{font-size:13.5px;color:var(--ink-mut);line-height:1.4}
+  .unread{display:flex;align-items:center;gap:7px;margin-top:13px;padding-top:12px;border-top:1px solid var(--line);
+          font-size:11.5px;color:var(--ink-sub);font-family:var(--mono)}
+  .unread b{color:var(--clay-ink);font-family:var(--sans);font-size:11px;letter-spacing:.04em}
   .ns-mid{display:flex;align-items:center;justify-content:center;color:var(--ink-sub);font-size:20px}
   @media(max-width:820px){.ns-mid{height:26px}.ns-mid span{transform:rotate(90deg)}}
   .srow{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--d-hair);font-size:14px}
@@ -560,7 +581,7 @@
     <div class="hero-copy">
       <div class="eyebrow"><i></i>Kept &middot; hotel operations &middot; built by JQT</div>
       <h1>The board your floor<br><em>actually opens</em>.</h1>
-      <p class="sub">Kept turns the morning room report you already run into a working board your team drives from the front desk and from their own phones. A room is not clean until the checklist is, and the moment it is, the whole property knows. No printouts. No radio guesswork. No wondering what is ready to sell.</p>
+      <p class="sub">Kept turns the morning room report you already run into a board your team drives from the front desk and from their own phones. A room is not clean until the checklist is, and the moment it is, the whole property knows. No printouts. No radio guesswork. No wondering what is ready to sell.</p>
       <div class="cta-row">
         <button class="btn btn-p" id="seeRun">See it run</button>
         <button class="btn btn-g" id="howBtn">How it works</button>
@@ -627,12 +648,13 @@
       <div class="noise">
         <div class="lab">The floor today</div>
         <div class="ns-card">
-          <div class="bubbles">
-            <span class="bub">Is 214 ready yet?</span>
-            <span class="bub">housekeeping not answering the radio</span>
-            <span class="bub">front desk needs 3 kings by 3</span>
-            <span class="bub">did anyone finish 508?</span>
-            <span class="bub">walk in waiting, what is clean?</span>
+          <div class="chat">
+            <div class="msg"><span class="ava">DP</span><div class="mb"><span class="who">Dana &middot; front desk<span class="mt">9:52a</span></span><span class="mtx">Is 214 ready yet?</span></div></div>
+            <div class="msg"><span class="ava">LR</span><div class="mb"><span class="who">Luis &middot; houseman<span class="mt">10:04a</span></span><span class="mtx">housekeeping not answering the radio</span></div></div>
+            <div class="msg"><span class="ava">AM</span><div class="mb"><span class="who">Anita &middot; manager<span class="mt">10:06a</span></span><span class="mtx">front desk needs 3 kings by 3</span></div></div>
+            <div class="msg"><span class="ava">AM</span><div class="mb"><span class="who">Anita &middot; manager<span class="mt">10:11a</span></span><span class="mtx">did anyone finish 508?</span></div></div>
+            <div class="msg"><span class="ava">DP</span><div class="mb"><span class="who">Dana &middot; front desk<span class="mt">10:14a</span></span><span class="mtx">walk in waiting, what is clean?</span></div></div>
+            <div class="unread"><b>5 unread</b> <span>and the answer is upstairs, on a cart</span></div>
           </div>
         </div>
       </div>
@@ -665,31 +687,30 @@
       <div class="gap-c hi">
         <div class="who">Who it is sold to</div>
         <div class="n">Buyer</div>
-        <div class="what">Sees the dashboard. In a chair, on a laptop, both hands free, with somebody walking her through it. Signs it, renews it, and never cleans a room.</div>
+        <div class="what">Sees the dashboard. In a chair, on a laptop, both hands free, with somebody walking them through it. Signs it, renews it, and never cleans a room.</div>
       </div>
       <div class="gap-c lo">
         <div class="who">Who it is used by</div>
         <div class="n">Floor</div>
-        <div class="what">One hand, her own phone, fourteen rooms and a cart. Nobody asked her. She votes by not opening it, and hers is the vote that decides whether you got anything for the money.</div>
+        <div class="what">One hand, their own phone, fourteen rooms and a cart. Nobody asked them. They vote by not opening it, and theirs is the vote that decides whether you got anything for the money.</div>
       </div>
     </div>
-    <p class="gap-src">Vendors in this category ship two apps, one for the office and one for the floor, rated separately by two different people. Read both before you sign anything, ours included. We would rather you check that yourself than take a number from us.</p>
 
     <p class="lede" style="margin-top:34px">Read the one star reviews and the complaint is rarely a missing feature. It is nearly always one of these four.</p>
     <ul class="plain-list">
-      <li><b>It is slower than paper.</b> So the crew quietly goes back to pen and a group chat, and the paper version wins, because paper is the one thing everybody can share.</li>
-      <li><b>It logs her out mid shift.</b> She is holding a bucket on the third floor. She is not going to her inbox for a code.</li>
-      <li><b>It eats her battery.</b> It is her phone. She is not carrying a charger through fourteen rooms.</li>
-      <li><b>The photos land in her personal camera roll.</b> Which is a small thing until you ask someone to photograph a stranger's bathroom.</li>
+      <li><b>It is slower than paper.</b> So the crew quietly goes back to pen and a group chat, and paper wins, because paper is the one thing everybody can share.</li>
+      <li><b>It logs you out mid shift.</b> You are holding a bucket on the third floor. You are not going to your inbox for a code.</li>
+      <li><b>It eats your battery.</b> It is your phone. You are not carrying a charger through fourteen rooms.</li>
+      <li><b>The photos land in your personal camera roll.</b> A small thing, until you ask someone to photograph a stranger's bathroom.</li>
     </ul>
 
-    <p class="lede" style="margin-top:34px">The dead one at the top of this section is not a figure of speech. The property Kept was built in owned one, paid for it, and ran the floor on a radio and a printed list anyway, which is what still runs a lot of floors, across brands and across price points.</p>
+    <p class="lede" style="margin-top:34px">The dead one in the headline is not a figure of speech. The property Kept was built in owned one, paid for it, and ran the floor on a radio and a printed list anyway.</p>
 
     <div class="wager">
       <div class="cap">The one number Kept is judged on</div>
-      <p class="q">On her second room, does she tap each step as she finishes it, standing in the room, or does she stand at the door at two in the afternoon and tap the whole day at once?</p>
-      <p>In flow taps mean the times are real and you own a record. Batch taps mean Kept became the old app with better colors. That is the whole test, it is the only one that matters, and you can check it yourself in an afternoon without asking us anything.</p>
-      <p>Which is why nobody gets trained. On day one the manager hands out a sticky note with a first name and four digits and says one sentence: your rooms are on your phone today. That is the entire rollout. If Kept needs a class, it has already lost, because the next property's crew will not get one either.</p>
+      <p class="q">On the second room of the day, does the checklist get tapped step by step, standing in the room, or all at once at two in the afternoon, standing at the door?</p>
+      <p>In flow taps mean the times are real and you own a record. Batch taps mean Kept became the old app with better colors. That is the whole test, and you can run it yourself in an afternoon without asking us anything.</p>
+      <p>Which is why nobody gets trained. Day one is a sticky note with a first name and four digits, and one sentence from the manager: your rooms are on your phone today. That is the entire rollout. If Kept needs a class, it has already lost, because the next property's crew will not get one either.</p>
     </div>
   </div>
 </section>
@@ -698,7 +719,7 @@
   <div class="wrap sec-in">
     <div class="eyebrow"><i></i>The record</div>
     <h2>Who did what. <em>Proven.</em></h2>
-    <p class="lede">Every system in this category will hand you a report. A report is a claim, and it is worth exactly as much as the vendor who printed it. Below is the difference between a report and a record, in three parts, each one something you can check without taking our word for it. The third one you can still check after we are gone.</p>
+    <p class="lede">Every system in this category will hand you a report. A report is a claim, worth exactly as much as the vendor who printed it. Here is the difference between a report and a record, in three parts. You can check all three without taking our word for it, and the third one you can still check after we are gone.</p>
 
     <div class="three">
       <div class="pt">
@@ -742,7 +763,7 @@
     <div class="owner-test">
       <div class="cap">How an owner checks it in thirty seconds</div>
       <p>Ask your manager to show you a room that ran over forty minutes last week, and what happened in it. A trashed checkout, a broken AC, a deep clean.</p>
-      <p><b>If she can answer from the board while you are standing there, the record is alive.</b> If she cannot, then no software in your building is working, and that includes ours. It is a fair test either way, which is why it is the one we hand you.</p>
+      <p><b>If the answer comes off the board while you are standing there, the record is alive.</b> If it does not, then no software in your building is working, and that includes ours. It is a fair test either way, which is why it is the one we hand you.</p>
     </div>
   </div>
 </section>
@@ -755,10 +776,10 @@
 
     <div class="surf">
       <div class="sf">
-        <div class="sf-top"><div class="k">The floor</div><h3>A phone she already owns</h3><div class="u">first name + 4 digits</div></div>
+        <div class="sf-top"><div class="k">The floor</div><h3>A phone they already own</h3><div class="u">first name + 4 digits</div></div>
         <div class="sf-b">
-          <p>No email, no password, no code from an inbox, no expiring anything. She sees her rooms and nothing else, in her own language, with an icon checklist so the tap never depends on the word.</p>
-          <p>It installs to her home screen. In the dead spots it keeps her taps on the phone and catches up the moment the signal returns.</p>
+          <p>No email, no password, no code from an inbox, no expiring anything. Your rooms and nothing else, in your own language, with an icon checklist so the tap never depends on the word.</p>
+          <p>It installs to the home screen. In the dead spots it holds the taps on the phone and catches up the moment the signal returns.</p>
         </div>
       </div>
       <div class="sf">
@@ -772,16 +793,16 @@
         <div class="sf-top"><div class="k">The office</div><h3>The whole property</h3><div class="u">everything complicated lives here</div></div>
         <div class="sf-b">
           <p>The board, assignment in one tap, the maintenance log and its work orders, supplies, the morning import, the end of shift sheet, and the audit log with its verification.</p>
-          <p>Access is granted per person rather than baked into a job title, so a lead housekeeper who also covers the desk is one grant your manager makes herself, not a support ticket.</p>
+          <p>Access is granted per person rather than baked into a job title, so a lead housekeeper who also covers the desk is one grant your manager makes, not a support ticket.</p>
         </div>
       </div>
     </div>
 
     <div class="owner-test">
       <div class="cap">Language belongs to the person, not to the handset</div>
-      <p>Kept runs in <b>English, Spanish and Haitian Creole</b>, and the language is a property of the human being, not a setting on the device. Maria signs in and the whole app is Spanish. She hands the same phone to Marie at shift change, Marie signs in, and the same app is Kreyòl Ayisyen. Nobody changes a setting, and nobody is handed a phone in a language they do not read.</p>
-      <p>These are three written interfaces, not one interface run through a translate button. Every word a housekeeper sees was written in all three, down to the message that tells her the phone is full and the one that tells her to use the radio because help is not coming through the app.</p>
-      <p><b>In South Florida that is not a nice touch, it is whether the crew can use the software at all.</b> It is also the part that does not survive being an afterthought, which is why it is in the product rather than on the roadmap.</p>
+      <p>Kept runs in <b>English, Spanish and Haitian Creole</b>, and the language belongs to the person, not to the device. Maria signs in and the whole app is Spanish. She hands the same phone to Jean at shift change, Jean signs in, and the same app is Kreyòl Ayisyen. Nobody changes a setting, and nobody is handed a phone in a language they do not read.</p>
+      <p>Three written interfaces, not one run through a translate button. Every word was written in all three, down to the message that says the phone is full and the one that says to use the radio because help is not coming through the app.</p>
+      <p><b>In South Florida that is not a nice touch, it is whether the crew can use the software at all.</b></p>
     </div>
   </div>
 </section>
@@ -800,23 +821,22 @@
       <div class="cy">
         <h3>Projects hold rooms across days</h3>
         <p>Recarpet 214. Repaint floor two. Ordered steps, a real deadline, many rooms at once, and a hold that survives every morning import until the work actually passes.</p>
-        <p>Modeled on how a PMS already treats an out of order room: a date range with a declared return status, not a checkbox somebody has to remember to tick again.</p>
       </div>
       <div class="cy">
         <h3>Supplies without a scanner</h3>
-        <p>She taps LOW or OUT. That is her entire relationship with inventory, because a slower workflow is a dead workflow and barcodes on a housekeeping cart are how you get neither the count nor the clean.</p>
+        <p>One tap, LOW or OUT. That is the floor's entire relationship with inventory, because a slower workflow is a dead workflow, and barcodes on a housekeeping cart are how you get neither the count nor the clean.</p>
         <p>The buy list assembles itself, and a floor alert overrides the ledger, because the shelf is more honest than the spreadsheet.</p>
       </div>
       <div class="cy">
         <h3>A safety button that knows the room</h3>
-        <p>It already knows where she is, because she started the room. Locating the person is the expensive half of every system in this category, and here it is a column that has been filling itself in all day.</p>
-        <p>The alert is never queued offline. If it cannot reach the server she is told plainly, in her own language, to use the radio, because a queued panic alert is a lie told to someone in trouble. Raised, seen, and stood down each land on the chain, because nobody came and nobody was told are different facts.</p>
+        <p>It already knows where you are, because you started the room. Locating the person is the expensive half of every system in this category, and here it is a column that has been filling itself in all day.</p>
+        <p>The alert is never queued offline. If it cannot reach the server it says so, in your own language, and tells you to use the radio, because a queued panic alert is a lie told to someone in trouble. Raised, seen, and stood down each land on the chain, because nobody came and nobody was told are different facts.</p>
       </div>
     </div>
 
     <div class="caveat">
       <div class="cap">Said plainly, because this is a legal area</div>
-      <p>Florida has no statewide employee safety device mandate. The brand this property flies is an AHLA 5 Star Promise signatory, so a staff safety device here is a brand standard expectation, not a legal one. Several mandates elsewhere call for dedicated Bluetooth hardware, which a phone is not. So Kept does not describe this as ESD compliance, in the product or on this page, and it will not start. If you are in a city with a real ordinance, we will tell you what Kept does and does not satisfy before you buy it.</p>
+      <p>Florida has no statewide employee safety device mandate, and several mandates elsewhere call for dedicated Bluetooth hardware, which a phone is not. So Kept does not describe this as ESD compliance, in the product or on this page, and it will not start. If you are in a city with a real ordinance, we will tell you what Kept does and does not satisfy before you buy it.</p>
     </div>
   </div>
 </section>
@@ -892,15 +912,8 @@
     <h2>The things you would ask on the call anyway.</h2>
 
     <div class="faq2">
-      <details open><summary>Does Kept replace our PMS?</summary><div class="a"><p>No. It reads the morning room status report you already run and produces an end of shift sheet that mirrors your PMS columns for your lead to re key in one pass. It never writes into your PMS.</p></div></details>
-      <details><summary>Do we have to train the staff?</summary><div class="a"><p>No, and we would rather you did not. Day one is a sticky note with a first name and four digits, and one sentence from the manager: your rooms are on your phone today. If Kept needs a class, it has already failed the test it exists to pass.</p></div></details>
-      <details><summary>Our housekeepers do not all read English.</summary><div class="a"><p>The floor app runs in English, Spanish, and Haitian Creole, and the room checklist is icon led, so the tap does not depend on the word. That was a requirement on day one, not a translation project bolted on later.</p></div></details>
-      <details><summary>What if the morning report is late, missing, or malformed?</summary><div class="a"><p>The day opens anyway, with every room dirty. A room wrongly listed dirty costs a walk through. A room wrongly listed clean costs a guest walking into an unmade bed. Kept picks the cheaper mistake on purpose, and the manager reconciles from the board rather than from a phone call.</p></div></details>
-      <details><summary>Does it work in the stairwells and the back corners?</summary><div class="a"><p>Her taps are held on the phone and sent when the signal comes back, and the screen says so plainly rather than pretending. The single exception is the safety alert, which is never queued: if it cannot reach the server she is told to use the radio instead.</p></div></details>
-      <details><summary>Can staff or managers edit the log afterwards?</summary><div class="a"><p>No, and neither can we. The log is append only and hash chained, so an altered entry breaks every entry after it. Once a day its head is anchored with public timestamp authorities, so a rebuilt history is visible rather than plausible.</p></div></details>
-      <details><summary>What does it cost?</summary><div class="a"><p>$499 to $799 per property per month, by size of property and how much of the operation you put on it. We put a number on what the confusion is costing you first. If we cannot find one bigger than the fee, we will tell you so.</p></div></details>
-      <details><summary>Does Kept run a portfolio?</summary><div class="a"><p>Not today. It runs one property properly. Multi property is designed and unbuilt, and you should assume that is the state of it until we say otherwise in writing.</p></div></details>
-      <details><summary>What happens if our manager leaves?</summary><div class="a"><p>The record does not leave with her. That is most of the point. Access is granted per person and revoked per person, a new manager is opened up from the back office rather than from a support queue, and the history she inherits is the same history that was there the day before.</p></div></details>
+      <details open><summary>What if the morning report is late, missing, or malformed?</summary><div class="a"><p>The day opens anyway, with every room dirty. A room wrongly listed dirty costs a walk through. A room wrongly listed clean costs a guest walking into an unmade bed. Kept picks the cheaper mistake on purpose, and the manager reconciles from the board rather than from a phone call.</p></div></details>
+      <details><summary>What happens if our manager leaves?</summary><div class="a"><p>The record does not leave with them. That is most of the point. Access is granted per person and revoked per person, a new manager is opened up from the back office rather than from a support queue, and the history the next manager inherits is the same history that was there the day before.</p></div></details>
       <details><summary>Who built this?</summary><div class="a"><p>JQT Enterprises, a forward deployed engineering firm in Fort Lauderdale, Florida. We embedded in a working hotel, built Kept inside its actual mornings rather than around a conference table, and we still answer for it after go live.</p></div></details>
     </div>
   </div>
@@ -911,7 +924,7 @@
     <div>
       <div class="eyebrow"><i></i>Why this exists</div>
       <h2>Kept is what JQT does, pointed at <em>one industry</em>.</h2>
-      <p>JQT embeds in an operation, builds the system that operation runs on, and stays to run it. What we learn on one floor becomes a product the next floor can open on day one. Kept is the first of those, which makes it the proof as well as the product: hotel operations, built inside a working hotel, live and answering for itself.</p>
+      <p>JQT embeds in an operation, builds the system that operation runs on, and stays to run it. What we learn on one floor becomes the product the next floor opens on day one. Kept is the first, which makes it the proof as well as the product.</p>
       <p>The next one will not be a hotel. It will be built exactly the same way.</p>
       <a class="jlink" href="/">See how JQT works &rarr;</a>
     </div>
