@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kept: hotel operations software your floor actually opens · JQT</title>
-<meta name="description" content="Kept is hotel housekeeping and operations software built for the person holding the phone. A room is not clean until the checklist is, and every action lands on an append-only log anchored daily. Live at a real property. $499 to $799 per month. Built by JQT.">
+<meta name="description" content="Kept is hotel housekeeping and operations software built for the person holding the phone. A room is not clean until the checklist is, and every action lands on an append-only log anchored daily. Live at a real property. From $199 per property per month. Built by JQT.">
 <link rel="canonical" href="https://jqtenterprises.com/kept/">
 <meta property="og:title" content="Kept: the board your floor actually opens">
 <meta property="og:description" content="Hotel operations software built for the person holding the phone. Who did what, proven. Live at a real property. Powered by JQT.">
@@ -458,6 +458,18 @@
   .price-tag ul{list-style:none;margin:22px 0 0;padding:20px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
   .price-tag li{font-size:14px;color:var(--ink-mut);display:flex;gap:10px;align-items:flex-start;line-height:1.45}
   .price-tag li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--navy);flex:0 0 auto;margin-top:7px}
+  /* Tiers. The list rule above already owns the top border, so a tier reuses it
+     as its own divider rather than adding a second line beside it. */
+  .tier{margin-top:4px}
+  .tier .th{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:24px}
+  .tier .th b{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--navy-deep);font-weight:700}
+  .tier .th span{font-family:var(--mono);font-size:17px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+  .tier > p{margin:6px 0 0;font-size:13.5px;color:var(--ink-sub);line-height:1.5}
+  .tier ul{margin-top:14px;padding-top:14px;gap:9px}
+  .tier li{font-size:13.5px}
+  .tier:first-of-type ul{border-top-color:var(--line-2)}
+  .tier-note{margin:24px 0 0;padding-top:18px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--ink-mut);line-height:1.55}
   .napkin p{margin:0 0 14px;font-size:15px;line-height:1.65;color:var(--ink-mut);max-width:38em}
   .napkin p:last-child{margin-bottom:0}
   .napkin p b{color:var(--ink);font-weight:600}
@@ -529,13 +541,13 @@
   "offers": {
     "@type": "Offer",
     "priceCurrency": "USD",
-    "price": "499",
+    "price": "199",
     "priceSpecification": {
       "@type": "PriceSpecification",
-      "minPrice": "499",
+      "minPrice": "199",
       "maxPrice": "799",
       "priceCurrency": "USD",
-      "description": "Per property, per month, by size of property and scope of operation."
+      "description": "Per property, per month. Three tiers: Floor at 199, Operations at 449, Property at 799. The append only record and its daily anchoring are in every tier."
     },
     "availability": "https://schema.org/LimitedAvailability"
   },
@@ -558,7 +570,7 @@
     {"@type":"Question","name":"What happens if the morning room status report is late or malformed?","acceptedAnswer":{"@type":"Answer","text":"The day opens anyway with every room dirty. A room wrongly listed dirty costs a walk through. A room wrongly listed clean costs a guest walking into an unmade bed. Kept picks the cheaper mistake on purpose."}},
     {"@type":"Question","name":"Does Kept work where there is no signal?","acceptedAnswer":{"@type":"Answer","text":"Taps are held on the phone and sent when the signal returns, and the screen says so plainly. The single exception is the staff safety alert, which is never queued: if it cannot reach the server the housekeeper is told to use the radio instead."}},
     {"@type":"Question","name":"Can staff or managers edit Kept's log afterwards?","acceptedAnswer":{"@type":"Answer","text":"No, and neither can JQT. The log is append only and hash chained, so an altered entry breaks every entry after it. Once a day its head is anchored with public RFC 3161 timestamp authorities, so a rebuilt history is visible rather than plausible."}},
-    {"@type":"Question","name":"How much does Kept cost?","acceptedAnswer":{"@type":"Answer","text":"499 to 799 US dollars per property per month, by size of property and how much of the operation is put on it."}},
+    {"@type":"Question","name":"How much does Kept cost?","acceptedAnswer":{"@type":"Answer","text":"Kept starts at 199 US dollars per property per month. Three tiers: Floor at 199, Operations at 449, Property at 799, set by how much of the operation you put on it. The append only audit log and its daily anchoring to public timestamp authorities are included at every tier and are never an upgrade."}},
     {"@type":"Question","name":"Does Kept run multiple properties?","acceptedAnswer":{"@type":"Answer","text":"Not today. Kept runs one property properly. Multi property is designed and unbuilt."}},
     {"@type":"Question","name":"Who built Kept?","acceptedAnswer":{"@type":"Answer","text":"JQT Enterprises, a forward deployed engineering firm in Fort Lauderdale, Florida. JQT embedded in a working hotel, built Kept inside its actual mornings, and still answers for it after go live."}}
   ]
@@ -882,18 +894,45 @@
 
     <div class="price-row">
       <div class="price-tag">
-        <div class="amt">$499 to $799</div>
-        <div class="per">per property, per month, by size of property and how much of the operation you put on it.</div>
-        <ul>
-          <li>The floor app, the front desk view, and the back office</li>
-          <li>Checklist gated clean, on every room, every shift</li>
-          <li>Append only audit log, anchored daily</li>
-          <li>Maintenance log, work orders, and multi day projects</li>
-          <li>Supplies, buy list, and floor alerts</li>
-          <li>Staff safety alerts routed to the desk</li>
-          <li>Morning import and end of shift export shaped to your PMS columns</li>
-          <li>JQT still answering for it after go live</li>
-        </ul>
+        <div class="amt">From $199</div>
+        <div class="per">per property, per month. Three tiers, and the record is in all of them.</div>
+
+        <div class="tier">
+          <div class="th"><b>Floor</b><span>$199</span></div>
+          <p>The whole adoption argument, and nothing you would have to explain to a housekeeper.</p>
+          <ul>
+            <li>The floor app, the front desk view, and the back office board</li>
+            <li>Checklist gated clean, on every room, every shift</li>
+            <li>Append only audit log, anchored daily to public timestamp authorities</li>
+            <li>English, Spanish and Haitian Creole</li>
+            <li>Staff safety alerts routed to the desk</li>
+            <li>Morning import and end of shift export shaped to your PMS columns</li>
+          </ul>
+        </div>
+
+        <div class="tier">
+          <div class="th"><b>Operations</b><span>$449</span></div>
+          <p>Everything in Floor, plus the parts that break every other morning.</p>
+          <ul>
+            <li>Maintenance log and work orders</li>
+            <li>Multi day projects that hold rooms across mornings</li>
+            <li>Supplies, floor alerts, and a buy list that assembles itself</li>
+            <li>Lost and found with a custody trail</li>
+          </ul>
+        </div>
+
+        <div class="tier">
+          <div class="th"><b>Property</b><span>$799</span></div>
+          <p>Everything in Operations, plus what an owner reads on a Monday.</p>
+          <ul>
+            <li>The weekly owner report, with the chain verification on it</li>
+            <li>Assignment weighting and rebalance, learned from your own history</li>
+            <li>Inventory levels, par tracking, and forecasting</li>
+            <li>Priority support, and JQT still answering for it after go live</li>
+          </ul>
+        </div>
+
+        <p class="tier-note">The record is never the upsell. Checklist gated clean and the anchored audit log are in the $199 tier, because a tier that could not prove who did what would not be Kept.</p>
       </div>
       <div class="napkin">
         <p>Here is the arithmetic, so you can redo it on the back of a folio instead of trusting a slide.</p>
