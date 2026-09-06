@@ -1,0 +1,94 @@
+/* Shared shell for the Kept legal pages.
+   Same tokens and typeface system as the Kept product page, so the documents
+   read as part of the product rather than as something pasted in from a
+   generator. Deliberately narrower measure and larger line height: these are
+   read in long stretches, sometimes by somebody's lawyer. */
+:root{
+  --paper:#ffffff;
+  --paper-2:#f5f7f9;
+  --ink:#151b23;
+  --ink-mut:#42505f;
+  --ink-sub:#8a94a2;
+  --line:#e5e9ef;
+  --line-2:#d4dae2;
+  --navy:#3d5a7a;
+  --navy-deep:#31496b;
+  --clay-ink:#a1543a;
+
+  --font-body:"Inter", ui-sans-serif, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-display:"Instrument Serif", "Hoefler Text", "Didot", Georgia, "Times New Roman", serif;
+  --font-mono:ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  --sans:var(--font-body);
+  --serif:var(--font-display);
+  --mono:var(--font-mono);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;line-height:1.62;overflow-x:hidden}
+a{color:var(--navy-deep)}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+
+/* top bar */
+.top{border-bottom:1px solid var(--line);background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(140%) blur(8px);position:sticky;top:0;z-index:20}
+.top-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-weight:800;letter-spacing:-.02em;font-size:17px;color:var(--ink);text-decoration:none}
+.brand span{color:var(--ink-sub);font-weight:500;letter-spacing:.04em;font-size:11px;
+  text-transform:uppercase;margin-left:9px}
+.back{font-size:13.5px;color:var(--ink-mut);text-decoration:none}
+.back:hover{color:var(--navy-deep)}
+
+/* masthead */
+.mast{padding:56px 0 30px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-sub);display:flex;align-items:center;gap:9px;margin-bottom:16px}
+.eyebrow i{width:22px;height:1px;background:var(--line-2);display:block}
+h1{font-size:clamp(2rem,4.6vw,2.9rem);line-height:1.1;letter-spacing:-.025em;margin:0 0 16px;font-weight:800}
+h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--navy)}
+.dek{font-size:1.06rem;color:var(--ink-mut);margin:0;max-width:60ch}
+.dates{font-family:var(--mono);font-size:11.5px;color:var(--ink-sub);margin-top:22px;
+  display:flex;gap:22px;flex-wrap:wrap}
+
+/* body */
+main{padding:8px 0 40px}
+h2{font-size:1.32rem;letter-spacing:-.015em;margin:44px 0 12px;font-weight:700;scroll-margin-top:76px}
+h2 .num{font-family:var(--mono);font-size:12px;color:var(--ink-sub);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:7px}
+h3{font-size:1.02rem;margin:26px 0 8px;font-weight:650}
+p{margin:0 0 15px;color:var(--ink-mut)}
+li{color:var(--ink-mut);margin-bottom:8px}
+ul,ol{padding-left:22px;margin:0 0 15px}
+b,strong{color:var(--ink);font-weight:650}
+code,.mono{font-family:var(--mono);font-size:.9em}
+
+/* the callout used for the things somebody must actually notice */
+.note{background:var(--paper-2);border:1px solid var(--line);border-left:2px solid var(--navy);
+  padding:17px 20px;margin:22px 0;border-radius:3px}
+.note p:last-child{margin-bottom:0}
+.note .cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--navy-deep);margin-bottom:9px}
+.warn{border-left-color:var(--clay-ink)}
+.warn .cap{color:var(--clay-ink)}
+
+/* the "what we hold" table */
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.5px;display:block;overflow-x:auto}
+th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-sub);font-weight:500;padding:0 14px 9px 0;border-bottom:1px solid var(--line-2);white-space:nowrap}
+td{padding:11px 14px 11px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-mut)}
+td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
+
+/* contents */
+.toc{background:var(--paper-2);border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin:30px 0 8px}
+.toc .cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-sub);margin-bottom:11px}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:30px}
+.toc li{margin-bottom:5px;font-size:14px}
+.toc a{text-decoration:none;color:var(--ink-mut)}
+.toc a:hover{color:var(--navy-deep);text-decoration:underline}
+@media(max-width:560px){.toc ol{columns:1}}
+
+footer{border-top:1px solid var(--line);margin-top:48px;padding:26px 0 46px;
+  font-size:13px;color:var(--ink-sub)}
+footer a{color:var(--ink-mut);text-decoration:none;margin-right:18px}
+footer a:hover{color:var(--navy-deep)}
+.foot-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:baseline}

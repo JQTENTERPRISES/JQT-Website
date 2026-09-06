@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kept Privacy Policy · JQT Enterprises</title>
+<meta name="description" content="What Kept records, what it deliberately does not, who can see it, where it lives, and what can and cannot be deleted from an append only log.">
+<link rel="canonical" href="https://jqtenterprises.com/kept/privacy/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2331496b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../legal.css">
+</head>
+<body>
+
+<div class="top"><div class="wrap top-in">
+  <a class="brand" href="/kept/">kept<span>by JQT</span></a>
+  <a class="back" href="/kept/">Back to Kept</a>
+</div></div>
+
+<header class="mast"><div class="wrap">
+  <div class="eyebrow"><i></i>Privacy</div>
+  <h1>What Kept records, and <em>what it refuses to</em>.</h1>
+  <p class="dek">Kept is used by people who did not choose it. Housekeepers, housemen, front desk and maintenance staff open it because their employer bought it, on phones they own themselves. That fact shapes every decision below, and it is why this document is specific instead of general.</p>
+  <div class="dates">
+    <span>Effective 6 September 2026</span>
+    <span>Version 1.0</span>
+    <span>JQT Enterprises, LLC</span>
+  </div>
+</div></header>
+
+<main><div class="wrap">
+
+  <div class="toc">
+    <div class="cap">Contents</div>
+    <ol>
+      <li><a href="#who">Who this covers</a></li>
+      <li><a href="#holds">What Kept holds</a></li>
+      <li><a href="#refuses">What Kept does not hold</a></li>
+      <li><a href="#phone">What Kept can see on a personal phone</a></li>
+      <li><a href="#why">Why each thing is recorded</a></li>
+      <li><a href="#sees">Who can see what</a></li>
+      <li><a href="#erase">The log, and what cannot be deleted</a></li>
+      <li><a href="#where">Where the data lives</a></li>
+      <li><a href="#third">Everyone outside JQT who touches it</a></li>
+      <li><a href="#keep">How long it is kept</a></li>
+      <li><a href="#rights">Your rights, and how to use them</a></li>
+      <li><a href="#site">This website</a></li>
+      <li><a href="#changes">Changes, and contact</a></li>
+    </ol>
+  </div>
+
+  <h2 id="who"><span class="num">01</span>Who this covers</h2>
+  <p>Three groups of people appear in Kept, and they have different relationships to it.</p>
+  <p><b>The hotel</b> is our customer. It decides to use Kept, decides who gets an account, and decides what is done with the record. In data protection terms the hotel is the controller of its staff's information, and JQT is a processor acting on the hotel's instructions.</p>
+  <p><b>The staff</b> are the people whose work Kept records. They did not sign the contract. Most of the information in Kept is about them, so most of this document is about them.</p>
+  <p><b>Guests</b> are not users of Kept and Kept is not told who they are. They appear only in the sense that a room they are staying in has a status, and that a photograph of something broken in a room may be taken while they are checked into it. Section 3 is the specific commitment.</p>
+
+  <h2 id="holds"><span class="num">02</span>What Kept holds</h2>
+  <p>This is the whole list, written from the actual database rather than from a category. If something is not here, Kept does not store it.</p>
+
+  <table>
+    <thead><tr><th>Category</th><th>Exactly what is stored</th></tr></thead>
+    <tbody>
+      <tr><td>Staff account</td><td>Display name (usually a first name), sign in name, role, whether the account is active, preferred language, and the date it was created.</td></tr>
+      <tr><td>Credentials</td><td>A PIN or password that has been put through scrypt with a salt unique to that person. The original is never stored and cannot be recovered from what is stored, including by us.</td></tr>
+      <tr><td>Work record</td><td>Room number, service type, housekeeping and occupancy status, who a room was assigned to, when work started, when it finished, which checklist zones were completed, and notes typed by staff or carried in from the morning report.</td></tr>
+      <tr><td>Photographs</td><td>Images taken inside rooms and attached to a maintenance fault, a lost item, or a step of a project. Stored with the room, the time, and who took them.</td></tr>
+      <tr><td>Maintenance</td><td>Fault category, the note describing it, attached photographs, who raised it, who resolved it, when, and the resolution note.</td></tr>
+      <tr><td>Lost and found</td><td>Description of the item, where it was found, who found it, where it is being held, and how it was closed out.</td></tr>
+      <tr><td>Supplies</td><td>Item, location, counts, and who reported something low or out.</td></tr>
+      <tr><td>Safety alerts</td><td>Who raised the alert, the room they were in, when it was raised, who acknowledged it, when it was stood down, and any note added at the end.</td></tr>
+      <tr><td>Audit log</td><td>Every action above, as an entry naming the person, the room, the time, and the type of event, chained by hash to the entry before it.</td></tr>
+      <tr><td>Sessions</td><td>A session token per surface, the account it belongs to, and its expiry. Held in a cookie on the device.</td></tr>
+      <tr><td>Fault reports</td><td>When Kept breaks in a browser: the error type and message, which screen, which path, the role of whoever hit it, and the version. One row per distinct fault with a count, not one row per person.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="refuses"><span class="num">03</span>What Kept does not hold</h2>
+  <p>These are commitments, not an absence we happened to notice. Each one is a decision that shaped how the software was built.</p>
+  <ul>
+    <li><b>No guest names, reservations, or payment information.</b> Kept reads the morning room status report the property already runs, and takes from it only the room number, the service type, and the status words. The uploaded report is parsed and not retained as a file.</li>
+    <li><b>No location tracking.</b> Kept never asks the phone where it is. When a safety alert names a room, it is the room the person opened, not a position from the device.</li>
+    <li><b>No background activity.</b> Kept does nothing when it is closed. No background refresh, no push tracking, no listening.</li>
+    <li><b>No contacts, no microphone, no photo library access.</b> See section 4.</li>
+    <li><b>No biometrics.</b> No face, no fingerprint, no voice.</li>
+    <li><b>No advertising technology and no third party analytics.</b> There is no tracking pixel, no advertising identifier, and no analytics service inside the product.</li>
+    <li><b>No sale of data, ever, and no sharing for anyone else's marketing.</b></li>
+    <li><b>No training of AI models on your property's data.</b> Kept ships with its AI provider set to none, and if a property ever turns an assistive feature on, that is a decision the property makes explicitly and can reverse.</li>
+  </ul>
+
+  <h2 id="phone"><span class="num">04</span>What Kept can see on a personal phone</h2>
+  <p>Kept runs in the phone's browser and can be added to the home screen. It is not an app store application and it does not ask for the permissions one would.</p>
+  <p>When a photograph is taken for a maintenance fault, the camera is opened by the browser and the image is uploaded to the property's record. <b>It is not written to the phone's photo library.</b> This matters because the alternative, which is common in this category, means asking someone to keep photographs of a stranger's bathroom in the same camera roll as pictures of their family.</p>
+  <p>When there is no signal, taps are held in the phone's own storage until the connection returns, then sent and cleared. The single exception is a safety alert, which is never held: if it cannot reach the server, the screen says so and tells the person to use the radio instead.</p>
+
+  <h2 id="why"><span class="num">05</span>Why each thing is recorded</h2>
+  <p>Kept records four kinds of thing, for four reasons.</p>
+  <ul>
+    <li><b>To run the operation.</b> Assignments, statuses, and times are what the board is made of. Without them there is no product.</li>
+    <li><b>To prove the record.</b> The audit log exists so that "who cleaned 214 and when" has an answer that does not depend on anyone's memory or honesty, including ours.</li>
+    <li><b>For safety.</b> Alerts are recorded so that raised, seen, and stood down are three separate facts. Nobody came and nobody was told are different failures and they need to be distinguishable afterwards.</li>
+    <li><b>To fix Kept.</b> Fault reports exist because the people most likely to hit a bug are the least likely to report one. They are grouped by fault, not by person.</li>
+  </ul>
+
+  <h2 id="sees"><span class="num">06</span>Who can see what</h2>
+  <p>Access is granted per person, not baked into a job title.</p>
+  <ul>
+    <li><b>Floor staff</b> see the rooms assigned to them, their own checklists, and what they have reported. They do not see other people's performance, the audit log, or the back office.</li>
+    <li><b>The front desk</b> sees room readiness and who is currently in a room. It does not see the audit log.</li>
+    <li><b>Managers and owners</b> see the whole property, including the audit log and its verification.</li>
+    <li><b>JQT</b> can reach the server that runs your property, because we operate it. We access property data to keep the service running, to investigate a fault, or when you ask us to. We do not read it otherwise, and every action taken inside the application lands on the same audit log that everything else does.</li>
+  </ul>
+
+  <h2 id="erase"><span class="num">07</span>The log, and what cannot be deleted</h2>
+  <p>This is the part most privacy policies would leave vague, so it gets said plainly.</p>
+  <p>Kept's audit log is append only and hash chained. Each entry is built from the one before it, so removing or altering a single entry breaks every entry after it, visibly. Once a day the head of that chain is sent to public timestamp authorities, which sign a statement that this history existed at that minute.</p>
+  <p>That design is the product. It is also a real limit on deletion, and pretending otherwise would be dishonest.</p>
+
+  <div class="note">
+    <div class="cap">What we can do for an individual</div>
+    <p>Deactivate the account immediately, which ends every live session and stops all future access. Free the sign in name so it cannot be used again. Correct a display name or a language. Delete a specific photograph and the file behind it.</p>
+  </div>
+
+  <div class="note warn">
+    <div class="cap">What we cannot do</div>
+    <p>Remove a person's past actions from the chain while leaving the chain intact. Their name stays attached to the work they did, because a record that can drop the inconvenient entries is not a record. The only complete erasure available is deleting the property's entire database, which we will do on written instruction from the hotel, and which ends the record for everybody in it, not just one person.</p>
+  </div>
+
+  <p>If you are subject to a legal regime that requires erasure of an individual's data on request, tell us before you deploy Kept, not after. We will tell you honestly whether Kept can meet that obligation for you. For some customers the answer will be that it cannot.</p>
+
+  <h2 id="where"><span class="num">08</span>Where the data lives</h2>
+  <p>One property, one database, on a server we operate in the United States. A property's data is not pooled with any other property's.</p>
+  <p>Backups run once a day and the most recent fourteen are kept. Transport is encrypted. Photographs are served only to a signed in user whose property matches the record, and the file path is rebuilt from the database row rather than taken from the address, so a photograph cannot be fetched by guessing a filename.</p>
+
+  <h2 id="third"><span class="num">09</span>Everyone outside JQT who touches it</h2>
+  <p>The full list, with what each one actually receives.</p>
+  <table>
+    <thead><tr><th>Who</th><th>What they get</th></tr></thead>
+    <tbody>
+      <tr><td>DigitalOcean</td><td>Hosts the server. They hold the disk the database sits on, in the ordinary way any host does.</td></tr>
+      <tr><td>DigiCert</td><td>One SHA-256 hash, once a day. No names, no rooms, no photographs, no content of any kind. A hash cannot be turned back into what it summarises.</td></tr>
+      <tr><td>FreeTSA</td><td>The same single hash, for the same reason. Two authorities rather than one, because an anchor that depends on a single free service stops working the day that service does.</td></tr>
+      <tr><td>Google Fonts</td><td>Applies to this public website only, not to the Kept application. Your browser fetches two typefaces from Google, which means Google sees your IP address when you read this page. We are moving to self hosted fonts to close this.</td></tr>
+    </tbody>
+  </table>
+  <p>There is no one else. No analytics vendor, no advertising network, no data broker, no offshore support desk.</p>
+
+  <h2 id="keep"><span class="num">10</span>How long it is kept</h2>
+  <ul>
+    <li><b>The audit log:</b> for as long as the property uses Kept, and then until the hotel instructs us to delete the database. It is the record, and it is not pruned.</li>
+    <li><b>Photographs:</b> the same, unless deleted individually.</li>
+    <li><b>Backups:</b> the most recent fourteen days.</li>
+    <li><b>Sessions:</b> until they expire or the person signs out, whichever is first. Changing someone's access ends their sessions immediately.</li>
+    <li><b>Fault reports:</b> kept while the fault is open, and cleared when it is resolved.</li>
+  </ul>
+
+  <h2 id="rights"><span class="num">11</span>Your rights, and how to use them</h2>
+  <p>If you are staff at a property that uses Kept, your employer controls your record. Ask your manager first, because most of what you might want is something they can do from the back office in under a minute. If you would rather not go through your employer, write to us at the address below and we will tell you what we hold about you and pass your request to them.</p>
+  <p>You may ask for a copy of what Kept holds about you, ask for a display name or language to be corrected, ask for your account to be deactivated, and ask for a photograph to be removed. Section 7 sets out honestly what deletion can and cannot mean here.</p>
+  <p>We do not charge for any of this and we do not require a particular form of words.</p>
+
+  <h2 id="site"><span class="num">12</span>This website</h2>
+  <p>jqtenterprises.com sets no cookies, runs no analytics, and has no tracking pixels. It loads two typefaces from Google Fonts, which is the one disclosure in section 9. If you email us, we hold the email. That is the whole of it.</p>
+
+  <h2 id="changes"><span class="num">13</span>Changes, and contact</h2>
+  <p>If we change this policy in a way that alters what Kept records or who receives it, we will tell the properties using it directly rather than relying on a new date at the top of a page. The version number above changes with it.</p>
+  <p>JQT Enterprises, LLC, 1314 E Las Olas Blvd, PMB 2880, Fort Lauderdale, Florida 33301. Write to <a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a> and a person will answer.</p>
+
+</div></main>
+
+<footer><div class="wrap foot-row">
+  <div>
+    <a href="/kept/">Kept</a>
+    <a href="/kept/terms/">Terms of Service</a>
+    <a href="/">JQT</a>
+    <a href="mailto:hello@jqtenterprises.com">Contact</a>
+  </div>
+  <div>&copy; 2026 JQT Enterprises, LLC</div>
+</div></footer>
+
+</body>
+</html>
