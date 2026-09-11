@@ -45,7 +45,10 @@ html[data-theme="dark"]{
   --accent:#4F719A; --accent2:#6E92BC; --on-accent:#0C0C0D;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+/* iOS Safari inflates text on its own unless this is set, which is how a page
+     that measures correctly in every desktop emulator can still come out looking
+     nothing like the design on an actual iPhone. */
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
 section[id],header[id]{scroll-margin-top:78px}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);
   line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;

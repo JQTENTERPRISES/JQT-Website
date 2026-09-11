@@ -64,6 +64,10 @@
     --mono: var(--font-mono);
   }
 
+  /* iOS Safari inflates text on its own unless this is set, which is how a page
+     that measures correctly in every desktop emulator can still come out looking
+     nothing like the design on an actual iPhone. */
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   *{box-sizing:border-box}
   section[id]{scroll-margin-top:72px}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
