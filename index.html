@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>JQT · Forward deployed operations, and Kept for hotels</title>
 <meta name="description" content="JQT embeds in an operation, builds the system it runs on, and stays to own the outcome. The first one shipped: Kept, hotel housekeeping and operations software, live at a real property. Fort Lauderdale, Florida.">
 <link rel="canonical" href="https://jqtenterprises.com/">
@@ -200,11 +200,11 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
 .foot-bottom{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 @media(max-width:760px){.foot-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.foot-brand{grid-column:1/-1}}
 
-.chat-fab{position:fixed;bottom:26px;right:26px;z-index:80;background:var(--accent);color:var(--on-accent);
+.chat-fab{position:fixed;bottom:calc(26px + env(safe-area-inset-bottom));right:26px;z-index:80;background:var(--accent);color:var(--on-accent);
   font-weight:600;font-size:14px;padding:13px 22px;border-radius:9px;cursor:pointer;border:none;font-family:inherit;box-shadow:0 14px 36px -14px rgba(0,0,0,.5)}
 .chat-fab:hover{opacity:.92}
-.chat-panel{position:fixed;bottom:26px;right:26px;z-index:81;width:372px;max-width:calc(100vw - 36px);
-  height:540px;max-height:calc(100vh - 52px);background:var(--surface);border:1px solid var(--line2);border-radius:14px;
+.chat-panel{position:fixed;bottom:calc(26px + env(safe-area-inset-bottom));right:26px;z-index:81;width:372px;max-width:calc(100vw - 36px);
+  height:540px;max-height:calc(100vh - 52px);max-height:calc(100dvh - 52px - env(safe-area-inset-bottom));background:var(--surface);border:1px solid var(--line2);border-radius:14px;
   box-shadow:0 50px 100px -36px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
 .chat-panel.open{display:flex}
 .chat-head{padding:17px 19px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--surface2)}
@@ -290,6 +290,31 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 
+/* TOUCH TARGETS.
+   Apple's minimum is 44x44 and Android's is 48dp. On a phone the theme toggle
+   was 36px and every avenue chip was 37px, which is the difference between
+   tapping a control and tapping near it. Only STANDALONE controls are raised:
+   an inline link inside a sentence stays at text height, because padding it to
+   44px would wreck the line it sits in and nobody expects to tap a word twice.
+   Pointer-coarse rather than width, so it follows the input device rather than
+   guessing from the screen. */
+@media (pointer: coarse), (max-width: 520px){
+  .toggle{width:44px;height:44px}
+  .chip{padding:12px 16px;min-height:44px;display:inline-flex;align-items:center}
+  .chat-fab{min-height:44px}
+  .foot-grid a{padding:9px 0;display:inline-block}
+}
+/* The avenue chips wrapped 2 / 1 / 1 at 393px, which reads as a broken grid
+   rather than a row that ran out of room. Two even columns is a deliberate
+   shape and it fits the longest label, "Property Management", without
+   shrinking the type. */
+@media (max-width: 520px){
+  .avenue-bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:stretch}
+  .avenue-bar .lbl{grid-column:1 / -1;margin-right:0;margin-bottom:2px}
+  .avenue-bar .chip{justify-content:center;text-align:center;width:100%}
+  .chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .chips .chip{justify-content:center;text-align:center}
+}
 @media (prefers-reduced-motion: reduce){
   *{animation:none !important;transition:none !important}
   .reveal{opacity:1;transform:none}
