@@ -319,6 +319,28 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
   *{animation:none !important;transition:none !important}
   .reveal{opacity:1;transform:none}
 }
+
+/* WHAT IS BROKEN. The site demonstrating the business instead of describing it:
+   pick the symptom, get back the shape of the system we would build for it. */
+.broken{margin-top:36px}
+.bk-opts{display:grid;grid-template-columns:minmax(0,1fr);gap:9px}
+.bk-opt{text-align:left;font:inherit;font-size:15px;font-weight:500;color:var(--text);
+  background:var(--surface);border:1px solid var(--line2);border-radius:8px;padding:15px 17px;
+  cursor:pointer;min-height:52px;transition:.22s var(--ease)}
+.bk-opt:hover{border-color:var(--accent)}
+.bk-opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff}
+.bk-out{margin-top:16px;border:1px solid var(--line);border-radius:10px;background:var(--surface);
+  padding:20px;display:none}
+.bk-out.on{display:block}
+.bk-out .k{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px}
+.bk-out h4{margin:0 0 8px;font-size:18px;font-weight:700;letter-spacing:-.01em}
+.bk-out p{margin:0 0 14px;color:var(--muted);font-size:15px;line-height:1.6}
+.bk-flow{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.bk-step{font-size:12.5px;font-weight:600;background:var(--bg2);border:1px solid var(--line);
+  border-radius:20px;padding:7px 13px}
+.bk-arrow{color:var(--faint);font-size:13px}
+@media(min-width:720px){.bk-opts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 <script type="application/ld+json">
 {
@@ -580,7 +602,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
     <div class="reveal">
       <div class="eyebrow" style="margin-bottom:18px">Why JQT</div>
       <div class="big">Built by operators, <span class="serif">not an agency that read about it.</span></div>
-      <p class="sub" style="margin-top:22px">We have run the badge office, held the radio, and answered to the inspector. We built JQT because we were the people the software kept failing.</p>
+      <p class="sub" style="margin-top:22px">JQT was started by Chris Jacquette, who spent years inside operations where a missed detail is a breach rather than a bug: airport credentialing at Atlanta and Fort Lauderdale, thousands of badge applications checked against federal rules, SIDA access, real audits with real consequences. The pattern was always the same. The work was serious, the rules were exact, and the software was a spreadsheet, a radio and somebody's memory. Kept started the same way: inside a working hotel, on the floor, at six in the morning, watching a manager phone every room to ask whether it was clean. We build for the person holding the phone because we have been the person holding the phone.</p>
     </div>
     <ul class="reveal">
       <li><b>Aviation and security operations</b>High stakes environments where a missed detail is a breach, not a bug.</li>
@@ -624,6 +646,27 @@ footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
           <li>Start with one operation, expand across your portfolio</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-broken" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Start here</div>
+      <h2 class="h2">What is broken <span class="serif">in your operation?</span></h2>
+      <p class="sub">Pick the one that stings. We will show you the shape of the system we would build for it.</p>
+    </div>
+    <div class="broken reveal">
+      <div class="bk-opts" id="bkOpts">
+        <button class="bk-opt" aria-pressed="false" data-k="sheets">Too many spreadsheets</button>
+        <button class="bk-opt" aria-pressed="false" data-k="report">Reporting is manual</button>
+        <button class="bk-opt" aria-pressed="false" data-k="calls">People constantly calling each other</button>
+        <button class="bk-opt" aria-pressed="false" data-k="orders">Work orders disappear</button>
+        <button class="bk-opt" aria-pressed="false" data-k="audit">Audits are painful</button>
+        <button class="bk-opt" aria-pressed="false" data-k="other">Something else</button>
+      </div>
+      <div class="bk-out" id="bkOut" role="status" aria-live="polite"></div>
     </div>
   </div>
 </section>
@@ -685,11 +728,26 @@ $('themeBtn').onclick=()=>{html.dataset.theme=html.dataset.theme==='light'?'dark
 
 /* SEASONAL JQT MARK (automatic by date, mark only) */
 const SEASONS=[
- {name:"Independence Day",from:[6,26],to:[7,6],a:"#B22234",b:"#3C3B6E"},
- {name:"Easter and Spring",from:[3,25],to:[4,15],a:"#8E6FC4",b:"#4FA372"},
- {name:"Halloween",from:[10,24],to:[10,31],a:"#EE7600",b:"#18181A"},
- {name:"Thanksgiving",from:[11,20],to:[11,29],a:"#BF5700",b:"#5C4033"},
- {name:"Christmas",from:[12,10],to:[12,31],a:"#C8102E",b:"#146B3A"}
+ /* The mark used to be coloured 73 days a year, with an 86 day gap over the
+    whole of late summer, so for most of the year it looked like this was never
+    built. Widened to cover the year properly: every month now has a reason. */
+ {name:"New Year",           from:[1,1],  to:[1,6],   a:"#C9A227", b:"#2E3A46"},
+ {name:"Winter",             from:[1,7],  to:[2,12],  a:"#5B7FA6", b:"#9FB6C9"},
+ {name:"Valentines",         from:[2,13], to:[2,15],  a:"#C0392B", b:"#8E2F5F"},
+ {name:"Late winter",        from:[2,16], to:[3,16],  a:"#5B7FA6", b:"#7D8B99"},
+ {name:"St Patricks",        from:[3,15], to:[3,18],  a:"#1E7B47", b:"#C9A227"},
+ {name:"Easter and Spring",  from:[3,19], to:[4,30],  a:"#8E6FC4", b:"#4FA372"},
+ {name:"Late spring",        from:[5,1],  to:[5,24],  a:"#4FA372", b:"#7FA6CE"},
+ {name:"Memorial Day",       from:[5,25], to:[5,31],  a:"#B22234", b:"#3C3B6E"},
+ {name:"Early summer",       from:[6,1],  to:[6,25],  a:"#2E8B8B", b:"#C9A227"},
+ {name:"Independence Day",   from:[6,26], to:[7,6],   a:"#B22234", b:"#3C3B6E"},
+ {name:"High summer",        from:[7,7],  to:[8,31],  a:"#E08A2E", b:"#2E8B8B"},
+ {name:"Early autumn",       from:[9,1],  to:[10,23], a:"#B5651D", b:"#6B8E3D"},
+ {name:"Halloween",          from:[10,24],to:[10,31], a:"#EE7600", b:"#18181A"},
+ {name:"November",           from:[11,1], to:[11,19], a:"#8C6239", b:"#6B8E3D"},
+ {name:"Thanksgiving",       from:[11,20],to:[11,29], a:"#BF5700", b:"#5C4033"},
+ {name:"Early December",     from:[11,30],to:[12,9],  a:"#2E3A46", b:"#5B7FA6"},
+ {name:"Christmas",          from:[12,10],to:[12,31], a:"#C8102E", b:"#146B3A"}
 ];
 const STANDING={name:"Standing",a:"#3D5A7A",b:"#3D5A7A"};
 function seasonFor(d){const m=d.getMonth()+1,day=d.getDate();
@@ -812,6 +870,26 @@ function openChat(){panel.classList.add('open');fab.style.display='none';
 function closeChat(){panel.classList.remove('open');fab.style.display='block';}
 /* "Book a call" everywhere routes here: open the assistant and go straight to booking the free teardown (the real booking mechanism, since no calendar is wired yet) */
 function bookCall(){greeted=true;openChat();teardownForm();}
+
+/* WHAT IS BROKEN picker */
+const BROKEN={
+ sheets:{h:"One board instead of six tabs",p:"The spreadsheet, the group chat and the whiteboard disagree by Tuesday. We put the live state in one place everybody reads, and keep the exports you already send.",f:["Your sheets","One live board","Roles and permissions","Exports back out"]},
+ report:{h:"The report builds itself",p:"Somebody rebuilds the same numbers every morning. We take the source you already produce, run it on a schedule, and send the sheet the people downstream expect.",f:["Source import","Scheduled run","Dashboard","Sheet out"]},
+ calls:{h:"Stop paying people to ask each other",p:"Twenty minutes a shift walking down to ask, waiting on a callback, redoing a list that moved. Status goes on a screen, and the calls stop.",f:["Status on a screen","Alerts","Mobile for the floor","Nobody phones"]},
+ orders:{h:"Nothing closes quietly",p:"An order that drifts has no owner and no clock. We give it both, escalate when it stalls, and keep the trail of who did what.",f:["Intake","Owner and clock","Escalation","Closed with proof"]},
+ audit:{h:"Answer from the record, not from memory",p:"An audit is painful when the evidence has to be assembled. We keep it as you go, in a log nobody can quietly edit, and alert before anything lapses.",f:["Append only log","Daily anchor","Lapse alerts","Answer on request one"]},
+ other:{h:"That is usually the interesting one",p:"The problems nobody has solved properly are the ones worth embedding in. Tell us what the operation is and what keeps slipping.",f:["Embed","Build","Run","Extract"]}
+};
+document.getElementById('bkOpts')?.addEventListener('click',e=>{
+  const b=e.target.closest('.bk-opt'); if(!b)return;
+  document.querySelectorAll('.bk-opt').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+  const d=BROKEN[b.dataset.k]; const out=document.getElementById('bkOut');
+  out.innerHTML='<div class="k">What we would build</div><h4>'+d.h+'</h4><p>'+d.p+'</p><div class="bk-flow">'+
+    d.f.map((x,i)=>(i?'<span class="bk-arrow">&rarr;</span>':'')+'<span class="bk-step">'+x+'</span>').join('')+
+    '</div><div class="hero-cta" style="margin-top:20px"><button class="btn btn-primary" onclick="bookCall()">Show us yours</button></div>';
+  out.classList.add('on');
+});
+
 function add(t,cls){const d=document.createElement('div');d.className='msg '+cls;d.textContent=t;body.appendChild(d);body.scrollTop=body.scrollHeight;return d;}
 /* align the START of a new bot turn to the top of the chat, so a multi-message reply reads top-down instead of forcing a scroll-up */
 function scrollToMsg(el){requestAnimationFrame(function(){const c=body.getBoundingClientRect(),m=el.getBoundingClientRect();body.scrollTop+=(m.top-c.top)-10;});}

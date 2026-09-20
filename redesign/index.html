@@ -1,0 +1,470 @@
+<title>JQT Enterprises</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<style>
+:root{
+  --ground:#F4F3EF; --raise:#EAE8E2; --ink:#000000; --ink2:#4A4A46; --ink3:#8A8A84;
+  --line:#DEDCD6; --navy:#3D5A7A;
+  --ok:#2F8F5B; --warn:#9A731E; --crit:#B5453A;
+  --dark:#12161C; --dark-raise:#1A2029; --dark-line:#2A323D; --on-dark:#EEF1F5;
+  --on-dark2:#A3ADBA; --navy-lift:#5E86B3;
+  --sans:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --gut:22px; --maxw:1120px;
+  --ease:cubic-bezier(.4,0,.2,1); --t:.33s;
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#12161C; --raise:#1A2029; --ink:#F6F5F2; --ink2:#A3ADBA; --ink3:#717C8A;
+    --line:#2A323D; --navy:#7FA6CE;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#12161C; --raise:#1A2029; --ink:#F6F5F2; --ink2:#A3ADBA; --ink3:#717C8A;
+  --line:#2A323D; --navy:#7FA6CE;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:16.5px;line-height:1.6;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.03em;line-height:1.02;text-wrap:balance}
+h1{font-size:clamp(2.6rem,10vw,5.2rem)}
+h2{font-size:clamp(2rem,6.6vw,3.4rem)}
+h3{font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+p{margin:0}
+em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--navy);letter-spacing:0}
+a{color:inherit}
+.lede{color:var(--ink2);font-size:17.5px;max-width:34ch;margin-top:20px}
+.label{font-family:var(--mono);font-size:11px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--ink3)}
+
+/* ---------- header: transparent over hero, solid on scroll ---------- */
+.bar{position:fixed;inset:0 0 auto;z-index:60;height:52px;display:flex;align-items:center;
+  background:transparent;border-bottom:1px solid transparent;transition:background var(--t) var(--ease),border-color var(--t) var(--ease)}
+.bar.solid{background:color-mix(in srgb,var(--ground) 88%,transparent);
+  backdrop-filter:saturate(180%) blur(14px);border-bottom-color:var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;width:100%;gap:14px}
+.logo{display:flex;align-items:baseline;gap:2px;font-weight:800;font-size:17px;letter-spacing:.01em;
+  text-decoration:none}
+.logo b{font-weight:800}
+.logo i{font-style:normal;color:var(--navy)}
+.navlinks{display:none;gap:26px}
+.navlinks a{font-size:13px;color:var(--ink2);text-decoration:none;transition:color var(--t) var(--ease)}
+.navlinks a:hover{color:var(--ink)}
+.bar .go{font-size:13px;font-weight:600;text-decoration:none;padding:9px 15px;border-radius:2px;
+  background:var(--ink);color:var(--ground);min-height:38px;display:inline-flex;align-items:center;
+  transition:opacity var(--t) var(--ease)}
+.bar .go:hover{opacity:.82}
+
+/* ---------- tiles ---------- */
+.tile{padding-block:clamp(70px,13vw,124px)}
+.tile.dark{background:var(--dark);color:var(--on-dark)}
+.tile.dark h2,.tile.dark h3{color:var(--on-dark)}
+.tile.dark .lede,.tile.dark p{color:var(--on-dark2)}
+.tile.dark em{color:var(--navy-lift)}
+.tile.dark .label{color:#717C8A}
+.tile.raise{background:var(--raise)}
+
+/* ---------- hero ---------- */
+.hero{padding-block:132px clamp(64px,11vw,104px);position:relative;isolation:isolate}
+.hero h1{max-width:13ch}
+/* THE GLOBE. The wireframe sphere from the JQT mark, drawn live and turning on
+   its own. Ambient and continuous, the SpaceX register: it is already moving
+   when the page loads and it never needs the reader to do anything. It is the
+   brand's own geometry rather than decoration bought in for the occasion. */
+#globe{position:absolute;z-index:-1;right:-34vw;top:-6vw;width:116vw;height:116vw;
+  max-width:820px;max-height:820px;opacity:.85;pointer-events:none}
+@media(min-width:760px){#globe{right:-16vw;top:-4vw;width:76vw;height:76vw;opacity:.7}}
+.cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:32px}
+.btn{font-size:15px;font-weight:600;padding:14px 22px;border-radius:2px;text-decoration:none;
+  display:inline-flex;align-items:center;min-height:48px;border:1px solid transparent;
+  transition:opacity var(--t) var(--ease),border-color var(--t) var(--ease),color var(--t) var(--ease)}
+.btn-p{background:var(--navy);color:#fff}
+.btn-p:hover{opacity:.88}
+.btn-s{border-color:var(--line);color:var(--ink)}
+.btn-s:hover{border-color:var(--ink)}
+.proofline{margin-top:28px;font-family:var(--mono);font-size:12.5px;color:var(--ink3);
+  display:flex;align-items:flex-start;gap:9px;max-width:46ch}
+.proofline span.txt{flex:1 1 auto;min-width:0}
+.live{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none;
+  box-shadow:0 0 0 0 rgba(47,143,91,.5);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 7px rgba(47,143,91,0)}100%{box-shadow:0 0 0 0 rgba(47,143,91,0)}}
+
+/* ---------- the board (the product, moving) ---------- */
+.board{margin-top:44px;background:var(--dark);border-radius:4px;overflow:hidden;
+  box-shadow:0 30px 70px -40px rgba(0,0,0,.5)}
+.bd-top{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;
+  border-bottom:1px solid var(--dark-line);background:#0E1217}
+.bd-top b{font-size:14px;font-weight:600;color:var(--on-dark)}
+.bd-top span{font-family:var(--mono);font-size:11px;color:#717C8A;letter-spacing:.06em}
+.bd-stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--dark-line)}
+.bd-stat{padding:15px 16px;border-right:1px solid var(--dark-line)}
+.bd-stat:last-child{border-right:0}
+.bd-stat b{display:block;font-family:var(--mono);font-size:25px;font-weight:500;color:var(--on-dark);
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;transition:color var(--t) var(--ease)}
+.bd-stat span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#717C8A}
+.bd-row{display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:center;
+  padding:12px 16px;border-bottom:1px solid var(--dark-line)}
+.bd-row:last-of-type{border-bottom:0}
+.bd-rm{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--on-dark);
+  font-variant-numeric:tabular-nums}
+.bd-who{font-size:13.5px;color:var(--on-dark2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 9px;border-radius:2px;white-space:nowrap;
+  transition:background var(--t) var(--ease),color var(--t) var(--ease)}
+.p-dirty{background:#232B35;color:#8B97A6}
+.p-work{background:rgba(154,115,30,.18);color:#D2A64E}
+.p-clean{background:rgba(47,143,91,.18);color:#63B183}
+.p-flag{background:rgba(181,69,58,.18);color:#D2796D}
+.bd-foot{padding:12px 16px;background:#0E1217;border-top:1px solid var(--dark-line);
+  font-family:var(--mono);font-size:11px;color:#717C8A}
+.scrubnote{margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:.06em}
+/* The append only log, writing itself. One line arrives every few seconds and
+   the stack slides. This is the thing the product actually does, so it is the
+   right thing to have moving. */
+.log{margin-top:0;background:#0E1217;border-top:1px solid var(--dark-line);
+  padding:10px 16px 12px;font-family:var(--mono);font-size:10.5px;color:#717C8A;
+  height:76px;overflow:hidden;position:relative}
+.log-line{display:flex;gap:9px;padding-block:3px;animation:slidein .5s var(--ease) both}
+.log-line b{color:#63B183;font-weight:500;flex:none}
+.log-line s{text-decoration:none;color:#5A6472;flex:none}
+@keyframes slidein{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+/* ---------- problem ---------- */
+.three{margin-top:44px;border-top:1px solid var(--line)}
+.row3{padding-block:24px;border-bottom:1px solid var(--line)}
+.row3 h3{margin-bottom:8px}
+.row3 p{color:var(--ink2);font-size:15.5px;max-width:52ch}
+.row3 .n{font-family:var(--mono);font-size:11px;color:var(--navy);letter-spacing:.14em;
+  display:block;margin-bottom:11px}
+
+/* ---------- record ---------- */
+.facts{margin-top:42px;border-top:1px solid var(--dark-line)}
+.fact{padding-block:22px;border-bottom:1px solid var(--dark-line)}
+.fact .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:#717C8A;display:block;margin-bottom:10px}
+.fact p{font-size:16px;max-width:56ch}
+.fact b{color:var(--on-dark);font-weight:600}
+
+/* ---------- pricing ---------- */
+.plans{margin-top:40px;display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.plan{border:1px solid var(--line);border-radius:3px;padding:22px;background:var(--ground)}
+.plan.pick{border-color:var(--navy);border-width:1.5px}
+.plan .pn{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.plan .pp{font-family:var(--mono);font-size:30px;font-weight:500;margin-block:8px 2px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.plan .pu{font-family:var(--mono);font-size:10.5px;color:var(--ink3);letter-spacing:.1em;
+  text-transform:uppercase}
+.plan p{margin-top:15px;font-size:14.5px;color:var(--ink2)}
+.note{margin-top:26px;font-size:15px;color:var(--ink2);max-width:58ch}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid var(--line);padding-block:28px;display:flex;flex-wrap:wrap;
+  gap:6px 22px;align-items:center;justify-content:space-between}
+.foot span{font-family:var(--mono);font-size:11.5px;color:var(--ink3)}
+.foot nav{display:flex;gap:20px}
+.foot a{font-family:var(--mono);font-size:11.5px;color:var(--ink3);text-decoration:none;
+  padding-block:10px;transition:color var(--t) var(--ease)}
+.foot a:hover{color:var(--ink)}
+
+/* ---------- scroll reveal, from a VISIBLE resting state ---------- */
+.rise{opacity:.999;transform:translateY(14px);transition:transform .6s var(--ease),opacity .6s var(--ease)}
+.rise.in{transform:none}
+
+@media(min-width:760px){
+  :root{--gut:40px}
+  .navlinks{display:flex}
+  .three,.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 36px;border-top:0}
+  .row3,.fact{border-top:1px solid var(--line)}
+  .tile.dark .fact{border-top-color:var(--dark-line)}
+  .plans{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hero h1{font-size:clamp(3.4rem,7.4vw,5.2rem)}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .rise{transform:none}
+  html{scroll-behavior:auto}
+}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+</style>
+
+<header class="bar" id="bar">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>JQT</b><i>.</i></a>
+    <nav class="navlinks">
+      <a href="#kept">Kept</a><a href="#record">The record</a><a href="#work">How we work</a><a href="#price">Pricing</a>
+    </nav>
+    <a class="go" href="#close">Book a call</a>
+  </div>
+</header>
+
+<section class="hero wrap" id="top">
+  <canvas id="globe" aria-hidden="true"></canvas>
+  <h1>We build the software your operation runs on, <em>then stay and run it.</em></h1>
+  <p class="lede">JQT embeds in one operation, builds the system it runs on, and answers for the
+    result. The reusable core then becomes the product for that whole industry.</p>
+  <div class="cta">
+    <a class="btn btn-p" href="#kept">See the one that shipped</a>
+    <a class="btn btn-s" href="#close">Book a call</a>
+  </div>
+  <p class="proofline"><span class="live" style="margin-top:6px"></span><span class="txt">Kept is live at a working hotel. From $199 per property per month.</span></p>
+</section>
+
+<section class="tile" id="kept">
+  <div class="wrap">
+    <div class="label rise">The first one shipped</div>
+    <h2 class="rise" style="margin-top:16px;max-width:15ch">Kept. A hotel morning, <em>as it happens.</em></h2>
+    <p class="lede rise">Built inside a working hotel by working its mornings. The crew opens it on
+      the phones they already own. This one is running a morning right now.</p>
+
+    <div class="board rise" id="board">
+      <div class="bd-top"><b>Floor 1 &middot; this morning</b><span id="clock">08:04</span></div>
+      <div class="bd-stats">
+        <div class="bd-stat"><b id="s-rooms">46</b><span>rooms</span></div>
+        <div class="bd-stat"><b id="s-clean">0</b><span>clean</span></div>
+        <div class="bd-stat"><b id="s-flag">0</b><span>flagged</span></div>
+      </div>
+      <div id="rows">
+        <div class="bd-row"><span class="bd-rm">101</span><span class="bd-who">Claudette</span><span class="pill p-dirty">To do</span></div>
+        <div class="bd-row"><span class="bd-rm">103</span><span class="bd-who">Guerline</span><span class="pill p-dirty">To do</span></div>
+        <div class="bd-row"><span class="bd-rm">107</span><span class="bd-who">Maria</span><span class="pill p-dirty">To do</span></div>
+        <div class="bd-row"><span class="bd-rm">112</span><span class="bd-who">Rosa</span><span class="pill p-dirty">To do</span></div>
+        <div class="bd-row"><span class="bd-rm">118</span><span class="bd-who">Sandra</span><span class="pill p-dirty">To do</span></div>
+      </div>
+      <div class="log" id="log"></div>
+    </div>
+    <p class="scrubnote">A model of the real board, running a morning. The live one is one tap away.</p>
+    <div class="cta">
+      <a class="btn btn-p" href="https://demo.kept.jqtenterprises.com/">Walk the live demo</a>
+    </div>
+  </div>
+</section>
+
+<section class="tile raise">
+  <div class="wrap">
+    <div class="label rise">Why this keeps happening</div>
+    <h2 class="rise" style="margin-top:16px;max-width:14ch">Most operations run <em>on memory.</em></h2>
+    <div class="three">
+      <div class="row3 rise"><span class="n">01</span><h3>It lives in one person's head</h3>
+        <p>They get sick, take vacations, and eventually leave. What they knew leaves with them.</p></div>
+      <div class="row3 rise"><span class="n">02</span><h3>It is scattered across tools</h3>
+        <p>The spreadsheet says one thing, the group chat says another, and the whiteboard stopped being true on Tuesday.</p></div>
+      <div class="row3 rise"><span class="n">03</span><h3>Nobody owns the outcome</h3>
+        <p>The vendor shipped. The consultant presented. By Monday it is your problem again, because it never stopped being yours.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tile dark" id="record">
+  <div class="wrap">
+    <div class="label rise">What makes it different</div>
+    <h2 class="rise" style="margin-top:16px;max-width:13ch">Who did what. <em>Proven.</em></h2>
+    <div class="facts">
+      <div class="fact rise"><span class="k">The gate</span>
+        <p>A room is not clean until the checklist is. The button does not press until every step has been tapped. <b>Most software records what people say they did. Kept decides what counts as done.</b></p></div>
+      <div class="fact rise"><span class="k">The record</span>
+        <p>Every action appends to a log nobody can quietly edit, <b>including us</b>. Its head is anchored daily to public RFC 3161 timestamp authorities, so an auditor verifies it years later with openssl and no account with anyone.</p></div>
+      <div class="fact rise"><span class="k">The floor</span>
+        <p>First name and four digits, on her own phone. English, Spanish and Haitian Creole, <b>never behind a plan</b>. Nobody is trained on it, and that is the test.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tile" id="work">
+  <div class="wrap">
+    <div class="label rise">How we work</div>
+    <h2 class="rise" style="margin-top:16px;max-width:16ch">We do not hand it over <em>and leave.</em></h2>
+    <div class="three">
+      <div class="row3 rise"><span class="n">01</span><h3>Embed</h3>
+        <p>We work inside the operation, on the floor and on the morning calls, until we understand it better than anyone who has tried to sell you something.</p></div>
+      <div class="row3 rise"><span class="n">02</span><h3>Build</h3>
+        <p>The board, the rules, the alerts, the record. Shaped around your operation and yours to keep.</p></div>
+      <div class="row3 rise"><span class="n">03</span><h3>Own it</h3>
+        <p>We stay and answer for the result under real pressure. When it works, that is our doing. When it slips, that is our problem.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tile raise" id="price">
+  <div class="wrap">
+    <div class="label rise">Kept pricing</div>
+    <h2 class="rise" style="margin-top:16px;max-width:14ch">Per property, <em>per month.</em></h2>
+    <div class="plans">
+      <div class="plan rise"><div class="pn">Floor</div><div class="pp">$199</div><div class="pu">up to 150 rooms</div>
+        <p>Three screens, the checklist gate, the anchored record, safety alerts, found property, three languages.</p></div>
+      <div class="plan pick rise"><div class="pn">Operations</div><div class="pp">$349</div><div class="pu">up to 150 rooms</div>
+        <p>Adds the maintenance log and work orders, supplies and the buy list, and the weekly owner report.</p></div>
+      <div class="plan rise"><div class="pn">Property</div><div class="pp">$499</div><div class="pu">up to 150 rooms</div>
+        <p>Adds multi day projects, assignment weighting learned from your own history, and inventory forecasting.</p></div>
+    </div>
+    <p class="note rise">The record is never the upsell. The gate and the anchored log are in the
+      $199 tier, because a plan that could not prove who did what would not be Kept.</p>
+  </div>
+</section>
+
+<section class="tile" id="close">
+  <div class="wrap">
+    <h2 class="rise" style="max-width:15ch">Tell us the operation <em>that keeps slipping.</em></h2>
+    <p class="lede rise">Twenty minutes. If we look at your floor and cannot find a leak worth more
+      than the fee, we will say so on the call.</p>
+    <div class="cta rise">
+      <a class="btn btn-p" href="mailto:hello@jqtenterprises.com">Book a call</a>
+      <a class="btn btn-s" href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer class="foot">
+    <span>&copy; 2026 JQT Enterprises LLC &middot; Fort Lauderdale, Florida</span>
+    <nav><a href="/kept/terms/">Terms</a><a href="/kept/privacy/">Privacy</a></nav>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- header: transparent over the hero, glass once you leave it ---- */
+  var bar = document.getElementById('bar');
+  function onScroll(){ bar.classList.toggle('solid', window.scrollY > 28); }
+  onScroll(); addEventListener('scroll', onScroll, {passive:true});
+
+  /* ---- reveals, from a visible resting state ---- */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rise').forEach(function(el){
+    if (reduce) el.classList.add('in'); else io.observe(el);
+  });
+
+  /* ================= THE GLOBE =================
+     The wireframe sphere out of the JQT mark, built from real 3D points and
+     turned on every frame. It is running before the reader touches anything,
+     which is the whole difference between this and the last version: motion
+     you have to earn by scrolling is motion nobody sees. */
+  var cv = document.getElementById('globe'), ctx = cv.getContext('2d'), raf = 0;
+  var LAT = 11, LON = 18, SEG = 64;
+  function size(){
+    var d = Math.min(devicePixelRatio || 1, 2), r = cv.getBoundingClientRect();
+    cv.width = r.width * d; cv.height = r.height * d; ctx.setTransform(d,0,0,d,0,0);
+    return r;
+  }
+  var box = size();
+  addEventListener('resize', function(){ box = size(); }, {passive:true});
+
+  function draw(t){
+    var w = box.width, h = box.height, R = Math.min(w,h) * 0.40;
+    var cx = w/2, cy = h/2;
+    ctx.clearRect(0,0,w,h);
+    var ink = getComputedStyle(document.documentElement).getPropertyValue('--ink3').trim() || '#8A8A84';
+    ctx.strokeStyle = ink; ctx.lineWidth = 0.6;
+    var ry = t * 0.00016, tilt = -0.42;
+    function proj(lat, lon){
+      var x = Math.cos(lat)*Math.sin(lon), y = Math.sin(lat), z = Math.cos(lat)*Math.cos(lon);
+      var x2 = x*Math.cos(ry) + z*Math.sin(ry), z2 = -x*Math.sin(ry) + z*Math.cos(ry);
+      var y2 = y*Math.cos(tilt) - z2*Math.sin(tilt), z3 = y*Math.sin(tilt) + z2*Math.cos(tilt);
+      return [cx + x2*R, cy - y2*R, z3];
+    }
+    // lines of latitude
+    for (var i=1;i<LAT;i++){
+      var lat = -Math.PI/2 + Math.PI*i/LAT;
+      ctx.beginPath();
+      for (var j=0;j<=SEG;j++){
+        var p = proj(lat, j/SEG*Math.PI*2);
+        ctx.globalAlpha = p[2] > 0 ? 0.5 : 0.13;
+        if (j===0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]);
+      }
+      ctx.stroke();
+    }
+    // lines of longitude
+    for (var k=0;k<LON;k++){
+      var lon = k/LON*Math.PI*2;
+      ctx.beginPath();
+      for (var m=0;m<=SEG;m++){
+        var q = proj(-Math.PI/2 + Math.PI*m/SEG, lon);
+        ctx.globalAlpha = q[2] > 0 ? 0.5 : 0.13;
+        if (m===0) ctx.moveTo(q[0],q[1]); else ctx.lineTo(q[0],q[1]);
+      }
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+  function loop(t){ draw(t); raf = requestAnimationFrame(loop); }
+  if (reduce) { draw(0); } else { raf = requestAnimationFrame(loop); }
+  // a tab nobody is looking at does not get to burn a battery
+  document.addEventListener('visibilitychange', function(){
+    if (reduce) return;
+    if (document.hidden) { cancelAnimationFrame(raf); raf = 0; }
+    else if (!raf) raf = requestAnimationFrame(loop);
+  });
+
+  /* ================= THE MORNING =================
+     The board runs itself on a clock. Rooms move, counters follow, and the
+     append only log writes a line every few seconds, because a log writing
+     itself is literally what the product does. */
+  var rows  = Array.from(document.querySelectorAll('#rows .bd-row'));
+  var clean = document.getElementById('s-clean');
+  var flagE = document.getElementById('s-flag');
+  var clock = document.getElementById('clock');
+  var logEl = document.getElementById('log');
+
+  var STEPS = [
+    {i:0, cls:'p-work',  txt:'Working', log:'started'},
+    {i:1, cls:'p-work',  txt:'Working', log:'started'},
+    {i:0, cls:'p-clean', txt:'Clean',   log:'clean, 14 steps'},
+    {i:2, cls:'p-work',  txt:'Working', log:'started'},
+    {i:1, cls:'p-clean', txt:'Clean',   log:'clean, 14 steps'},
+    {i:2, cls:'p-flag',  txt:'Flagged', log:'AC not cold, photo'},
+    {i:3, cls:'p-work',  txt:'Working', log:'started'},
+    {i:3, cls:'p-clean', txt:'Clean',   log:'clean, 14 steps'},
+    {i:4, cls:'p-work',  txt:'Working', log:'started'},
+    {i:4, cls:'p-clean', txt:'Clean',   log:'clean, 14 steps'}
+  ];
+  var step = 0, mins = 4, base = 29;
+
+  function pushLog(room, txt){
+    var hh = '0' + (8 + Math.floor(mins/60)), mm = String(mins%60).padStart(2,'0');
+    var d = document.createElement('div');
+    d.className = 'log-line';
+    d.innerHTML = '<s>' + hh + ':' + mm + '</s><b>' + room + '</b><span>' + txt + '</span>';
+    logEl.prepend(d);
+    while (logEl.children.length > 4) logEl.lastChild.remove();
+  }
+  function tick(){
+    var s = STEPS[step % STEPS.length];
+    var row = rows[s.i], pill = row.querySelector('.pill');
+    pill.className = 'pill ' + s.cls; pill.textContent = s.txt;
+    var room = row.querySelector('.bd-rm').textContent;
+    mins += 3 + Math.floor(Math.random()*4);
+    pushLog(room, s.log);
+    var c = 0, f = 0;
+    rows.forEach(function(r){
+      var k = r.querySelector('.pill').className;
+      if (k.indexOf('p-clean') > -1) c++;
+      if (k.indexOf('p-flag')  > -1) f++;
+    });
+    clean.textContent = base + c; flagE.textContent = f;
+    clock.textContent = '0' + (8 + Math.floor(mins/60)) + ':' + String(mins%60).padStart(2,'0');
+    step++;
+    if (step % STEPS.length === 0) {           // roll the morning and go again
+      setTimeout(function(){
+        rows.forEach(function(r){
+          var p = r.querySelector('.pill'); p.className = 'pill p-dirty'; p.textContent = 'To do';
+        });
+        mins = 4; base = 29; clean.textContent = base; flagE.textContent = 0;
+      }, 2600);
+    }
+  }
+  pushLog('101', 'morning report imported');
+  if (!reduce) { tick(); setInterval(tick, 2600); }
+  else { STEPS.forEach(function(s){
+    var p = rows[s.i].querySelector('.pill'); p.className='pill '+s.cls; p.textContent=s.txt; });
+    clean.textContent = 34; flagE.textContent = 1; }
+})();
+</script>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The record · Kept by JQT</title>
+<meta name="description" content="Every action appends to a log nobody can edit, including JQT. Its head is anchored daily to public RFC 3161 timestamp authorities.">
+<link rel="canonical" href="https://jqtenterprises.com/kept/record/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/kept/kept.css">
+</head>
+<body>
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="/">JQT</a>
+    <div class="nav-links">
+      <a href="/kept/how/">How it works</a>
+      <a href="/kept/record/">The record</a>
+      <a href="/kept/security/">Security</a>
+      <a href="/kept/pricing/">Pricing</a>
+      <a href="/kept/faq/">Questions</a>
+    </div>
+    <a href="/#book" class="nav-cta">Book a call</a>
+  </div>
+</nav>
+<main style="padding-top:78px">
+<section class="sec" id="record">
+  <div class="wrap sec-in">
+    <div class="eyebrow"><i></i>The record</div>
+    <h2>Who did what. <em>Proven.</em></h2>
+    <p class="lede">Every system in this category will hand you a report. A report is a claim, worth exactly as much as the vendor who printed it. Here is the difference between a report and a record, in three parts. You can check all three without taking our word for it, and the third one you can still check after we are gone.</p>
+
+    <div class="three">
+      <div class="pt">
+        <div class="no">01</div>
+        <h3>The gate</h3>
+        <p>Mark clean does not press until every step of the room checklist has been tapped. Not greyed out with an override for the manager. It does not press.</p>
+        <p>A room that is clean because someone said so from a chair at 4pm is the thing your current data is made of. This is the mechanic that ends it.</p>
+      </div>
+      <div class="pt">
+        <div class="no">02</div>
+        <h3>The chain</h3>
+        <p>Every action appends to a log that cannot be quietly edited. Not by staff, not by the manager, not by us.</p>
+        <p>Each entry is built from the one before it, so altering an old line breaks every line after it, visibly, on a page your manager can open while you stand there.</p>
+      </div>
+      <div class="pt">
+        <div class="no">03</div>
+        <h3>The anchor</h3>
+        <p>Once a day the head of that chain is sent to public RFC 3161 timestamp authorities, DigiCert and FreeTSA, and their signed reply is stored exactly as it came back.</p>
+        <p>The chain catches an edited row. The anchor catches the harder case: someone deletes the log and rebuilds a tidy fake whose hashes all recompute correctly. To fake history you would now also have to alter records held by a certificate authority.</p>
+        <p><b>And the proof outlives us.</b> RFC 3161 is the same standard used to sign software and notarise documents. The reply is ordinary DER on your disk, so an auditor checks it years from now with <span class="mono">openssl ts&nbsp;-verify</span>, on a laptop, with no Kept account, no vendor, and no us. If we disappear, your record still stands up.</p>
+      </div>
+    </div>
+
+    <div class="chain">
+      <div class="chain-h">
+        <span class="ct">Audit log</span>
+        <span class="shield">&#10003; Log verified</span>
+      </div>
+      <div class="chain-b">
+        <div class="cl-row"><span class="ct">10:12a</span><span class="cm">Room <b>508</b> <span class="ok">marked clean</span> &middot; 6 of 6 zones &middot; Maria</span><span class="hash">e4a1&hellip;<i>&larr; 9c72</i></span></div>
+        <div class="cl-row"><span class="ct">10:09a</span><span class="cm">Room <b>330</b> <span class="fl">flagged</span> &middot; AC not cooling &middot; photo &middot; Rosa</span><span class="hash">9c72&hellip;<i>&larr; 1bd8</i></span></div>
+        <div class="cl-row"><span class="ct">10:04a</span><span class="cm">Room <b>214</b> started &middot; Rosa</span><span class="hash">1bd8&hellip;<i>&larr; 55af</i></span></div>
+        <div class="cl-row"><span class="ct">9:36a</span><span class="cm">Morning report imported &middot; 98 rooms &middot; Nadia</span><span class="hash">55af&hellip;<i>&larr; 03e6</i></span></div>
+      </div>
+      <div class="chain-f">
+        <span class="anch">Anchored 04:02a</span>
+        <span><b>Chain head sent to DigiCert and FreeTSA</b> and the signed reply stored as received. It prints on every export, so a copy of what the log said leaves the building daily, readable without Kept.</span>
+      </div>
+    </div>
+
+    <div class="owner-test">
+      <div class="cap">How an owner checks it in thirty seconds</div>
+      <p>Ask your manager to show you a room that ran over forty minutes last week, and what happened in it. A trashed checkout, a broken AC, a deep clean.</p>
+      <p><b>If the answer comes off the board while you are standing there, the record is alive.</b> If it does not, then no software in your building is working, and that includes ours. It is a fair test either way, which is why it is the one we hand you.</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="fb">
+        <div class="fb-kept">kept</div>
+        <p>Hotel operations software, built by JQT inside a working hotel. Housekeeping, maintenance, supplies, and a record that holds up.</p>
+      </div>
+      <div class="fcol">
+        <h4>Kept</h4>
+        <a href="#how">The difference</a>
+        <a href="#why">Why it gets used</a>
+        <a href="#record">The record</a>
+        <a href="#surfaces">What it runs on</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">Questions</a>
+      </div>
+      <div class="fcol">
+        <h4>JQT</h4>
+        <a href="/">How JQT works</a>
+        <a href="/#approach">The approach</a>
+        <a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a>
+        <a href="https://instagram.com/jqtenterprises" target="_blank" rel="noopener">Instagram</a>
+        <a href="/#book">Book a call</a>
+      </div>
+    </div>
+    <div class="foot-btm"><span>&copy; 2026 JQT Enterprises, LLC</span><span>Fort Lauderdale, Florida</span><span><a href="/kept/terms/">Terms of Service</a></span><span><a href="/kept/privacy/">Privacy Policy</a></span><span>Powered by JQT</span></div>
+  </div>
+</footer>
+</body>
+</html>

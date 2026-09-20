@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Security and data · Kept by JQT</title>
+<meta name="description" content="What Kept actually implements today, and the four things it does not, named rather than implied.">
+<link rel="canonical" href="https://jqtenterprises.com/kept/security/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/kept/kept.css">
+</head>
+<body>
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="/">JQT</a>
+    <div class="nav-links">
+      <a href="/kept/how/">How it works</a>
+      <a href="/kept/record/">The record</a>
+      <a href="/kept/security/">Security</a>
+      <a href="/kept/pricing/">Pricing</a>
+      <a href="/kept/faq/">Questions</a>
+    </div>
+    <a href="/#book" class="nav-cta">Book a call</a>
+  </div>
+</nav>
+<main style="padding-top:78px">
+<section class="sec" id="security">
+  <div class="wrap sec-in">
+    <div class="eyebrow"><i></i>Data and security</div>
+    <h2>What is true today, <em>and what is not built</em>.</h2>
+    <p class="lede">Security pages usually list everything the vendor wishes were true. This one lists what ships, then names what does not, because you can check either in about one question.</p>
+
+    <div class="three">
+      <div class="pt">
+        <div class="no">01</div>
+        <h3>Your own instance</h3>
+        <p>Kept runs one property per instance with its own database. Your operation is not a row in a table shared with other hotels, and there is no pooled dataset to be exposed by somebody else's mistake.</p>
+        <p>That is the trade we made first, ahead of the list below.</p>
+      </div>
+      <div class="pt">
+        <div class="no">02</div>
+        <h3>Access is per person</h3>
+        <p>Every account is a person with a role: housekeeper, front desk, manager, owner. People see what their job requires. Access is granted and revoked per person from the back office rather than through a support queue.</p>
+        <p>Encrypted in transit with TLS. Backups run automatically on a schedule. Export or delete your data whenever you want.</p>
+      </div>
+      <div class="pt">
+        <div class="no">03</div>
+        <h3>There is little to steal</h3>
+        <p>Room numbers, staff first names, checklists and photographs of broken things. No guest names, no reservations, no card data.</p>
+        <p>The blast radius of a housekeeping tool should be small, and this one's is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="wrap sec-in">
+    <div class="eyebrow"><i></i>Not built yet</div>
+    <h2>Four things we <em>will not claim</em>.</h2>
+    <p class="lede">These appeared on this site until September 2026 and they were not true. They are on the roadmap. They are not in the product.</p>
+    <div class="three">
+      <div class="pt"><div class="no">01</div><h3>Encryption at rest</h3><p>The database is not encrypted on disk. Disk level encryption on the host is the current answer, which is not the same thing.</p></div>
+      <div class="pt"><div class="no">02</div><h3>Single sign on</h3><p>No SAML, no OAuth. Sign in is a first name and a PIN on the floor, a password in the office.</p></div>
+      <div class="pt"><div class="no">03</div><h3>Two factor</h3><p>Not implemented. A second factor on a shared phone in a linen closet also needs thought before it is worth the friction.</p></div>
+    </div>
+    <p class="lede" style="margin-top:34px"><b>Point in time recovery</b> is the fourth. Backups are scheduled snapshots, so recovery lands on a backup, not on an arbitrary minute. If any of these four is a requirement for you, say so on the call and we will tell you where it actually sits.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap sec-in">
+    <div class="eyebrow"><i></i>The part that is unusual</div>
+    <h2>The record is verifiable <em>without us</em>.</h2>
+    <p class="lede">Every action appends to a log nobody can quietly edit, including JQT, and its head is anchored daily to public RFC 3161 timestamp authorities. An auditor checks it years later with openssl and no account with anyone. <a href="/kept/record/">How the record works</a>.</p>
+  </div>
+</section>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="fb">
+        <div class="fb-kept">kept</div>
+        <p>Hotel operations software, built by JQT inside a working hotel. Housekeeping, maintenance, supplies, and a record that holds up.</p>
+      </div>
+      <div class="fcol">
+        <h4>Kept</h4>
+        <a href="#how">The difference</a>
+        <a href="#why">Why it gets used</a>
+        <a href="#record">The record</a>
+        <a href="#surfaces">What it runs on</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">Questions</a>
+      </div>
+      <div class="fcol">
+        <h4>JQT</h4>
+        <a href="/">How JQT works</a>
+        <a href="/#approach">The approach</a>
+        <a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a>
+        <a href="https://instagram.com/jqtenterprises" target="_blank" rel="noopener">Instagram</a>
+        <a href="/#book">Book a call</a>
+      </div>
+    </div>
+    <div class="foot-btm"><span>&copy; 2026 JQT Enterprises, LLC</span><span>Fort Lauderdale, Florida</span><span><a href="/kept/terms/">Terms of Service</a></span><span><a href="/kept/privacy/">Privacy Policy</a></span><span>Powered by JQT</span></div>
+  </div>
+</footer>
+</body>
+</html>
