@@ -842,3 +842,85 @@ html.js .build-row.open .bc-more > p{opacity:1;filter:blur(0)}
   .app-panel .preview-rooms{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 
+/* Mobile header menu. Hidden everywhere except phone/tablet widths. */
+.mobile-menu-toggle,.mobile-menu{display:none}
+
+@media(max-width:900px){
+  .mobile-menu-toggle{
+    margin-left:auto;
+    width:44px;height:44px;
+    padding:0;
+    border:0;
+    background:transparent;
+    color:currentColor;
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    cursor:pointer;
+    border-radius:999px;
+  }
+  .mobile-menu-toggle span{
+    display:block;
+    width:20px;height:1.5px;
+    background:currentColor;
+    border-radius:2px;
+    transition:transform .25s var(--ease),opacity .2s var(--ease);
+  }
+  .mobile-open .mobile-menu-toggle span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .mobile-open .mobile-menu-toggle span:nth-child(2){opacity:0}
+  .mobile-open .mobile-menu-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+  .mobile-menu{
+    position:absolute;
+    left:0;right:0;top:100%;
+    padding:10px 16px 16px;
+    background:rgba(240,237,232,.96);
+    color:var(--ink);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(18px) saturate(150%);
+    -webkit-backdrop-filter:blur(18px) saturate(150%);
+    box-shadow:0 18px 34px rgba(0,0,0,.08);
+  }
+  .mobile-open .mobile-menu{display:grid}
+  .mobile-menu a{
+    min-height:48px;
+    display:flex;
+    align-items:center;
+    padding:0 4px;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+    font-weight:600;
+  }
+  .mobile-menu a:last-child{border-bottom:0}
+
+  .home .nav:not(.scrolled).mobile-open,
+  .kept-page .nav:not(.scrolled).mobile-open{
+    background:rgba(240,237,232,.96);
+    color:var(--ink);
+    backdrop-filter:blur(18px) saturate(150%);
+    -webkit-backdrop-filter:blur(18px) saturate(150%);
+  }
+  .home .nav:not(.scrolled).mobile-open .brand span,
+  .kept-page .nav:not(.scrolled).mobile-open .brand span{
+    filter:none;text-shadow:none;
+  }
+  .home .nav:not(.scrolled).mobile-open .nav-cta,
+  .kept-page .nav:not(.scrolled).mobile-open .nav-cta{
+    color:var(--ink);
+    border-color:var(--line2);
+    background:transparent;
+  }
+}
+
+@media(max-width:760px){
+  .nav-in{justify-content:flex-start}
+  .mobile-menu-toggle{margin-left:auto}
+  .nav-cta{margin-left:0}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .mobile-menu-toggle span{transition:none}
+}
+
