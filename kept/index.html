@@ -1,1 +1,299 @@
-The requested file reference is not currently visible. Use files.search or files.list to rediscover the file, then retry with a returned ref_id or file_id.
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kept · Hotel operations software by JQT</title>
+<meta name="description" content="Kept is hotel operations software for housekeeping, front desk, maintenance, supplies and the operational record.">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body class="kept-page">
+<nav class="nav"><div class="wrap nav-in">
+  <a class="brand" href="../index.html"><span>J</span><span>Q</span><span>T</span></a>
+  <div class="nav-links"><a href="how/index.html">How it works</a><a href="record/index.html">Record</a><a href="security/index.html">Security</a><a href="pricing/index.html">Pricing</a></div>
+  <a class="nav-cta" href="mailto:hello@jqtenterprises.com?subject=Kept%20demo">Book a demo</a>
+</div></nav>
+
+<header class="page-hero kept-hero video-hero">
+  <video id="keptHeroVideo" class="hero-video" autoplay muted playsinline preload="metadata" poster="../assets/kept-hospitality-hero.jpg" aria-hidden="true">
+    <source src="../assets/kept-hospitality-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="wrap hero-copy">
+    <div class="kicker">Kept · by JQT</div>
+    <h1>Hotel operations. One live system.</h1>
+    <p>Housekeeping, front desk, maintenance, supplies and the operational record across desktop and mobile.</p>
+    <div class="actions"><a class="btn primary" href="#demo">Run the demo</a><a class="btn" href="mailto:hello@jqtenterprises.com?subject=Kept%20demo">Book a demo</a></div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true"><span></span>Scroll</div>
+</header>
+
+<section class="section demo-section" id="demo"><div class="wrap">
+  <div class="kicker">Product demo</div>
+  <h2>Run a room through Kept.</h2>
+  <p class="intro">Tap any room that still needs work, complete its checklist, then mark it clean. Or run the sequence automatically.</p>
+  <div class="demo-actions"><button class="btn primary" id="seeRun" type="button">Run demo</button><button class="btn" id="resetDemo" type="button">Reset</button></div>
+
+  <div class="kept-demo-shell">
+    <div class="kept-board" id="board">
+      <div class="demo-mods">
+        <div class="demo-mod on">Housekeeping</div>
+        <div class="demo-mod">Maintenance</div>
+        <div class="demo-mod">Supplies</div>
+        <div class="demo-mod">Audit log</div>
+      </div>
+      <div class="demo-board-top">
+        <div class="demo-board-title">Floors 1 to 3 <span class="live">Live</span></div>
+        <div class="demo-counts">
+          <span class="c-ok">Clean <b id="cClean">0</b></span>
+          <span>Left <b id="cLeft">0</b></span>
+        </div>
+      </div>
+      <div class="demo-bar"><i id="bar"></i></div>
+      <div class="demo-board-body">
+        <div class="demo-rooms" id="rooms"></div>
+        <div class="demo-panel" id="panel"></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+  <div class="kicker">The system</div>
+  <h2>One job per surface.</h2>
+  <div class="feature-grid">
+    <div class="feature"><h3>Floor</h3><p>Assigned rooms, checklist progress, issues, safety and task completion on the phone.</p></div>
+    <div class="feature"><h3>Front desk</h3><p>Current room readiness and the status the desk needs while the guest is standing there.</p></div>
+    <div class="feature"><h3>Office</h3><p>Assignments, maintenance, inventory, projects, reporting and the audit record.</p></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="kicker">Operational flow</div>
+  <h2>Morning report in. Live status all day. Clean sheet out.</h2>
+  <div class="record-stack">
+    <div class="record-row"><div class="num">01</div><div><h3>Import</h3><p>The morning room status report opens the day and seeds the board.</p></div></div>
+    <div class="record-row"><div class="num">02</div><div><h3>Operate</h3><p>Assignments, checklist progress, maintenance, supplies and room state update across the property.</p></div></div>
+    <div class="record-row"><div class="num">03</div><div><h3>Close</h3><p>Kept exports the updated room status sheet and preserves the operational record behind it.</p></div></div>
+  </div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+  <div class="kicker">Plans</div>
+  <h2>Three operating levels.</h2>
+  <div class="tier-grid">
+    <article class="tier core">
+      <div class="edition">Kept Core</div><h3>Run the floor.</h3><div class="price">$199 <small>/ property / month</small></div>
+      <ul>
+        <li>Floor app, front desk view and office board</li>
+        <li>Required checklist before room completion</li>
+        <li>Audit record and daily anchoring</li>
+        <li>English, Spanish and Haitian Creole</li>
+        <li>Safety alerts</li>
+        <li>Lost and found custody trail</li>
+        <li>PMS import and export</li>
+      </ul>
+      <div class="tier-foot"><a class="btn" href="pricing/index.html">View plan</a></div>
+    </article>
+    <article class="tier operations">
+      <div class="edition">Kept Operations</div><h3>Run the property.</h3><div class="price">$349 <small>/ property / month</small></div>
+      <ul>
+        <li>Everything in Core</li>
+        <li>Maintenance log and work orders</li>
+        <li>Supplies and floor alerts</li>
+        <li>Buy list</li>
+        <li>Weekly owner reporting</li>
+      </ul>
+      <div class="tier-foot"><a class="btn" href="pricing/index.html">View plan</a></div>
+    </article>
+    <article class="tier control">
+      <div class="edition">Kept Control</div><h3>Control the operation.</h3><div class="price">$499 <small>/ property / month</small></div>
+      <ul>
+        <li>Everything in Operations</li>
+        <li>Projects across multiple days</li>
+        <li>Assignment weighting and rebalance</li>
+        <li>Inventory forecasting and reorder logic</li>
+        <li>Priority support</li>
+      </ul>
+      <div class="tier-foot"><a class="btn" href="pricing/index.html">View plan</a></div>
+    </article>
+  </div>
+</div></section>
+
+<section class="cta-band"><div class="wrap">
+  <div class="kicker">Kept</div><h2>See Kept against your own room list.</h2>
+  <div class="actions"><a class="btn primary" href="mailto:hello@jqtenterprises.com?subject=Kept%20demo">Book a demo</a></div>
+</div></section>
+
+<footer class="footer"><div class="wrap footer-grid">
+  <div><div class="brandline">Kept</div><p>Hotel operations software by JQT.</p></div>
+  <div><h4>Product</h4><a href="how/index.html">How it works</a><a href="record/index.html">Record</a><a href="security/index.html">Security</a><a href="pricing/index.html">Pricing</a><a href="faq/index.html">Questions</a></div>
+  <div><h4>JQT</h4><a href="../index.html">JQT Enterprises</a><a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a></div>
+</div><div class="wrap"><small>© <span data-year>2026</span> JQT Enterprises, LLC</small></div></footer>
+
+<script src="../script.js"></script>
+<script>
+(function(){
+  var video=document.getElementById("keptHeroVideo");
+  if(!video)return;
+  var START=5.0, END=29.0;
+  var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function enterSegment(){
+    if(video.currentTime < START-0.15 || video.currentTime >= END){
+      try{ video.currentTime=START; }catch(e){}
+    }
+    if(reduced){ video.pause(); return; }
+    var promise=video.play();
+    if(promise&&promise.catch)promise.catch(function(){});
+  }
+  video.addEventListener("loadedmetadata",enterSegment,{once:true});
+  video.addEventListener("timeupdate",function(){
+    if(reduced) return;
+    if(video.currentTime>=END){video.currentTime=START;video.play().catch(function(){});}
+  });
+  video.addEventListener("ended",enterSegment);
+})();
+</script>
+<script>
+(function(){
+  var ZONES_DEP=["Bed and linens","Bathroom","Floors","Supplies","Surfaces","Trash"];
+  var ZONES_STAY=["Tidy and make","Bathroom refresh","Floors","Supplies","Trash"];
+  var initialRooms=[
+    {n:101,t:"King",g:"Vacant",hk:"clean"},
+    {n:104,t:"2 Queen",g:"Stay Over",hk:"dirty"},
+    {n:106,t:"King",g:"Vacant",hk:"clean"},
+    {n:107,t:"King",g:"Departing",hk:"dirty"},
+    {n:108,t:"2 Queen",g:"Stay Over",hk:"working"},
+    {n:109,t:"King",g:"Departing",hk:"dirty",flag:true},
+    {n:110,t:"King",g:"Arriving",hk:"dirty"},
+    {n:112,t:"2 Queen",g:"Stay Over",hk:"working"},
+    {n:123,t:"Suite",g:"Departing",hk:"dirty"},
+    {n:125,t:"Suite",g:"Vacant",hk:"clean"},
+    {n:127,t:"King Suite",g:"Departing",hk:"dirty"},
+    {n:135,t:"2 Queen",g:"Stay Over",hk:"dirty"}
+  ];
+  var initialLog=[
+    {t:"10:09a",cls:"flag",m:"Room <b>109</b> flagged · AC not cooling"},
+    {t:"10:04a",cls:"ok",m:"Room <b>106</b> marked clean · Rosa"},
+    {t:"9:52a",cls:"ok",m:"Room <b>101</b> marked clean · Maria"},
+    {t:"9:36a",cls:"",m:"Morning report imported · 42 rooms"},
+    {t:"9:31a",cls:"",m:"<b>Nadia</b> assigned floor 1 to Maria"}
+  ];
+  var rooms,logItems,selected,busy,clock,timers=[];
+  var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var roomsEl=document.getElementById("rooms"),panelEl=document.getElementById("panel");
+
+  function clone(v){return JSON.parse(JSON.stringify(v));}
+  function fmt(m){var h=Math.floor(m/60),mm=m%60,ap=h>=12?"p":"a";h=h%12;if(h===0)h=12;return h+":"+(mm<10?"0":"")+mm+ap;}
+  function tick(){clock+=2;return fmt(clock);}
+  function clearTimers(){timers.forEach(clearTimeout);timers=[];}
+  function later(fn,ms){timers.push(setTimeout(fn,ms));}
+
+  function reset(){
+    clearTimers();
+    rooms=clone(initialRooms); logItems=clone(initialLog); selected=null; busy=false; clock=10*60+9;
+    renderRooms(); panelDefault(); counts();
+  }
+  function tallies(){
+    var c={clean:0,working:0,dirty:0};
+    rooms.forEach(function(r){if(r.hk==="clean")c.clean++;else if(r.hk==="working")c.working++;else c.dirty++;});
+    return c;
+  }
+  function counts(){
+    var t=tallies(),clean=document.getElementById("cClean"),left=document.getElementById("cLeft"),bar=document.getElementById("bar");
+    if(clean)clean.textContent=t.clean;
+    if(left)left.textContent=rooms.length-t.clean;
+    if(bar)bar.style.width=(t.clean/rooms.length*100)+"%";
+  }
+  function renderRooms(){
+    roomsEl.innerHTML="";
+    var hint=document.createElement("div");
+    hint.className="demo-hint";
+    hint.innerHTML='<span class="dot"></span> Tap any room that still needs work';
+    roomsEl.appendChild(hint);
+    rooms.forEach(function(r,i){
+      var d=document.createElement(r.hk==="dirty"?"button":"div");
+      d.className="demo-room "+r.hk+(selected===i?" sel":"");
+      var badge=r.hk==="clean"?'<span class="chk">✓</span>':(r.flag?'<span class="flag"></span>':"");
+      d.innerHTML=badge+'<div class="rn">'+r.n+'</div><div class="rt">'+r.t+'</div><div class="rg">'+r.g+'</div>';
+      if(r.hk==="dirty"){d.type="button";d.addEventListener("click",function(){selectRoom(i);});}
+      roomsEl.appendChild(d);
+    });
+  }
+  function panelDefault(){
+    var c=tallies(),total=rooms.length;
+    function seg(n,col){return n?'<span style="width:'+(n/total*100)+'%;background:'+col+'"></span>':'';}
+    var h='<div class="demo-progress"><div class="demo-panel-head">Shift progress</div>'+
+      '<div class="demo-progress-bar">'+seg(c.clean,"#54a077")+seg(c.working,"#c49b52")+seg(c.dirty,"#b06a4f")+'</div>'+
+      '<div class="demo-progress-key">'+
+        '<span><i style="background:#54a077"></i>Clean <b>'+c.clean+'</b></span>'+
+        '<span><i style="background:#c49b52"></i>Working <b>'+c.working+'</b></span>'+
+        '<span><i style="background:#b06a4f"></i>To go <b>'+c.dirty+'</b></span>'+
+      '</div></div>';
+    h+='<div class="demo-panel-head">Activity</div><ul class="demo-log">';
+    logItems.forEach(function(e){h+='<li><span class="t">'+e.t+'</span><span class="m '+e.cls+'">'+e.m+'</span></li>';});
+    panelEl.innerHTML=h+'</ul>';
+  }
+  function selectRoom(i){
+    selected=i;renderRooms();
+    var r=rooms[i],zones=(r.g==="Stay Over")?ZONES_STAY:ZONES_DEP,done={};
+    var h='<div class="demo-panel-head">Room <span class="demo-back" id="back">Back to activity</span></div>';
+    h+='<div class="demo-checklist"><div class="demo-room-head">'+r.n+' <small>'+(r.g==="Stay Over"?"Stayover":"Checkout")+' · '+r.t+' · '+r.g+'</small></div>';
+    zones.forEach(function(z,zi){h+='<div class="demo-zone" data-z="'+zi+'"><span class="box">✓</span>'+z+'</div>';});
+    h+='<div class="demo-check-actions"><div class="demo-gate" id="gate">Complete the checklist to mark clean</div><button class="demo-mark" id="mark">Mark room clean</button><button class="demo-flag" id="flag">Flag maintenance</button></div></div>';
+    panelEl.innerHTML=h;
+    var total=zones.length,markBtn=document.getElementById("mark"),gate=document.getElementById("gate");
+    function refresh(){
+      var n=Object.keys(done).length;
+      if(n===total){markBtn.classList.add("ready");gate.textContent="Checklist complete, saved to your log";}
+      else{markBtn.classList.remove("ready");gate.textContent=(total-n)+" of "+total+" left to check";}
+    }
+    Array.prototype.forEach.call(panelEl.querySelectorAll(".demo-zone"),function(zEl){
+      zEl.addEventListener("click",function(){
+        var zi=zEl.getAttribute("data-z");
+        if(done[zi]){delete done[zi];zEl.classList.remove("done");}
+        else{done[zi]=1;zEl.classList.add("done");}
+        refresh();
+      });
+    });
+    document.getElementById("back").addEventListener("click",function(){selected=null;renderRooms();panelDefault();});
+    markBtn.addEventListener("click",function(){
+      if(Object.keys(done).length!==total)return;
+      r.hk="clean";selected=null;
+      logItems.unshift({t:tick(),cls:"ok",m:"Room <b>"+r.n+"</b> marked clean · Maria"});
+      renderRooms();panelDefault();counts();
+    });
+    document.getElementById("flag").addEventListener("click",function(){
+      r.flag=true;
+      logItems.unshift({t:tick(),cls:"flag",m:"Room <b>"+r.n+"</b> flagged · AC not cooling"});
+      renderRooms();
+    });
+    refresh();
+  }
+  function autoDemo(){
+    if(busy)return;
+    reset();
+    var idx=-1;for(var k=0;k<rooms.length;k++){if(rooms[k].hk==="dirty"){idx=k;break;}}
+    if(idx<0)return;
+    busy=true;
+    document.getElementById("board").scrollIntoView({behavior:reduced?"auto":"smooth",block:"center"});
+    later(function(){
+      selectRoom(idx);
+      var zoneEls=panelEl.querySelectorAll(".demo-zone"),i=0;
+      function step(){
+        if(i<zoneEls.length){zoneEls[i].click();i++;later(step,reduced?0:280);}
+        else{
+          var mk=document.getElementById("mark");
+          if(mk)later(function(){mk.click();busy=false;},reduced?0:420);
+          else busy=false;
+        }
+      }
+      later(step,reduced?0:350);
+    },reduced?0:400);
+  }
+
+  document.getElementById("seeRun").addEventListener("click",autoDemo);
+  document.getElementById("resetDemo").addEventListener("click",reset);
+  reset();
+})();
+</script>
+</body></html>
