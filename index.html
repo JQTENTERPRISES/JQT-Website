@@ -1,1057 +1,165 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>JQT · Forward deployed operations, and Kept for hotels</title>
-<meta name="description" content="JQT embeds in an operation, builds the system it runs on, and stays to own the outcome. The first one shipped: Kept, hotel housekeeping and operations software, live at a real property. Fort Lauderdale, Florida.">
-<link rel="canonical" href="https://jqtenterprises.com/">
-<meta property="og:title" content="JQT · We build the software your operation runs on">
-<meta property="og:description" content="Forward deployed engineering, productized. The first proof is Kept: hotel operations software, live at a real property.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://jqtenterprises.com/">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<style>
-/* ---- TYPEFACE SYSTEM ----------------------------------------------------
-   One swap point. Change the three --font-* values below and the whole site
-   follows. Nothing anywhere else names a family directly, so a self-hosted
-   face drops in here without touching a single rule.
-   ------------------------------------------------------------------------ */
-:root{
-  --font-display:'Instrument Serif', Georgia, 'Times New Roman', serif;
-  --font-body:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-  --font-mono:ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
-
-  --maxw:1160px; --ease:cubic-bezier(.16,1,.3,1);
-  --ok:#2F8F5B; --okbg:rgba(47,143,91,.12);
-  --warn:#9A731E; --warnbg:rgba(154,115,30,.13);
-  --crit:#B5453A; --critbg:rgba(181,69,58,.12);
-}
-html[data-theme="light"]{
-  --bg:#FBFAF7; --bg2:#F4F2EC; --surface:#FFFFFF; --surface2:#FAF9F5;
-  --line:rgba(20,19,15,.12); --line2:rgba(20,19,15,.22);
-  --ink:#15140F; --text:#1A1916; --muted:#615F57; --faint:#9A988D;
-  --brand:#15140F;
-  --accent:#3D5A7A; --accent2:#3D5A7A; --on-accent:#FBFAF7;
-}
-html[data-theme="dark"]{
-  --bg:#0C0C0D; --bg2:#101012; --surface:#141416; --surface2:#1A1A1D;
-  --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.20);
-  --ink:#F3F2EC; --text:#ECEBE5; --muted:#9C9A91; --faint:#67655E;
-  --brand:#F3F2EC;
-  --accent:#4F719A; --accent2:#6E92BC; --on-accent:#0C0C0D;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-/* iOS Safari inflates text on its own unless this is set, which is how a page
-     that measures correctly in every desktop emulator can still come out looking
-     nothing like the design on an actual iPhone. */
-  html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
-section[id],header[id]{scroll-margin-top:78px}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);
-  line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;
-  transition:background .5s var(--ease),color .5s var(--ease)}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
-.serif{font-family:var(--font-display);font-style:italic;font-weight:400;color:var(--accent2);transition:color .5s var(--ease)}
-a{color:inherit;text-decoration:none}
-.eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-
-nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 80%,transparent);
-  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
-nav.scrolled{border-bottom-color:var(--line);background:color-mix(in srgb,var(--bg) 92%,transparent)}
-.nav-in{max-width:var(--maxw);margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
-.brand{font-weight:800;font-size:21px;letter-spacing:.02em}
-.brand span:nth-child(odd){color:var(--mark1,var(--ink));transition:color .5s var(--ease)}
-.brand span:nth-child(even){color:var(--mark2,var(--ink));transition:color .5s var(--ease)}
-.nav-links{display:flex;gap:34px;font-size:14px;font-weight:500;color:var(--muted)}
-.nav-links a:hover{color:var(--accent)}
-.nav-right{display:flex;align-items:center;gap:13px}
-.toggle{width:36px;height:36px;border-radius:8px;border:1px solid var(--line);background:transparent;cursor:pointer;color:var(--text);font-size:14px}
-.toggle:hover{border-color:var(--line2)}
-.btn{font-family:inherit;font-size:14px;font-weight:600;padding:11px 20px;border-radius:9px;cursor:pointer;
-  border:1px solid transparent;transition:.2s var(--ease);white-space:nowrap}
-.btn-primary{background:var(--accent);color:var(--on-accent)}
-.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
-.btn-ghost{background:transparent;border-color:var(--line2);color:var(--text)}
-.btn-ghost:hover{background:var(--surface2)}
-@media(max-width:840px){.nav-links{display:none}}
-
-.hero{padding:118px 0 96px}
-.hero .eyebrow{margin-bottom:26px;animation:riseIn .7s var(--ease) both .05s}
-.h1{font-size:clamp(44px,7.2vw,86px);line-height:.99;letter-spacing:-.035em;font-weight:800;max-width:13ch;
-  animation:wipeUp .95s var(--ease) both .14s}
-.h1 .serif{font-weight:400;letter-spacing:-.01em}
-.lede{font-size:19px;color:var(--muted);max-width:46ch;margin:34px 0 0;line-height:1.62;animation:riseIn .7s var(--ease) both .36s}
-.hero-cta{display:flex;gap:14px;margin-top:42px;flex-wrap:wrap;animation:riseIn .7s var(--ease) both .5s}
-@keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-@keyframes wipeUp{from{opacity:0;clip-path:inset(0 0 100% 0);transform:translateY(10px)}to{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
-
-section{padding:104px 0}
-.sec-head{max-width:42ch}
-.h2{font-size:clamp(30px,4.3vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.06;margin-top:16px}
-.h2 .serif{font-weight:400}
-.sub{color:var(--muted);font-size:18px;margin-top:18px;max-width:50ch;line-height:1.6}
-
-.board-section{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.avenue-bar{display:flex;align-items:center;gap:10px;margin:34px 0 22px;flex-wrap:wrap}
-.avenue-bar .lbl{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-right:6px}
-.chip{font-size:14px;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--line2);
-  color:var(--muted);cursor:pointer;background:transparent;transition:.16s;font-family:inherit}
-.chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
-.chip:hover{color:var(--text)}
-.opboard{background:var(--surface);border:1px solid var(--line2);border-radius:14px;overflow:hidden;box-shadow:0 24px 60px -40px rgba(0,0,0,.4)}
-.op-top{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--line)}
-.op-top .t{font-weight:700;font-size:15px}
-.op-top .t small{color:var(--faint);font-weight:500;margin-left:8px}
-.op-live{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--ok);display:flex;align-items:center;gap:7px}
-.op-live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok);animation:pulse 1.7s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
-.kpi{padding:20px 22px;border-right:1px solid var(--line)}
-.kpi:last-child{border-right:none}
-.kpi .n{font-size:30px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.kpi .l{font-size:12.5px;color:var(--muted);margin-top:3px}
-.op-cols,.op-row{display:grid;grid-template-columns:1.5fr 1fr 1.3fr 1.1fr .7fr;align-items:center}
-.op-cols{padding:11px 22px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600}
-.op-row{padding:14px 22px;border-bottom:1px solid var(--line);font-size:14px;animation:rowIn .5s var(--ease) both}
-.op-row:last-child{border-bottom:none}
-.op-row .c0{font-weight:600}
-.op-row .cm{color:var(--muted)}
-@keyframes rowIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
-.tag{font-size:12px;font-weight:600;padding:4px 11px;border-radius:6px;justify-self:start;transition:.4s var(--ease)}
-.tag.good{background:var(--okbg);color:var(--ok)}
-.tag.work{background:var(--warnbg);color:var(--warn)}
-.tag.bad{background:var(--critbg);color:var(--crit)}
-.op-log{padding:13px 22px;font-size:12.5px;color:var(--faint);background:var(--surface2)}
-.op-log b{color:var(--muted);font-variant-numeric:tabular-nums}
-@media(max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi:nth-child(2){border-right:none}
-  .op-cols,.op-row{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,.9fr)}.op-cols span:nth-child(2),.op-row .h2col,
-  .op-cols span:nth-child(5),.op-row .last{display:none}}
-
-.steps{margin-top:54px;border-top:1px solid var(--line)}
-.step{display:grid;grid-template-columns:90px 1fr;gap:30px;padding:40px 0;border-bottom:1px solid var(--line);align-items:start}
-.step .no{font-family:var(--font-display);font-style:italic;font-size:46px;color:var(--muted);line-height:1;transition:color .6s var(--ease)}
-.astep .no{color:var(--faint)}
-.astep.reached .no{color:var(--accent)}
-.step h3{font-size:24px;font-weight:700;letter-spacing:-.02em}
-.step p{color:var(--muted);font-size:16px;margin-top:10px;max-width:60ch;line-height:1.62}
-@media(max-width:640px){.step{grid-template-columns:minmax(0,1fr);gap:8px}}
-
-.builds{margin-top:48px;border-top:1px solid var(--line)}
-.build{display:grid;grid-template-columns:.55fr 1fr auto;gap:34px;align-items:center;padding:32px 0;border-bottom:1px solid var(--line)}
-.build h3{font-size:21px;font-weight:700;letter-spacing:-.02em}
-.build .em{color:var(--faint);font-size:13px;margin-top:6px}
-.build p{color:var(--muted);font-size:15.5px;line-height:1.56}
-.build .own{font-size:11.5px;font-weight:600;color:var(--accent);border:1px solid var(--accent);padding:7px 13px;border-radius:20px;white-space:nowrap;transition:.5s var(--ease)}
-@media(max-width:720px){.build{grid-template-columns:minmax(0,1fr);gap:10px}.build .own{justify-self:start}}
-
-.ind{display:grid;grid-template-columns:1fr 1fr;margin-top:48px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.ind .cell{padding:34px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);
-  text-align:left;background:transparent;font-family:inherit;cursor:pointer;position:relative;width:100%;color:inherit}
-.ind .cell:hover{background:var(--surface2)}
-.ind .cell .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600}
-.ind .cell h3{font-size:22px;font-weight:700;letter-spacing:-.02em;margin:12px 0 10px}
-.ind .cell p{color:var(--muted);font-size:15px;line-height:1.62}
-.ind .cell .exp{position:absolute;top:34px;right:34px;font-size:22px;color:var(--accent);transition:transform .25s var(--ease)}
-.ind .cell.open .exp{transform:rotate(45deg)}
-.ind .more{max-height:0;overflow:hidden;opacity:0;transition:max-height .45s var(--ease),opacity .3s,margin-top .3s;margin-top:0}
-.ind .cell.open .more{max-height:180px;opacity:1;margin-top:14px}
-@media(max-width:720px){.ind{grid-template-columns:minmax(0,1fr)}}
-
-.founder{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.founder .big{font-size:clamp(26px,3.2vw,36px);font-weight:700;letter-spacing:-.02em;line-height:1.18}
-.founder .big .serif{font-weight:400}
-.founder ul{list-style:none;margin-top:6px}
-.founder li{padding:18px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:15.5px}
-.founder li b{color:var(--text);font-weight:600;display:block;margin-bottom:3px}
-@media(max-width:760px){.founder{grid-template-columns:minmax(0,1fr);gap:30px}}
-
-.ask{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-
-.faq{margin-top:40px;border-top:1px solid var(--line)}
-.faq details{border-bottom:1px solid var(--line)}
-.faq summary{padding:24px 0;font-size:18px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;letter-spacing:-.01em}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";color:var(--muted);font-weight:400;font-size:24px;line-height:1;transition:transform .25s var(--ease);display:inline-block}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq p{padding:0 0 24px;color:var(--muted);font-size:16px;max-width:64ch;line-height:1.65}
-
-.price{display:grid;grid-template-columns:1.2fr 1fr;margin-top:44px;border:1px solid var(--line2);border-radius:14px;overflow:hidden}
-.price .left{padding:42px;border-right:1px solid var(--line)}
-.price .big{font-size:54px;font-weight:800;letter-spacing:-.035em}
-.price .big small{font-size:17px;font-weight:600;color:var(--muted)}
-.price .right{padding:42px;background:var(--surface2);display:flex;flex-direction:column;justify-content:center;gap:16px}
-.price ul{list-style:none}
-.price li{padding:9px 0;color:var(--muted);font-size:15px;border-bottom:1px solid var(--line)}
-@media(max-width:680px){.price{grid-template-columns:minmax(0,1fr)}.price .left{border-right:none;border-bottom:1px solid var(--line)}}
-
-.cta{padding:120px 0}
-.cta h2{font-size:clamp(34px,5.5vw,64px);font-weight:800;letter-spacing:-.035em;line-height:1.02;max-width:16ch}
-
-footer{border-top:1px solid var(--line);padding:64px 0 56px;color:var(--muted)}
-.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
-.foot-grid h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:16px}
-.foot-grid a{display:block;font-size:14.5px;padding:6px 0;color:var(--muted);overflow-wrap:anywhere}
-.foot-grid a:hover{color:var(--accent)}
-.foot-brand .brand{font-size:24px;color:var(--text)}
-.foot-brand p{font-size:14px;margin-top:12px;max-width:30ch;color:var(--faint);line-height:1.6}
-.foot-bottom{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-@media(max-width:760px){.foot-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.foot-brand{grid-column:1/-1}}
-
-.chat-fab{position:fixed;bottom:calc(26px + env(safe-area-inset-bottom));right:26px;z-index:80;background:var(--accent);color:var(--on-accent);
-  font-weight:600;font-size:14px;padding:13px 22px;border-radius:9px;cursor:pointer;border:none;font-family:inherit;box-shadow:0 14px 36px -14px rgba(0,0,0,.5)}
-.chat-fab:hover{opacity:.92}
-.chat-panel{position:fixed;bottom:calc(26px + env(safe-area-inset-bottom));right:26px;z-index:81;width:372px;max-width:calc(100vw - 36px);
-  height:540px;max-height:calc(100vh - 52px);max-height:calc(100dvh - 52px - env(safe-area-inset-bottom));background:var(--surface);border:1px solid var(--line2);border-radius:14px;
-  box-shadow:0 50px 100px -36px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden}
-.chat-panel.open{display:flex}
-.chat-head{padding:17px 19px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--surface2)}
-.chat-head .t{font-weight:700;font-size:15px}
-.chat-head .sub{font-size:11.5px;color:var(--muted);margin-top:1px}
-.chat-x{background:none;border:none;color:var(--muted);font-size:21px;cursor:pointer;line-height:1}
-.chat-body{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:11px}
-.msg{max-width:85%;padding:11px 14px;border-radius:12px;font-size:14px;line-height:1.5}
-.msg.bot{background:var(--surface2);border:1px solid var(--line);align-self:flex-start}
-.msg.user{background:var(--accent);color:var(--on-accent);align-self:flex-end;font-weight:500}
-.msg.typing{color:var(--muted);font-style:italic}
-.chips{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 6px}
-.chip-q{font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:16px;border:1px solid var(--line2);background:var(--surface2);color:var(--text);cursor:pointer;font-family:inherit;transition:.15s var(--ease)}
-.chip-q:hover{border-color:var(--accent);color:var(--accent)}
-.chat-foot{padding:13px;border-top:1px solid var(--line);display:flex;gap:9px}
-.chat-foot input{flex:1;background:var(--bg);border:1px solid var(--line2);border-radius:9px;padding:11px 13px;color:var(--text);font-family:inherit;font-size:14px;outline:none}
-.chat-foot input:focus{border-color:var(--accent)}
-.chat-send{background:var(--accent);color:var(--on-accent);border:none;border-radius:9px;width:44px;cursor:pointer;font-size:16px}
-.chat-note{font-size:10.5px;color:var(--faint);text-align:center;padding:0 12px 10px}
-
-/* ===== Kept as the proof (homepage) ===== */
-.nav-links a.kept-link{display:inline-flex;align-items:center;gap:7px;color:var(--text);font-weight:600}
-.nav-links a.kept-link::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);flex:0 0 auto}
-.hero-proof{display:flex;align-items:flex-start;gap:10px;margin-top:26px;font-size:13.5px;color:var(--muted);
-  line-height:1.55;max-width:56ch}
-.hero-proof>span:last-child{flex:1;min-width:0}
-.hero-proof .hp-dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:0 0 auto;
-  margin-top:7px;animation:hpp 2.6s infinite}
-@keyframes hpp{0%{box-shadow:0 0 0 0 rgba(47,143,91,.45)}70%{box-shadow:0 0 0 7px rgba(47,143,91,0)}100%{box-shadow:0 0 0 0 rgba(47,143,91,0)}}
-.hero-proof b{color:var(--text);font-weight:600}
-.hero-proof a{color:var(--accent);font-weight:600;border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
-.hero-proof a:hover{border-bottom-color:var(--accent)}
-
-.proof-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:48px;align-items:start;margin-top:46px}
-@media(max-width:900px){.proof-grid{grid-template-columns:minmax(0,1fr);gap:34px}}
-.proof-pts{list-style:none;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
-.proof-pts li{padding:19px 0;border-bottom:1px solid var(--line)}
-.proof-pts li b{display:block;font-size:15.5px;font-weight:600;color:var(--ink);margin-bottom:5px;letter-spacing:-.01em}
-.proof-pts li span{display:block;font-size:14px;line-height:1.6;color:var(--muted)}
-.proof-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:30px}
-
-.kept-window{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;
-  box-shadow:0 30px 70px -34px rgba(20,30,50,.4)}
-.kw-bar{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--surface2);border-bottom:1px solid var(--line)}
-.kw-bar .dots{display:flex;gap:5px}
-.kw-bar .dots i{width:9px;height:9px;border-radius:50%;background:var(--line2);display:block}
-.kw-url{flex:1;display:flex;align-items:center;gap:7px;background:var(--bg);border:1px solid var(--line);
-  border-radius:7px;padding:5px 10px;font-size:11.5px;color:var(--muted);
-  font-family:var(--font-mono);letter-spacing:.01em;min-width:0}
-.kw-url svg{flex:0 0 auto;opacity:.7}
-.kw-url span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.kw-url b{color:var(--text);font-weight:600}
-.kw-body{background:#131D29;padding:16px}
-.kw-head{display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap}
-.kw-head .t{font-size:12.5px;font-weight:600;color:#E9EFF6}
-.kw-head .lv{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;
-  text-transform:uppercase;color:#54A077;display:inline-flex;align-items:center;gap:6px}
-.kw-head .lv::before{content:"";width:6px;height:6px;border-radius:50%;background:#54A077}
-.kw-head .cnt{margin-left:auto;font-family:var(--font-mono);font-size:10.5px;color:#9AABC0}
-.kw-head .cnt b{color:#E9EFF6}
-.kw-rooms{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
-@media(max-width:420px){.kw-rooms{grid-template-columns:repeat(5,1fr)}}
-.kw-rooms i{display:block;height:30px;border-radius:5px;background:#182533;border-left:3px solid #B06A4F;
-  font-style:normal;font-size:10.5px;color:#9AABC0;display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-mono);font-variant-numeric:tabular-nums}
-.kw-rooms i.ok{border-left-color:#54A077;color:#E9EFF6}
-.kw-rooms i.wk{border-left-color:#CF9A37;color:#E9EFF6}
-.kw-foot{margin-top:14px;padding-top:13px;border-top:1px solid rgba(255,255,255,.09);
-  display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:11.5px;color:#9AABC0;
-  font-family:var(--font-mono);letter-spacing:.02em}
-.kw-foot .sh{display:inline-flex;align-items:center;gap:6px;color:#54A077;border:1px solid rgba(84,160,119,.4);
-  background:rgba(84,160,119,.14);padding:3px 9px;border-radius:20px;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
-.kept-cap{margin-top:14px;font-size:12.5px;color:var(--faint);line-height:1.55;text-align:center}
-
-.ind .cell .liveflag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--ok);background:var(--okbg);
-  border:1px solid color-mix(in srgb,var(--ok) 35%,transparent);padding:3px 9px;border-radius:20px;margin-bottom:10px}
-.ind .cell .liveflag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
-.ind .cell .nextflag{display:inline-flex;align-items:center;font-size:10.5px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);
-  padding:3px 9px;border-radius:20px;margin-bottom:10px}
-
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.reveal.in{opacity:1;transform:none}
-
-/* TOUCH TARGETS.
-   Apple's minimum is 44x44 and Android's is 48dp. On a phone the theme toggle
-   was 36px and every avenue chip was 37px, which is the difference between
-   tapping a control and tapping near it. Only STANDALONE controls are raised:
-   an inline link inside a sentence stays at text height, because padding it to
-   44px would wreck the line it sits in and nobody expects to tap a word twice.
-   Pointer-coarse rather than width, so it follows the input device rather than
-   guessing from the screen. */
-@media (pointer: coarse), (max-width: 520px){
-  .toggle{width:44px;height:44px}
-  .chip{padding:12px 16px;min-height:44px;display:inline-flex;align-items:center}
-  .chat-fab{min-height:44px}
-  .foot-grid a{padding:9px 0;display:inline-block}
-}
-/* The avenue chips wrapped 2 / 1 / 1 at 393px, which reads as a broken grid
-   rather than a row that ran out of room. Two even columns is a deliberate
-   shape and it fits the longest label, "Property Management", without
-   shrinking the type. */
-@media (max-width: 520px){
-  .avenue-bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:stretch}
-  .avenue-bar .lbl{grid-column:1 / -1;margin-right:0;margin-bottom:2px}
-  .avenue-bar .chip{justify-content:center;text-align:center;width:100%}
-  .chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  .chips .chip{justify-content:center;text-align:center}
-}
-@media (prefers-reduced-motion: reduce){
-  *{animation:none !important;transition:none !important}
-  .reveal{opacity:1;transform:none}
-}
-
-/* WHAT IS BROKEN. The site demonstrating the business instead of describing it:
-   pick the symptom, get back the shape of the system we would build for it. */
-.broken{margin-top:36px}
-.bk-opts{display:grid;grid-template-columns:minmax(0,1fr);gap:9px}
-.bk-opt{text-align:left;font:inherit;font-size:15px;font-weight:500;color:var(--text);
-  background:var(--surface);border:1px solid var(--line2);border-radius:8px;padding:15px 17px;
-  cursor:pointer;min-height:52px;transition:.22s var(--ease)}
-.bk-opt:hover{border-color:var(--accent)}
-.bk-opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff}
-.bk-out{margin-top:16px;border:1px solid var(--line);border-radius:10px;background:var(--surface);
-  padding:20px;display:none}
-.bk-out.on{display:block}
-.bk-out .k{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:10px}
-.bk-out h4{margin:0 0 8px;font-size:18px;font-weight:700;letter-spacing:-.01em}
-.bk-out p{margin:0 0 14px;color:var(--muted);font-size:15px;line-height:1.6}
-.bk-flow{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
-.bk-step{font-size:12.5px;font-weight:600;background:var(--bg2);border:1px solid var(--line);
-  border-radius:20px;padding:7px 13px}
-.bk-arrow{color:var(--faint);font-size:13px}
-@media(min-width:720px){.bk-opts{grid-template-columns:repeat(2,minmax(0,1fr))}}
-</style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "JQT Enterprises",
-  "alternateName": "JQT",
-  "url": "https://jqtenterprises.com",
-  "logo": "https://jqtenterprises.com/logo.png",
-  "description": "JQT Enterprises is a forward-deployed operations firm in Fort Lauderdale, Florida. It embeds in a business, builds the operating system that business runs on, then stays to run it and own the outcome. Its first product is Kept, hotel operations software.",
-  "slogan": "We embed, we build, we own the outcome.",
-  "email": "hello@jqtenterprises.com",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Fort Lauderdale",
-    "addressRegion": "FL",
-    "addressCountry": "US"
-  },
-  "sameAs": [
-    "https://instagram.com/jqtenterprises"
-  ],
-  "knowsAbout": [
-    "hotel housekeeping operations",
-    "forward deployed engineering",
-    "operational systems of record",
-    "tamper-evident audit logging"
-  ],
-  "makesOffer": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "minPrice": "199",
-      "maxPrice": "499",
-      "priceCurrency": "USD",
-      "description": "Per property, per month."
-    },
-    "itemOffered": {
-      "@type": "SoftwareApplication",
-      "name": "Kept",
-      "url": "https://jqtenterprises.com/kept/",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "description": "Hotel housekeeping and operations software built by JQT. A room is not clean until its checklist is complete, and every action lands on an append-only audit log anchored daily to public timestamp authorities. Runs on staff phones in English, Spanish and Haitian Creole. It is not a property management system and holds no guest data."
-    }
-  }
-}
-</script>
+<script>document.documentElement.classList.add("js")</script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JQT · Operations software, automation and integration</title>
+<meta name="description" content="JQT builds custom operations software, automation and integrations.">
+<link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="home">
+<nav class="nav"><div class="wrap nav-in">
+  <a class="brand" href="index.html"><span>J</span><span>Q</span><span>T</span></a>
+  <div class="nav-links"><a href="kept/index.html">Kept</a><a href="#build">What we build</a><a href="#work">How we work</a></div>
+  <a class="nav-cta" href="mailto:hello@jqtenterprises.com?subject=JQT%20project">Start a project</a>
+</div></nav>
 
-<nav id="nav">
-  <div class="nav-in">
-    <div class="brand"><span>J</span><span>Q</span><span>T</span></div>
-    <div class="nav-links">
-      <a href="/kept/" class="kept-link">Kept</a>
-      <a href="#build">What we build</a>
-      <a href="#approach">How we work</a>
-      <a href="#pricing">Pricing</a>
-    </div>
-    <div class="nav-right">
-      <button class="toggle" id="themeBtn" title="Theme">◐</button>
-      <a class="btn btn-primary" href="#cta" onclick="bookCall();return false;">Book a call</a>
+<header class="hero video-hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/jqt-city-hero.jpg" aria-hidden="true">
+    <source src="assets/jqt-city-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="wrap hero-copy">
+    <div class="kicker">JQT Enterprises</div>
+    <h1>Software for the way your operation actually works.</h1>
+    <p>Custom operations software, automation and integration.</p>
+    <div class="actions">
+      <a class="btn primary" href="mailto:hello@jqtenterprises.com?subject=Tell%20us%20the%20problem">Tell us the problem</a>
     </div>
   </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <h1 class="h1">Custom software for the way your business <span class="serif">actually works.</span></h1>
-    <p class="lede">JQT builds software and automation around real operations. We embed, build what the work needs, and stay accountable after launch. When it works, that is our doing. When it slips, that is our problem.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#cta" onclick="bookCall();return false;">Show us what is broken</a>
-      <a class="btn btn-ghost" href="/kept/">See what we built</a>
-    </div>
-    <p class="hero-proof"><span class="hp-dot"></span> <span><b>Kept</b> is the first one: hotel operations software, built inside a working hotel, running on the crew's own phones. From $199 per property per month. <a href="/kept/">See Kept</a></span></p>
-  </div>
+  <div class="hero-scroll" aria-hidden="true"><span></span>Scroll</div>
 </header>
 
-<section>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">The reality</div>
-      <h2 class="h2">Most operations run on memory, <span class="serif">not on a system.</span></h2>
-      <p class="sub">This was never a software problem. The work that keeps you running was never turned into a system, so it survives on memory and good people instead of something dependable. That holds, right up until the day it does not.</p>
-    </div>
-    <div class="steps reveal">
-      <div class="step"><div class="no">i.</div><div><h3>It lives in one person's head</h3><p>That person gets sick, takes vacations, and eventually leaves. Everything they know leaves with them.</p></div></div>
-      <div class="step"><div class="no">ii.</div><div><h3>It is scattered across tools</h3><p>The spreadsheet says one thing, the group chat says another, and the whiteboard stopped being true on Tuesday. There is no version anyone trusts.</p></div></div>
-      <div class="step"><div class="no">iii.</div><div><h3>No one owns the outcome</h3><p>The software vendor shipped. The consultant presented. The agency invoiced. By Monday morning the operation is your problem again, because it never stopped being your problem.</p></div></div>
-    </div>
+<section class="section alt"><div class="wrap">
+  <div class="kicker">Operational problems</div>
+  <h2>Start with the friction.</h2>
+  <div class="problem-grid">
+    <div class="problem">Too many spreadsheets</div>
+    <div class="problem">Manual reporting</div>
+    <div class="problem">Constant status calls</div>
+    <div class="problem">Work lost between teams</div>
+    <div class="problem">Painful audits</div>
+    <div class="problem">Something else</div>
   </div>
-</section>
+</div></section>
 
+<section class="section" id="kept"><div class="wrap">
+  <div class="kicker">Product 01</div>
+  <h2>Kept</h2>
+  <p class="intro">Hotel operations software for housekeeping, maintenance, supplies and the operational record.</p>
+  <div class="kept-stage">
+    <span class="float-chip chip-a"><i class="tick">✓</i>Log verified<em>anchored 04:02a</em></span>
+    <span class="float-chip chip-b"><i class="dot"></i>Live</span>
 
-<section id="kept" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">The proof</div>
-      <h2 class="h2">We already did it. <span class="serif">It is called Kept.</span></h2>
-      <p class="sub">Hotel operations software, built inside a working hotel by working its mornings. The crew opens it on the phones they already own, and a room is not clean until the checklist is.</p>
-    </div>
-
-    <div class="proof-grid reveal">
-      <div>
-        <ul class="proof-pts">
-          <li>
-            <b>Not a pitch deck</b>
-            <span>Real property, real mornings, real record. We will walk you through a shift closing on a call, on the live board.</span>
-          </li>
-          <li>
-            <b>Built for the person holding the phone</b>
-            <span>The property already owned housekeeping software. Installed, paid for, dead. Nobody is trained on Kept, and that is the test.</span>
-          </li>
-          <li>
-            <b>A room is not clean until the checklist is</b>
-            <span>The button does not press until every step has been tapped. Every action appends to a log nobody can quietly edit, including us.</span>
-          </li>
-          <li>
-            <b>The core is reusable, which is the whole point</b>
-            <span>Hotel number two does not start from zero. Neither does the industry after hotels. That is the whole model.</span>
-          </li>
-        </ul>
-        <div class="proof-cta">
-          <a class="btn btn-primary" href="/kept/">See what Kept does</a>
-          <a class="btn btn-ghost" href="/kept/" onclick="keptLeak();return false;">I run a hotel. Find my leak.</a>
-        </div>
+    <div class="app-window">
+      <div class="app-chrome">
+        <span class="lights"><i></i><i></i><i></i></span>
+        <span class="app-url">app.jqtenterprises.com/office</span>
+        <span class="app-bell"></span>
       </div>
 
-      <div>
-        <div class="kept-window">
-          <div class="kw-bar">
-            <span class="dots"><i></i><i></i><i></i></span>
-            <span class="kw-url">
-              <svg width="10" height="12" viewBox="0 0 10 12" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1" y="5" width="8" height="6" rx="1.4"/><path d="M3 5V3.4a2 2 0 0 1 4 0V5"/></svg>
-              <span><b>Kept</b> &middot; back office</span>
-            </span>
+      <div class="app-body">
+        <nav class="app-rail">
+          <div class="rail-brand">Kept<span>Back office</span></div>
+          <div class="rail-group">Today</div>
+          <span class="rail-item">Day controls</span>
+          <span class="rail-item on">Live board</span>
+          <span class="rail-item">Assignments</span>
+          <div class="rail-group">Operations</div>
+          <span class="rail-item">Maintenance</span>
+          <span class="rail-item">Projects</span>
+          <span class="rail-item">Lost &amp; found</span>
+          <span class="rail-item">Inventory</span>
+          <span class="rail-item">Staff</span>
+          <div class="rail-group">Records</div>
+          <span class="rail-item">Overview</span>
+          <span class="rail-item">Audit log</span>
+        </nav>
+
+        <div class="app-main">
+          <div class="app-head">
+            <h3 class="app-title">Kept · Operations board</h3>
+            <span class="app-range">Today</span>
           </div>
-          <div class="kw-body">
-            <div class="kw-head">
-              <span class="t">Floors 1 to 3</span>
-              <span class="lv">Live</span>
-              <span class="cnt">Clean <b>7</b> &nbsp; Left <b>5</b></span>
-            </div>
-            <div class="kw-rooms">
-              <i class="ok">101</i><i>104</i><i class="ok">106</i><i>107</i><i class="wk">108</i><i>109</i>
-              <i>110</i><i class="wk">112</i><i class="ok">121</i><i class="ok">123</i><i class="ok">125</i><i>127</i>
-            </div>
-            <div class="kw-foot">
-              <span class="sh">&#10003; Log verified</span>
-              <span>anchored 04:02a</span>
+
+          <div class="app-kpis">
+            <div class="kpi"><span class="kpi-l">Clean</span><b class="kpi-v">7</b></div>
+            <div class="kpi"><span class="kpi-l">Left</span><b class="kpi-v">5</b></div>
+            <div class="kpi"><span class="kpi-l">To clean</span><b class="kpi-v">5</b></div>
+            <div class="kpi"><span class="kpi-l">Being cleaned</span><b class="kpi-v">2</b></div>
+          </div>
+
+          <div class="app-panel">
+            <div class="preview-rooms">
+              <div class="p-room clean">101</div><div class="p-room">104</div><div class="p-room clean">106</div><div class="p-room">107</div>
+              <div class="p-room work">108</div><div class="p-room">109</div><div class="p-room">110</div><div class="p-room work">112</div>
+              <div class="p-room clean">121</div><div class="p-room clean">123</div><div class="p-room clean">125</div><div class="p-room">127</div>
             </div>
           </div>
+
+          <div class="app-panel preview-activity">
+            <div class="preview-label">Activity</div>
+            <p><b>10:09a</b> Room 109 flagged · AC not cooling</p>
+            <p><b>10:04a</b> Room 106 marked clean · Rosa</p>
+            <p><b>9:52a</b> Room 101 marked clean · Maria</p>
+          </div>
         </div>
-        <p class="kept-cap">Kept, running. The full product page has the record, the pricing, and the three things it deliberately does not do.</p>
       </div>
     </div>
+
+    <div class="caption">Desktop operations view. Mobile is built for task execution on the floor.</div>
   </div>
-</section>
+  <div class="actions"><a class="btn primary" href="kept/index.html#demo">Run the Kept demo</a><a class="btn" href="kept/index.html">View Kept</a></div>
+</div></section>
 
-<section class="board-section" id="system">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">The same engine, other floors</div>
-      <h2 class="h2">Hotels first. <span class="serif">Then the next floor.</span></h2>
-      <p class="sub">One engine: status, ownership, deadlines, handoffs, and a record behind all of it. Pick the operation that resembles your Monday.</p>
-    </div>
-    <div class="avenue-bar reveal">
-      <span class="lbl">Pick an avenue</span>
-      <button class="chip" data-v="hotel" aria-pressed="true">Hotels</button>
-      <button class="chip" data-v="aviation">Aviation</button>
-      <button class="chip" data-v="property">Property Management</button>
-      <button class="chip" data-v="field">Field Operations</button>
-    </div>
-    <div class="opboard reveal" id="board">
-      <div class="op-top">
-        <div class="t" id="opTitle">Housekeeping Operations<small id="opSub">live floor status</small></div>
-        <div class="op-live">LIVE</div>
-      </div>
-      <div class="kpis" id="opKpis"></div>
-      <div class="op-cols" id="opCols"></div>
-      <div id="opRows"></div>
-      <div class="op-log" id="opLog"><b>online</b> &nbsp; system synced</div>
-    </div>
+<section class="section alt" id="build"><div class="wrap">
+  <div class="kicker">What we build</div>
+  <h2>Three capabilities.</h2>
+  <div class="build-list">
+    <article class="build-row">
+      <span class="bc-icon" aria-hidden="true"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="17" height="12" rx="2"/><path d="M7 19h8M11 15.5V19"/></svg></span>
+      <h3>Operations software</h3>
+      <p>Purpose-built systems for the work your team runs every day.</p>
+      <div id="build-more-operations" class="bc-more"><p>Who owns what, what state it is in, what is due. One screen the floor, the desk and the office all read.</p></div>
+      <button class="bc-go" type="button" aria-expanded="false" aria-controls="build-more-operations" aria-label="More on Operations software"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5 10.5 3.5M5 3.5h5.5V9"/></svg></button>
+    </article>
+    <article class="build-row">
+      <span class="bc-icon" aria-hidden="true"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h4l2.5-6 3 12 2.5-6h4"/></svg></span>
+      <h3>Automation</h3>
+      <p>Rules, alerts and handoffs that remove repetitive work from the operation.</p>
+      <div id="build-more-automation" class="bc-more"><p>The handoffs, chases and re-typing that eat a morning.</p></div>
+      <button class="bc-go" type="button" aria-expanded="false" aria-controls="build-more-automation" aria-label="More on Automation"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5 10.5 3.5M5 3.5h5.5V9"/></svg></button>
+    </article>
+    <article class="build-row">
+      <span class="bc-icon" aria-hidden="true"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2.2"/><circle cx="17" cy="5" r="2.2"/><circle cx="11" cy="17" r="2.2"/><path d="M6.6 6.7 9.6 14.8M15.4 6.7 12.4 14.8M7.2 5h7.6"/></svg></span>
+      <h3>Integration</h3>
+      <p>Existing systems connected so information moves without manual re-entry.</p>
+      <div id="build-more-integration" class="bc-more"><p>Imports from the systems you already pay for, exports back out.</p></div>
+      <button class="bc-go" type="button" aria-expanded="false" aria-controls="build-more-integration" aria-label="More on Integration"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5 10.5 3.5M5 3.5h5.5V9"/></svg></button>
+    </article>
   </div>
-</section>
+</div></section>
 
-<section id="approach" style="border-top:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">How we work</div>
-      <h2 class="h2">We do not start with software. <span class="serif">We start with the operation.</span></h2>
-    </div>
-    <div class="steps reveal">
-      <div class="step"><div class="no">01</div><div><h3>Embed</h3><p>We learn how the work actually happens. On the floor, in the audits, on the morning calls.</p></div></div>
-      <div class="step"><div class="no">02</div><div><h3>Build</h3><p>We turn that workflow into software. Shaped around your operation and yours to keep.</p></div></div>
-      <div class="step"><div class="no">03</div><div><h3>Run</h3><p>We stay after launch and answer for the result under real pressure.</p></div></div>
-      <div class="step"><div class="no">04</div><div><h3>Extract</h3><p>When it proves repeatable, the core becomes a product. Customer number two does not pay to build it again.</p></div></div>
-    </div>
+<section class="section" id="work"><div class="wrap">
+  <div class="kicker">How we work</div>
+  <h2>Learn. Build. Run.</h2>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3>Learn</h3><p>Understand the operation as it actually runs.</p></div>
+    <div class="step"><div class="n">02</div><h3>Build</h3><p>Design the system around that workflow.</p></div>
+    <div class="step"><div class="n">03</div><h3>Run</h3><p>Support, refine and operate what ships.</p></div>
   </div>
-</section>
+</div></section>
 
-<section id="build" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">What we build</div>
-      <h2 class="h2">The software your operation <span class="serif">is missing.</span></h2>
-      <p class="sub">Built around your workflow, not dropped on top of it. A JQT system contains some or all of this.</p>
-    </div>
-    <div class="builds reveal">
-      <div class="build"><div><h3>The core system</h3><div class="em">the operational application</div></div>
-        <p>Who owns what, what state it is in, what is due. One screen the floor, the desk and the office all read.</p>
-        <span class="own">Owned by you. Powered by JQT.</span></div>
-      <div class="build"><div><h3>Automation</h3><div class="em">rules, alerts, integrations</div></div>
-        <p>The handoffs, chases and re-typing that eat a morning. Imports from the systems you already pay for, exports back out.</p>
-        <span class="own">Owned by you. Powered by JQT.</span></div>
-      <div class="build"><div><h3>AI</h3><div class="em">a component, not the foundation</div></div>
-        <p>Assistants working on your operational data, scoped to what they may read. No single model is ever load bearing.</p>
-        <span class="own">Owned by you. Powered by JQT.</span></div>
-      <div class="build"><div><h3>Interfaces</h3><div class="em">phone, desk, office, public</div></div>
-        <p>Web, mobile and dashboards for the people doing the work, plus the front door your customers arrive at.</p>
-        <span class="own">Owned by you. Powered by JQT.</span></div>
-      <div class="build"><div><h3>The record</h3><div class="em">verifiable without us</div></div>
-        <p>Every action appends to a log nobody can quietly edit, including us, anchored daily to public timestamp authorities.</p>
-        <span class="own">Owned by you. Powered by JQT.</span></div>
-    </div>
-  </div>
-</section>
+<section class="cta-band"><div class="wrap">
+  <div class="kicker">Start here</div>
+  <h2>Tell us what is slowing the operation down.</h2>
+  <div class="actions"><a class="btn primary" href="mailto:hello@jqtenterprises.com?subject=JQT%20project">Start a conversation</a></div>
+</div></section>
 
-<section id="industries">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">Where we are building</div>
-      <h2 class="h2">One industry at a time, <span class="serif">all the way to a product.</span></h2>
-      <p class="sub">Hotels is finished and has a name. The other three are in development, and we will not write them up as though they ship today.</p>
-    </div>
-    <div class="ind reveal" id="ind">
-      <button class="cell"><span class="exp">+</span><span class="liveflag">Shipped</span><div class="k">Hotels</div><h3>Kept</h3><p>Every room accounted for, every turn on a clock, and a record of who did what.</p><div class="more"><p>Live at a working hotel. Reads the morning report you already run, gives each housekeeper her rooms on her own phone, and gates clean behind the checklist. <a href="/kept/" style="color:var(--accent);font-weight:600">Read the Kept page</a></p></div></button>
-      <button class="cell"><span class="exp">+</span><span class="nextflag">In development</span><div class="k">Aviation</div><h3>Credentials and audits</h3><p>Badges that lapse quietly are the problem. Nothing is built yet.</p><div class="more"><p>Designed, not deployed. Alert before a credential lapses, answer an audit from the record rather than from memory. Chris ran credentialing at ATL and FLL, which is why this one is next.</p></div></button>
-      <button class="cell"><span class="exp">+</span><span class="nextflag">In development</span><div class="k">Property management</div><h3>Work orders that close</h3><p>Orders drift and vacant days cost money. Nothing is built yet.</p><div class="more"><p>Designed, not deployed. Route each order, watch the clock on response times, and count vacant days, because that is the number that pays for the software.</p></div></button>
-      <button class="cell"><span class="exp">+</span><span class="nextflag">In development</span><div class="k">Field operations</div><h3>The right crew, on time</h3><p>Dispatch runs on memory and phone calls. Nothing is built yet.</p><div class="more"><p>Designed, not deployed. Plan the day, hold the arrival windows, show every crew in one place so a dispatcher can absorb a curveball.</p></div></button>
-    </div>
-  </div>
-</section>
-
-<section class="ask">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">Always on</div>
-      <h2 class="h2">Have a question? Ask the system itself.</h2>
-      <p class="sub">An assistant built on what JQT actually does, answering instantly, day or night. And it is not only ours. The same always on assistant goes on your site, trained on your operation, owned by you and powered by JQT. The site you are on is the demo.</p>
-      <div class="hero-cta reveal" style="margin-top:30px"><button class="btn btn-primary" onclick="openChat()">Ask JQT</button></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap founder">
-    <div class="reveal">
-      <div class="eyebrow" style="margin-bottom:18px">Why JQT</div>
-      <div class="big">Built by operators, <span class="serif">not an agency that read about it.</span></div>
-      <p class="sub" style="margin-top:22px">JQT was started by Chris Jacquette, who spent years inside operations where a missed detail is a breach rather than a bug: airport credentialing at Atlanta and Fort Lauderdale, thousands of badge applications checked against federal rules, SIDA access, real audits with real consequences. The pattern was always the same. The work was serious, the rules were exact, and the software was a spreadsheet, a radio and somebody's memory. Kept started the same way: inside a working hotel, on the floor, at six in the morning, watching a manager phone every room to ask whether it was clean. We build for the person holding the phone because we have been the person holding the phone.</p>
-    </div>
-    <ul class="reveal">
-      <li><b>Aviation and security operations</b>High stakes environments where a missed detail is a breach, not a bug.</li>
-      <li><b>Compliance and credentialing</b>Strict standards, real audits, and records that have to hold up.</li>
-      <li><b>Automation and software</b>We turn the messy real work into systems that run on their own.</li>
-    </ul>
-  </div>
-</section>
-
-<section style="border-top:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sec-head reveal"><div class="eyebrow">Questions</div><h2 class="h2">The things people ask first.</h2></div>
-    <div class="faq reveal">
-      <details open><summary>What have you actually shipped?</summary><p>Kept, hotel housekeeping and operations software, built inside a working hotel and running that property's mornings. A room is not clean until the checklist is, every action lands on an append only log anchored daily to public timestamp authorities, and it runs on the crew's own phones with a first name and four digits. It costs $199, $349 or $499 per property per month, by plan. The full page for it is at <a href="/kept/" style="color:var(--accent);font-weight:600">jqtenterprises.com/kept</a>.</p></details>
-      <details><summary>What does forward deployed actually mean?</summary><p>It means we do not hand you a tool and disappear. We embed inside your operation, build the system that runs it, and stay responsible for whether it works in practice. The accountability does not transfer back to you on launch day.</p></details>
-      <details><summary>Which industries do you work in?</summary><p>Today we are deepest in hotels, aviation, property management, and field operations. The underlying system is one engine, so any operation that runs on status, deadlines, and handoffs is a fit. If you are not sure, ask.</p></details>
-      <details><summary>Do we own the system, or rent it?</summary><p>You own the core we build for your operation. It is shaped around how you actually work, not a generic template you lease forever and lose the day you stop paying.</p></details>
-      <details><summary>How is it priced?</summary><p>Priced to the value it creates, per operation, not a flat software fee. We scope what it saves and earns you, then price it as a fraction of that. You start with one operation and expand across your portfolio, and we size it openly with you on a call.</p></details>
-      <details><summary>How fast can it be live?</summary><p>Weeks, not months. We get one core piece of your operation running first, then build out while you are already using it. You see something real fast instead of waiting on one big launch.</p></details>
-      <details><summary>How do you handle our data and security?</summary><p>Your operation, your data, on your own instance and never pooled with anyone else's. Encrypted in transit with TLS. Access is per person with role based permissions, so people only see what their job requires, and it is granted and revoked per person rather than through a support queue. Every action writes to an append only audit log whose head is anchored daily to public RFC 3161 timestamp authorities, so the record can be verified years later with openssl and no account with us. Backups run automatically on a schedule. Export or delete your data anytime. <b>Not built yet, so we will not claim it:</b> encryption at rest, single sign on, two factor, and point in time recovery. Kept runs on a dedicated instance per property rather than a shared database, which is the trade we made first. If any of those four is a requirement for you, say so on the call and we will tell you honestly where it sits.</p></details>
-    </div>
-  </div>
-</section>
-
-<section id="pricing" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sec-head reveal"><div class="eyebrow">Pricing</div><h2 class="h2">Priced against the leak, <span class="serif">not against the market.</span></h2></div>
-    <div class="price reveal">
-      <div class="left">
-        <div class="big">Two ways to buy, priced differently.</div>
-        <p class="sub" style="margin-top:18px"><b>Custom engagements</b> are scoped against what the problem costs you, so the system pays for itself out of money you were already losing. <b>Products</b> are a flat monthly price, published, no call required.</p>
-        <p class="sub" style="margin-top:14px">Kept, the one that has shipped, is $199, $349 or $499 per property per month. <a href="/kept/" style="color:var(--accent);font-weight:600">The arithmetic behind that is on its page</a>, and you can redo it on the back of a folio.</p>
-        <a class="btn btn-primary" href="#cta" onclick="bookCall();return false;" style="margin-top:26px;display:inline-block">Book a call</a>
-      </div>
-      <div class="right">
-        <ul>
-          <li>A system shaped around your real workflow</li>
-          <li>Live board, alerts, and audit trail</li>
-          <li>Always on assistant trained on your operation</li>
-          <li>Ongoing operation and accountability</li>
-          <li>Start with one operation, expand across your portfolio</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec-broken" style="border-top:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">Start here</div>
-      <h2 class="h2">What is broken <span class="serif">in your operation?</span></h2>
-      <p class="sub">Pick the one that stings. We will show you the shape of the system we would build for it.</p>
-    </div>
-    <div class="broken reveal">
-      <div class="bk-opts" id="bkOpts">
-        <button class="bk-opt" aria-pressed="false" data-k="sheets">Too many spreadsheets</button>
-        <button class="bk-opt" aria-pressed="false" data-k="report">Reporting is manual</button>
-        <button class="bk-opt" aria-pressed="false" data-k="calls">People constantly calling each other</button>
-        <button class="bk-opt" aria-pressed="false" data-k="orders">Work orders disappear</button>
-        <button class="bk-opt" aria-pressed="false" data-k="audit">Audits are painful</button>
-        <button class="bk-opt" aria-pressed="false" data-k="other">Something else</button>
-      </div>
-      <div class="bk-out" id="bkOut" role="status" aria-live="polite"></div>
-    </div>
-  </div>
-</section>
-
-<section class="cta" id="cta">
-  <div class="wrap">
-    <div class="eyebrow reveal" style="margin-bottom:24px">Start here</div>
-    <h2 class="reveal">Show us what is broken. We will tell you what we would build.</h2>
-    <div class="hero-cta reveal" style="margin-top:40px">
-      <button class="btn btn-primary" onclick="bookCall()">Show us the problem</button>
-      <a class="btn btn-ghost" href="mailto:hello@jqtenterprises.com">Email us instead</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <div class="brand"><span>J</span><span>Q</span><span>T</span></div>
-        <p>Forward deployed operations. We build it, run it, and own the outcome.</p>
-      </div>
-      <div><h4>Kept</h4>
-        <a href="/kept/">Kept for hotels</a><a href="/kept/how/">How it works</a><a href="/kept/record/">The record</a><a href="/kept/security/">Security</a><a href="/kept/pricing/">Kept pricing</a><a href="/kept/faq/">Kept questions</a>
-      </div>
-      <div><h4>How we build</h4>
-        <a href="#build">What we build</a><a href="#approach">How we work</a><a href="#system">Live system</a><a href="#pricing">Pricing</a>
-      </div>
-      <div><h4>Industries</h4>
-        <a href="/kept/">Hotels</a><a href="#industries">Aviation</a><a href="#industries">Property Management</a><a href="#industries">Field Operations</a>
-      </div>
-      <div><h4>Connect</h4>
-        <a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a><a href="https://instagram.com/jqtenterprises" target="_blank" rel="noopener">Instagram</a><a href="#cta" onclick="bookCall();return false;">Book a call</a>
-      </div>
-    </div>
-    <div class="foot-bottom"><span>© 2026 JQT Enterprises, LLC</span><span>Fort Lauderdale, Florida</span></div>
-  </div>
-</footer>
-
-<button class="chat-fab" id="chatFab" onclick="openChat()">Ask JQT</button>
-<div class="chat-panel" id="chatPanel">
-  <div class="chat-head">
-    <div><div class="t">Ask JQT</div><div class="sub">Always on, replies instantly</div></div>
-    <button class="chat-x" onclick="closeChat()">×</button>
-  </div>
-  <div class="chat-body" id="chatBody"></div>
-  <div class="chat-foot">
-    <input id="chatInput" placeholder="Type here, or tap an option below" onkeydown="if(event.key==='Enter')sendChat()">
-    <button class="chat-send" onclick="sendChat()">➤</button>
-  </div>
-  <div class="chat-note">Quick answers about JQT. For specifics, email hello@jqtenterprises.com.</div>
-</div>
-
-<script>
-const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const $=id=>document.getElementById(id);
-const html=document.documentElement;
-$('themeBtn').onclick=()=>{html.dataset.theme=html.dataset.theme==='light'?'dark':'light';};
-
-/* SEASONAL JQT MARK (automatic by date, mark only) */
-const SEASONS=[
- /* The mark used to be coloured 73 days a year, with an 86 day gap over the
-    whole of late summer, so for most of the year it looked like this was never
-    built. Widened to cover the year properly: every month now has a reason. */
- {name:"New Year",           from:[1,1],  to:[1,6],   a:"#C9A227", b:"#2E3A46"},
- {name:"Winter",             from:[1,7],  to:[2,12],  a:"#5B7FA6", b:"#9FB6C9"},
- {name:"Valentines",         from:[2,13], to:[2,15],  a:"#C0392B", b:"#8E2F5F"},
- {name:"Late winter",        from:[2,16], to:[3,16],  a:"#5B7FA6", b:"#7D8B99"},
- {name:"St Patricks",        from:[3,15], to:[3,18],  a:"#1E7B47", b:"#C9A227"},
- {name:"Easter and Spring",  from:[3,19], to:[4,30],  a:"#8E6FC4", b:"#4FA372"},
- {name:"Late spring",        from:[5,1],  to:[5,24],  a:"#4FA372", b:"#7FA6CE"},
- {name:"Memorial Day",       from:[5,25], to:[5,31],  a:"#B22234", b:"#3C3B6E"},
- {name:"Early summer",       from:[6,1],  to:[6,25],  a:"#2E8B8B", b:"#C9A227"},
- {name:"Independence Day",   from:[6,26], to:[7,6],   a:"#B22234", b:"#3C3B6E"},
- {name:"High summer",        from:[7,7],  to:[8,31],  a:"#E08A2E", b:"#2E8B8B"},
- {name:"Early autumn",       from:[9,1],  to:[10,23], a:"#B5651D", b:"#6B8E3D"},
- {name:"Halloween",          from:[10,24],to:[10,31], a:"#EE7600", b:"#18181A"},
- {name:"November",           from:[11,1], to:[11,19], a:"#8C6239", b:"#6B8E3D"},
- {name:"Thanksgiving",       from:[11,20],to:[11,29], a:"#BF5700", b:"#5C4033"},
- {name:"Early December",     from:[11,30],to:[12,9],  a:"#2E3A46", b:"#5B7FA6"},
- {name:"Christmas",          from:[12,10],to:[12,31], a:"#C8102E", b:"#146B3A"}
-];
-const STANDING={name:"Standing",a:"#3D5A7A",b:"#3D5A7A"};
-function seasonFor(d){const m=d.getMonth()+1,day=d.getDate();
-  for(const s of SEASONS){const[fm,fd]=s.from,[tm,td]=s.to;
-    const aft=m>fm||(m===fm&&day>=fd), bef=m<tm||(m===tm&&day<=td);
-    if(fm<=tm?(aft&&bef):(aft||bef))return s;}
-  return STANDING;}
-function applySeason(s){
-  if(s.name===STANDING.name){html.style.removeProperty('--mark1');html.style.removeProperty('--mark2');}
-  else{html.style.setProperty('--mark1',s.a);html.style.setProperty('--mark2',s.b);}
-}
-applySeason(seasonFor(new Date()));
-
-/* nav frost */
-let nt=false;addEventListener('scroll',()=>{if(!nt){requestAnimationFrame(()=>{$('nav').classList.toggle('scrolled',scrollY>12);nt=false;});nt=true;}},{passive:true});
-
-/* reveals + sequential approach numbers */
-const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const aio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('reached');aio.unobserve(e.target);}});},{threshold:.6});
-document.querySelectorAll('.astep').forEach(el=>aio.observe(el));
-
-/* industries expand on click */
-$('ind').addEventListener('click',e=>{const c=e.target.closest('.cell');if(!c)return;c.classList.toggle('open');});
-
-/* ---- LIVE BOARD ---- */
-const V={
- hotel:{title:"Housekeeping Operations",sub:"live floor status",
-   kpis:[["38","rooms ready"],["9","in progress"],["24m","avg clean time"],["96%","on time"]],
-   cols:["Room","Type","Housekeeper","Status","Time"],
-   rows:[["412","King","Maria S.","Clean|good","4m"],["207","Queen","James T.","Cleaning|work","18m"],
-         ["Suite 9","Suite","Aisha R.","Dirty|bad","32m"],["318","King","Maria S.","Inspect|work","2m"],
-         ["145","Double","Unassigned","On Hold|bad","queued"]],
-   states:["Dirty|bad","Cleaning|work","Inspect|work","Clean|good","On Hold|bad"],
-   log:["Room 412 passed inspection","Room 207 assigned to James","Suite 9 flagged, late checkout","Room 318 ready for guest"]},
- aviation:{title:"Credentialing and Compliance",sub:"badge status by holder",
-   kpis:[["1,284","badges active"],["17","expiring under 30d"],["4","STA pending"],["100%","audit ready"]],
-   cols:["Holder","Badge","Access","Status","Expires"],
-   rows:[["J. Diaz","A2891","SIDA","Active|good","214d"],["M. Cole","A3140","AOA","Renewal|work","22d"],
-         ["R. Pena","A2207","Sterile","STA Pending|work","New"],["T. Vu","A3302","SIDA","Active|good","168d"],
-         ["L. Ortiz","A2999","AOA","Expiring|bad","9d"]],
-   states:["Active|good","Renewal|work","Expiring|bad"],
-   log:["Badge A3140 renewal submitted","Expiry alert sent to L. Ortiz","CHRC cleared for J. Diaz","TSA audit export generated"]},
- property:{title:"Work Orders and Make Ready",sub:"open across portfolio",
-   kpis:[["23","open orders"],["3.2h","avg response"],["6","in make ready"],["14","closed today"]],
-   cols:["Order","Unit","Vendor","Status","Age"],
-   rows:[["WO 5521 Turnover","14B","In house","Make Ready|work","1d"],["WO 5530 Leak","9A","Ace Plumbing","Scheduled|work","4h"],
-         ["WO 5544 HVAC","Lobby","CoolTech","In Progress|work","2h"],["WO 5550 Paint","22C","In house","Open|bad","30m"],
-         ["WO 5512 Appliance","7D","Sears Svc","Resolved|good","1d"]],
-   states:["Open|bad","Scheduled|work","In Progress|work","Make Ready|work","Resolved|good"],
-   log:["WO 5521 moved to make ready","Vendor dispatched for 9A","WO 5544 parts on site","WO 5512 closed and billed"]},
- field:{title:"Dispatch Board",sub:"today's schedule",
-   kpis:[["41","jobs today"],["9","techs active"],["94","on time %"],["27","completed"]],
-   cols:["Job","Customer","Window","Crew","Status"],
-   rows:[["J 8841 HVAC","Harbor Cafe","1:00 to 3:00","Crew A","On Site|work"],["J 8852 Install","Vista Apartments","2:30 to 4:00","Crew B","En Route|work"],
-         ["J 8860 Repair","Delgado Resid.","3:00 to 5:00","Crew C","Queued|bad"],["J 8833 Maint.","Pier 9 Retail","11:00 to 1:00","Crew A","Completed|good"],
-         ["J 8847 Survey","Northgate LLC","4:00 to 6:00","Crew D","Dispatched|work"]],
-   states:["Queued|bad","Dispatched|work","En Route|work","On Site|work","Completed|good"],
-   log:["J 8833 completed and signed","Crew B en route to Vista","J 8860 added to queue","J 8841 arrival confirmed"]}
-};
-let cur="hotel", boardSeen=false;
-function tag(v){const[t,c]=v.split("|");return`<span class="tag ${c}">${t}</span>`;}
-function render(v){
-  const d=V[v];cur=v;
-  $('opTitle').innerHTML=d.title+'<small>'+d.sub+'</small>';
-  $('opKpis').innerHTML=d.kpis.map(k=>`<div class="kpi"><div class="n" data-final="${k[0]}">${RM?k[0]:'0'}</div><div class="l">${k[1]}</div></div>`).join("");
-  $('opCols').innerHTML=d.cols.map((c,i)=>`<span class="${i===1?'h2col':''} ${i===4?'last':''}">${c}</span>`).join("");
-  $('opRows').innerHTML=d.rows.map((r,i)=>`<div class="op-row" style="animation-delay:${i*55}ms">
-     <span class="c0">${r[0]}</span><span class="cm h2col">${r[1]}</span><span class="cm">${r[2]}</span>
-     ${tag(r[3])}<span class="cm last">${r[4]}</span></div>`).join("");
-  $('opLog').innerHTML='<b>online</b> &nbsp; '+d.log[0];
-  if(boardSeen) countKpis();
-}
-function countKpis(){
-  if(RM) return;
-  document.querySelectorAll('#opKpis .n').forEach(el=>{
-    const f=el.dataset.final, m=f.replace(/,/g,'').match(/^([\d.]+)(.*)$/);
-    if(!m){el.textContent=f;return;}
-    const target=parseFloat(m[1]), suf=m[2], dec=(m[1].split('.')[1]||'').length, comma=f.includes(',');
-    const start=performance.now(), dur=900;
-    function fmt(n){let s=dec?n.toFixed(dec):Math.round(n).toString();
-      if(comma)s=Number(s).toLocaleString('en-US');return s+suf;}
-    function step(t){let p=Math.min((t-start)/dur,1);p=1-Math.pow(1-p,3);el.textContent=fmt(target*p);if(p<1)requestAnimationFrame(step);}
-    requestAnimationFrame(step);
-  });
-}
-function tick(){
-  const d=V[cur], rows=$('opRows').querySelectorAll('.op-row');
-  if(rows.length){const r=rows[Math.floor(Math.random()*rows.length)];
-    const st=d.states[Math.floor(Math.random()*d.states.length)];
-    const cell=r.querySelector('.tag');if(cell)cell.outerHTML=tag(st);}
-  const t=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-  $('opLog').innerHTML='<b>'+t+'</b> &nbsp; '+d.log[Math.floor(Math.random()*d.log.length)];
-}
-document.querySelector('.avenue-bar').addEventListener('click',e=>{
-  const b=e.target.closest('.chip');if(!b)return;
-  stopCycle();
-  document.querySelectorAll('.avenue-bar .chip').forEach(c=>c.setAttribute('aria-pressed','false'));
-  b.setAttribute('aria-pressed','true');render(b.dataset.v);
-});
-new IntersectionObserver((es,obs)=>{es.forEach(e=>{if(e.isIntersecting){boardSeen=true;countKpis();obs.disconnect();}});},{threshold:.4}).observe($('board'));
-/* board auto-cycles through industries so JQT never reads as a single-vertical (hotel) product; stops on any user interaction */
-const CYCLE=['hotel','aviation','property','field'];let cycling=!RM,cycleIdx=Math.floor(Math.random()*CYCLE.length);
-function setBoardPressed(v){document.querySelectorAll('.avenue-bar .chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.v===v?'true':'false'));}
-function stopCycle(){cycling=false;}
-render(CYCLE[cycleIdx]);setBoardPressed(CYCLE[cycleIdx]);
-setInterval(()=>{if(!cycling)return;cycleIdx=(cycleIdx+1)%CYCLE.length;render(CYCLE[cycleIdx]);setBoardPressed(CYCLE[cycleIdx]);},5200);
-setInterval(tick,1800);
-
-/* ---- ASK JQT (scripted operator, no backend) ----
-   Deterministic but conversational. Opens a diagnostic, quantifies the leak in
-   dollars scaled to the visitor, qualifies in 3 micro-commitments
-   (industry -> scale -> pain), drives the live board to match, then converts to
-   a free operations teardown captured as a fully-briefed mailto lead.
-   Zero backend, zero API, zero leak risk (canned by design). */
-const panel=$('chatPanel'),fab=$('chatFab'),body=$('chatBody');
-let greeted=false;const lead={industry:'',scale:'',pain:''};
-function openChat(){panel.classList.add('open');fab.style.display='none';
-  if(!greeted){greeted=true;greet();}setTimeout(()=>$('chatInput').focus(),90);}
-function closeChat(){panel.classList.remove('open');fab.style.display='block';}
-/* "Book a call" everywhere routes here: open the assistant and go straight to booking the free teardown (the real booking mechanism, since no calendar is wired yet) */
-function bookCall(){greeted=true;openChat();teardownForm();}
-
-/* WHAT IS BROKEN picker */
-const BROKEN={
- sheets:{h:"One board instead of six tabs",p:"The spreadsheet, the group chat and the whiteboard disagree by Tuesday. We put the live state in one place everybody reads, and keep the exports you already send.",f:["Your sheets","One live board","Roles and permissions","Exports back out"]},
- report:{h:"The report builds itself",p:"Somebody rebuilds the same numbers every morning. We take the source you already produce, run it on a schedule, and send the sheet the people downstream expect.",f:["Source import","Scheduled run","Dashboard","Sheet out"]},
- calls:{h:"Stop paying people to ask each other",p:"Twenty minutes a shift walking down to ask, waiting on a callback, redoing a list that moved. Status goes on a screen, and the calls stop.",f:["Status on a screen","Alerts","Mobile for the floor","Nobody phones"]},
- orders:{h:"Nothing closes quietly",p:"An order that drifts has no owner and no clock. We give it both, escalate when it stalls, and keep the trail of who did what.",f:["Intake","Owner and clock","Escalation","Closed with proof"]},
- audit:{h:"Answer from the record, not from memory",p:"An audit is painful when the evidence has to be assembled. We keep it as you go, in a log nobody can quietly edit, and alert before anything lapses.",f:["Append only log","Daily anchor","Lapse alerts","Answer on request one"]},
- other:{h:"That is usually the interesting one",p:"The problems nobody has solved properly are the ones worth embedding in. Tell us what the operation is and what keeps slipping.",f:["Embed","Build","Run","Extract"]}
-};
-document.getElementById('bkOpts')?.addEventListener('click',e=>{
-  const b=e.target.closest('.bk-opt'); if(!b)return;
-  document.querySelectorAll('.bk-opt').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
-  const d=BROKEN[b.dataset.k]; const out=document.getElementById('bkOut');
-  out.innerHTML='<div class="k">What we would build</div><h4>'+d.h+'</h4><p>'+d.p+'</p><div class="bk-flow">'+
-    d.f.map((x,i)=>(i?'<span class="bk-arrow">&rarr;</span>':'')+'<span class="bk-step">'+x+'</span>').join('')+
-    '</div><div class="hero-cta" style="margin-top:20px"><button class="btn btn-primary" onclick="bookCall()">Show us yours</button></div>';
-  out.classList.add('on');
-});
-
-function add(t,cls){const d=document.createElement('div');d.className='msg '+cls;d.textContent=t;body.appendChild(d);body.scrollTop=body.scrollHeight;return d;}
-/* align the START of a new bot turn to the top of the chat, so a multi-message reply reads top-down instead of forcing a scroll-up */
-function scrollToMsg(el){requestAnimationFrame(function(){const c=body.getBoundingClientRect(),m=el.getBoundingClientRect();body.scrollTop+=(m.top-c.top)-10;});}
-function chipRow(items){const r=document.createElement('div');r.className='chips';
-  items.forEach(([label,fn])=>{const b=document.createElement('button');b.className='chip-q';b.type='button';b.textContent=label;
-    b.onclick=()=>{add(label,'user');r.remove();fn();};r.appendChild(b);});
-  body.appendChild(r);body.scrollTop=body.scrollHeight;}
-/* say(): typing indicator with human-ish variable delay, then one or more lines + optional chips */
-function say(text,opts){opts=opts||{};const arr=Array.isArray(text)?text:[text];
-  const ty=add('JQT is typing','bot typing'),delay=460+Math.min(arr.join(' ').length*6,900)+Math.random()*240;
-  setTimeout(()=>{ty.remove();let first=null;arr.forEach(t=>{const n=add(t,'bot');if(!first)first=n;});if(opts.chips)chipRow(opts.chips);if(first)scrollToMsg(first);if(opts.then)opts.then();},delay);}
-function boardName(v){return{hotel:"Hotels",aviation:"Aviation",property:"Property Management",field:"Field Operations"}[v]||"your operation";}
-function opWord(v){return{hotel:"hotel",aviation:"aviation",property:"property",field:"field-service"}[v]||"";}
-/* the bot literally flips the live dashboard above it to match the visitor's world */
-function driveBoard(v){try{stopCycle();render(v);setBoardPressed(v);const b=$('board');if(b)b.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}}
-
-const MENU=[["Hotels",()=>diagnose('hotel')],["Aviation",()=>diagnose('aviation')],["Property mgmt",()=>diagnose('property')],["Field ops",()=>diagnose('field')],["Something else",otherIntake]];
-function greet(){say("Hey. I'll make you a bet: tell me what kind of operation you run, and I'll tell you where it's leaking money. If I'm wrong, you've lost thirty seconds. Which is it?",{chips:MENU});}
-function pickIndustry(){say("Which one is closest to you?",{chips:MENU});}
-function otherIntake(){lead.industry='';say("Fair. Most operations don't fit a dropdown. Here's the pattern anyway, because it's nearly universal: whatever you run, the process lives in somebody's head or across five tools that don't talk to each other, and nobody's on the hook when it slips. If that sounds like your week, tell me in a sentence what the operation is and I'll pass it straight to the team. They've built for messier than whatever you're about to type.",{then:()=>$('chatInput').focus()});}
-
-/* 1. DIAGNOSE - name the leak, show the live proof, ask for scale */
-const DIAG={
- hotel:{leak:"Hotels leak in one place more than anywhere else: nobody actually knows which rooms are ready. Housekeeping knows one version, the front desk knows another, and the truth lives on a paper sheet somewhere on the third floor. So clean rooms sit empty while guests wait in the lobby, and that late check-in you comped last month wasn't a staffing problem, it was an information problem.",
-   q:"How big is the property? I ask because this leak scales with room count almost exactly.",chips:[["Under 50",()=>scale('hotel','under 50 rooms','low')],["50-150",()=>scale('hotel','50-150 rooms','mid')],["150+",()=>scale('hotel','150+ rooms','high')]]},
- aviation:{leak:"In aviation the leak has a date on it: the badge, STA, or training cert that expires while nobody's watching. You don't find out until the audit does, and one lapsed credential on the AOA isn't a paperwork issue. It's a finding, a fine, and a person you're paying who legally can't work.",
-   q:"How many badge-holders are you tracking? The math changes a lot with volume.",chips:[["Under 100",()=>scale('aviation','under 100 holders','low')],["100-500",()=>scale('aviation','100-500 holders','mid')],["500+",()=>scale('aviation','500+ holders','high')]]},
- property:{leak:"Property management leaks in the gap between \"the tenant moved out\" and \"the unit earns again.\" The work order's in somebody's texts, the vendor said Thursday and meant nothing, and the turn that should take five days takes twelve. Every one of those extra days is rent that doesn't exist. You can't bill it later. It's just gone.",
-   q:"How many units? That tells me what a single lost day actually costs you.",chips:[["Under 50",()=>scale('property','under 50 units','low')],["50-200",()=>scale('property','50-200 units','mid')],["200+",()=>scale('property','200+ units','high')]]},
- field:{leak:"Field operations usually run on one real system: the dispatcher's memory. Which works, right up until the no-show, the truck problem, or the customer who moves the window. Then the whole day gets reshuffled inside someone's head, techs sit idle, and jobs you'd already won quietly roll to tomorrow. The killer is that nobody ever counts the rolled jobs.",
-   q:"How many techs or crews are you running?",chips:[["Under 10",()=>scale('field','under 10 techs','low')],["10-30",()=>scale('field','10-30 techs','mid')],["30+",()=>scale('field','30+ techs','high')]]}
-};
-function unitNoun(v){return{hotel:"rooms",aviation:"badges",property:"units",field:"jobs"}[v]||"work";}
-function diagnose(ind){lead.industry=ind;const d=DIAG[ind];driveBoard(ind);
-  say([d.leak,"One more thing. Look at the board above this chat. I switched it to the "+boardName(ind)+" view while you were reading. That's not a screenshot or a demo reel; it's a real JQT system, running. Your team's version looks like that, with your "+unitNoun(ind)+" in it.",d.q],{chips:d.chips});}
-
-/* 2. SCALE - quantify the leak in their terms, ask for the specific pain */
-const COST={
- hotel:{low:"Under 50 rooms, the leak isn't hours, it's nights. At your size, one comped night or one bad review does damage a big box would never feel. When margins are that tight, \"the front desk didn't know the room was ready\" isn't a hiccup. It's the month's profit on one mistake.",
-   mid:"At 50-150 rooms, run the boring math: if the ready-room confusion costs each housekeeper twenty minutes a shift (walking to check, waiting on a callback, redoing a list), that's 20-plus paid hours a week producing nothing. Before a single comped night. Your exact number will be different, but I've never seen it be zero.",
-   high:"At 150+ rooms you're past the point where anyone can hold room status in their head, so the property runs on radio calls and hope. At that scale the leak isn't minutes, it's a full-time employee's worth of payroll spent reconciling what a board would just show. Plus the comped nights. Plus the reviews."},
- aviation:{low:"Under 100 badge-holders, the trap is that a spreadsheet feels like enough, until the one person who maintains it takes a week off. It only takes one lapsed credential to meet an inspector, and at your size \"we track it manually\" is exactly one vacation away from \"we missed one.\"",
-   mid:"At 100-500 badge-holders, renewals stop being events and become weather. There's always one coming. Manual tracking means someone's real job is quietly chasing dates, and a single miss is a finding, a fine, and a badged employee you're paying to stand still.",
-   high:"At 500+ badge-holders, manual tracking isn't a task anymore, it's a liability. The volume mathematically guarantees a lapse, and \"we missed one\" is not an answer an inspector accepts. At that scale you don't need more diligence. You need a system that can't forget."},
- property:{low:"Under 50 units, every vacant day is personal. One unit sitting empty an extra week can be the difference between a month that worked and one that didn't. And the smaller the portfolio, the more of the turn process lives in exactly one person's phone.",
-   mid:"At 50-200 units, do the math on one lost day: average rent, divided by thirty, times every turn that dragged this year. Most operators your size are donating two to five days per turn to lost work orders and un-chased vendors. That's not a maintenance problem, it's a tracking problem, and tracking problems are cheap to fix compared to what they cost.",
-   high:"At 200+ units the leak compounds: enough turns are in flight at once that nobody can say which ones are stalled or why. Days go missing wholesale. At your scale, shaving one day off average turn time is real money every single month, and it's usually hiding in plain sight."},
- field:{low:"Under 10 techs, one no-show is ten-plus percent of your capacity gone before coffee. Small crews don't get averages to hide in. The day either holds or it doesn't, and right now whether it holds depends on one person's memory under pressure.",
-   mid:"At 10-30 techs, count the jobs that rolled to tomorrow last month. Not cancelled, just rolled. Each one is billable work you'd already won, pushed by a reshuffle that happened in someone's head. At your size that's typically a low-five-figures-a-month leak, and it never shows up on any report. Which is exactly why it survives.",
-   high:"At 30+ techs, the dispatch board living in one person's head isn't impressive anymore, it's a single point of failure with a truck fleet attached. When that person is out, or just having a bad morning, the whole day's margin is improvising. Scale is supposed to smooth out bad days. Without a system, it multiplies them."}
-};
-const painQ="One more question, and it's the one I actually care about. I've been doing math at you, but you're the one running this thing. What stings the most right now?";
-const PAIN={
- hotel:[["Room turnover speed",()=>setPain('room turnover speed')],["Inspections & quality",()=>setPain('inspection and quality slips')],["Staffing no-shows",()=>setPain('staffing no-shows')],["Reviews & comps",()=>setPain('guest fallout from reviews and comps')]],
- aviation:[["Expiring credentials",()=>setPain('expiring credentials')],["Audit readiness",()=>setPain('audit readiness')],["New-hire badging",()=>setPain('new-hire badging lag')],["Training compliance",()=>setPain('training compliance')]],
- property:[["Turn time",()=>setPain('turn time on vacants')],["Work orders going dark",()=>setPain('work orders going dark')],["Vendor follow-through",()=>setPain('vendor follow-through')],["Owner reporting",()=>setPain('owner reporting')]],
- field:[["No-shows & callouts",()=>setPain('no-shows and callouts')],["Jobs rolling over",()=>setPain('jobs rolling to tomorrow')],["Scheduling chaos",()=>setPain('scheduling chaos')],["Crew visibility",()=>setPain('not knowing where crews are')]]
-};
-function scale(ind,label,bucket){lead.scale=label;say([COST[ind][bucket],painQ],{chips:PAIN[ind]});}
-function setPain(p){lead.pain=p;offer();}
-
-/* 3. OFFER - reciprocity + honest scarcity, then the close */
-function offer(){const op=opWord(lead.industry);
-  say(["Okay, "+lead.pain+". That's where I'd start too, and here's exactly what starting looks like: a 20-minute operations teardown. Not a demo, not a deck. We get on a call, map where your "+op+" operation is actually leaking, "+lead.pain+" first, and put rough numbers on each leak. You keep the map either way. If you never talk to us again, you'll still know where the money's going.",
-    "It costs nothing, which is the part people get suspicious about, so here's the honest reason: the teardown is how we decide whether to take an operation on. We only run a few at a time, deep beats wide, so we're choosing too. And for what it's worth, a "+op+" operation at your scale, losing money on "+lead.pain+", is exactly the shape we do our best work on.",
-    "Want me to set it up?"],
-   {chips:[["Set it up",teardownForm],["First, what's it cost?",priceIntent],["Not right now",softExit]]});}
-function priceIntent(){say(["Straight answer: there's no sticker price, and that's deliberate. A flat fee would overcharge a 30-room inn and undercharge a 300-room resort. Same software, wildly different stakes. So we price against the leak: we put a number on what the problem costs you, and the fee is a fraction of that. If we can't find a leak worth more than we cost, we'll tell you so in the teardown and you've lost twenty minutes. That's the real reason the teardown comes first. Neither of us should be guessing.",
-    "Want me to set it up?"],
-   {chips:[["Yes, set it up",teardownForm],["Not yet",softExit]]});}
-function softExit(){say("No pressure. Honestly, the worst version of this is you booking a call you didn't want. Do one thing before you go, though: take the number I gave you earlier and check it against last month. If I was wrong, no harm done. If I was right, you know where to find me.",
-   {chips:[["What does JQT actually do?",()=>info('do')],["Who's behind it?",()=>info('who')],["Actually, set up the teardown",teardownForm]]});}
-
-/* lead capture - no backend; builds a fully-qualified brief as a mailto */
-const LD_STY="background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:9px 11px;color:var(--text);font-family:inherit;font-size:13.5px;outline:none;width:100%;box-sizing:border-box";
-function teardownForm(){say(["Two things and you're done: your first name, and the best way to reach you, email or cell, your call.","And here's what actually happens next, because \"someone will reach out\" usually means a sales guy with a sequence: a real person at JQT reads what you told me and replies personally, usually same day, with a couple of times for the teardown. No drip campaign."],{then:leadForm});}
-function leadForm(){const w=add('','bot');w.style.maxWidth='100%';
-  w.innerHTML='<div style="display:flex;flex-direction:column;gap:8px">'
-   +'<input id="ldName" placeholder="Your name" style="'+LD_STY+'">'
-   +'<input id="ldContact" placeholder="Best email or phone" style="'+LD_STY+'">'
-   +'<button id="ldSend" class="btn btn-primary" type="button" style="font-size:13px;padding:10px 14px">Send my brief to JQT</button>'
-   +'<a href="https://instagram.com/jqtenterprises" target="_blank" rel="noopener" style="text-align:center;font-size:12.5px;color:var(--accent);font-weight:600">or DM us on Instagram</a></div>';
-  body.scrollTop=body.scrollHeight;
-  w.querySelector('#ldSend').onclick=()=>sendBrief(w);}
-/* ---- LEAD CAPTURE MECHANISM (deterministic, zero-AI) ----
-   Set LEAD_ENDPOINT to a plain POST endpoint (e.g. the Cloudflare Worker /api/lead you
-   already built, or a form service) to capture leads server-side. While it is empty we
-   never fail silently: we render the full brief with a one-tap email, a copy button, and
-   Instagram, so a fully-qualified lead is never lost the way a bare mailto could be. */
-const LEAD_ENDPOINT="";
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
-function briefText(name,contact){const op=lead.industry?boardName(lead.industry):'General inquiry';
-  return 'New lead from the Ask JQT assistant.\n\nName: '+(name||'(not given)')+'\nBest contact: '+contact+'\nOperation: '+op+(lead.scale?' ('+lead.scale+')':'')+'\nBiggest pain: '+(lead.pain||'(not specified)')+'\nRequested: free 20-minute operations teardown\n\n, captured on jqtenterprises.com';}
-function briefFields(name,contact){return {name:name||'(not given)',contact:contact,operation:lead.industry?boardName(lead.industry):'General inquiry',scale:lead.scale||'',pain:lead.pain||'',source:'Ask JQT assistant'};}
-function confirmSent(name){say("Got it"+(name?', '+name:'')+". Your brief is on its way to a human. In the meantime, poke around the board up top, that's what you'd be buying, if you ever buy anything.");}
-function showFallback(name,contact){
-  const brief=briefText(name,contact),
-    sub=encodeURIComponent('JQT teardown request, '+(lead.industry?boardName(lead.industry):'General inquiry')),
-    mail='mailto:hello@jqtenterprises.com?subject='+sub+'&body='+encodeURIComponent(brief);
-  const c=add('','bot');c.style.maxWidth='100%';
-  c.innerHTML='<div style="display:flex;flex-direction:column;gap:8px">'
-   +'<div style="font-size:13px">Last step, send me this brief whichever way is easiest:</div>'
-   +'<a href="'+mail+'" class="btn btn-primary" style="font-size:13px;padding:10px 14px;text-align:center;text-decoration:none">Email my brief to JQT</a>'
-   +'<button id="ldCopy" class="btn btn-ghost" type="button" style="font-size:13px;padding:10px 14px">Copy the brief</button>'
-   +'<a href="https://instagram.com/jqtenterprises" target="_blank" rel="noopener" style="text-align:center;font-size:12.5px;color:var(--accent);font-weight:600">or DM us on Instagram</a>'
-   +'<textarea readonly style="'+LD_STY+';height:132px;resize:vertical;font-size:12px;line-height:1.5">'+esc(brief)+'</textarea></div>';
-  body.scrollTop=body.scrollHeight;
-  try{window.location.href=mail;}catch(e){}
-  c.querySelector('#ldCopy').onclick=function(){const ta=c.querySelector('textarea');ta.select();
-    try{navigator.clipboard.writeText(brief);}catch(e){try{document.execCommand('copy');}catch(e2){}}
-    this.textContent='Copied, paste it to hello@jqtenterprises.com';};
-}
-function sendBrief(w){const name=(w.querySelector('#ldName').value||'').trim(),contact=(w.querySelector('#ldContact').value||'').trim();
-  if(!contact){w.querySelector('#ldContact').focus();return;}
-  w.remove();
-  if(LEAD_ENDPOINT){
-    fetch(LEAD_ENDPOINT,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(briefFields(name,contact))})
-      .then(function(r){if(!r.ok)throw 0;confirmSent(name);})
-      .catch(function(){showFallback(name,contact);});
-    return;
-  }
-  showFallback(name,contact);
-}
-
-/* informational answers + free-text routing */
-const INFO={
- do:"We build and run the operating system behind your work, the live board that runs your operation, an always-on assistant like me for your site, and the site itself. You own all of it, powered by JQT, and we stay on the hook for the outcome.",
- forward:"'Forward deployed' means we don't hand you software and walk away. We embed in your operation, build the system that runs it, and stay accountable for whether it works under real pressure. We don't just ship it, we're the ones who answer for it.",
- who:"JQT is a team out of aviation and security operations, compliance and credentialing, and automation. Operators who've run the real thing, that's the unfair advantage behind how we build.",
- website:"Yes, this site is the kind of thing we build: fast, clean, owned by you, powered by JQT. This assistant included."
-};
-function info(k){say(INFO[k],{chips:[["Find my operation's leak",pickIndustry],["Book a free teardown",teardownForm]]});}
-function whoami(){say("Scripted, actually. Every word you're reading was written in advance by the team, on purpose. JQT doesn't let any single AI model become a load-bearing part of an operation, and that includes this one. Same reason we don't let your operation run on one person's memory. If you want improvisation, that's what the teardown call is for. There's a human on that end.",{chips:[["Find my leak",pickIndustry],["Book the teardown",teardownForm]]});}
-const RX=[
- [/\bai\b|\bbot\b|chatbot|robot|automated|chatgpt|\bgpt\b|are you (a |an )?(human|real|person)|is this (a )?(human|real|person)|talking to a (bot|machine|computer|person|human)/,whoami],
- [/forward deploy|palantir/,()=>info('forward')],
- [/price|cost|pricing|how much|\$|expensive|afford|rate|\bfee\b|budget/,priceIntent],
- [/hotel|housekeep|room|hospitality|motel|resort|front desk/,()=>diagnose('hotel')],
- [/aviation|airport|badge|sida|aoa|\bsta\b|credential|complian|tsa|airside/,()=>diagnose('aviation')],
- [/propert|work order|\bunit\b|tenant|make ready|\bturn\b|vacan|landlord|\bhoa\b|lease/,()=>diagnose('property')],
- [/field|dispatch|technician|\bcrew\b|service call|hvac|plumb|\broute\b|job site/,()=>diagnose('field')],
- [/book|call|talk|demo|contact|meet|teardown|audit|reach|human|sales|quote|interested|sign ?up|get started|onboard/,teardownForm],
- [/who|team|founder|background|experience|behind|you guys|about/,()=>info('who')],
- [/website|web site|\bsite\b|landing page/,()=>info('website')],
- [/what.*(do|offer|build)|service|\bhelp\b|how.*work/,()=>info('do')],
- [/^(hi|hello|hey|yo|sup|hiya)\b|good (morning|afternoon|evening)/,greet2]
-];
-function greet2(){say("Hey! Tell me what kind of operation you're running and I'll show you where it's probably leaking, or pick one:",{chips:MENU});}
-function route(q){q=q.toLowerCase();for(const[re,fn]of RX)if(re.test(q))return fn;return null;}
-function sendChat(){const i=$('chatInput');const v=i.value.trim();if(!v)return;add(v,'user');i.value='';
-  const fn=route(v);if(fn){fn();return;}
-  say("Good question, the fastest way to a straight answer is a quick teardown. Or point me at your world:",{chips:[["What does JQT do?",()=>info('do')],["Pricing",priceIntent],["Find my leak",pickIndustry]]});}
-/* Deep link that opens the assistant straight into booking. Used by the Kept page's "Book a call": jqtenterprises.com/#book */
-/* A visitor arriving from the Kept page has already told us they run a hotel.
-   #hotel opens the assistant straight into the hotel diagnosis instead of
-   making them answer a question they have already answered by being here. */
-function keptLeak(){greeted=true;openChat();diagnose('hotel');}
-window.addEventListener('load',function(){
-  var hsh=location.hash;
-  if(hsh==='#book'){setTimeout(bookCall,250);}
-  else if(hsh==='#hotel'){setTimeout(keptLeak,250);}
-});
-</script>
-</body>
-</html>
+<footer class="footer"><div class="wrap footer-grid">
+  <div><div class="brandline"><span>J</span><span>Q</span><span>T</span></div><p>Operations software, automation and integration.</p></div>
+  <div><h4>Product</h4><a href="kept/index.html">Kept</a><a href="kept/pricing/index.html">Pricing</a></div>
+  <div><h4>Connect</h4><a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a><a href="https://instagram.com/jqtenterprises">Instagram</a></div>
+</div><div class="wrap"><small>© <span data-year>2026</span> JQT Enterprises, LLC · Fort Lauderdale, Florida</small></div></footer>
+<script src="script.js"></script>
+</body></html>
