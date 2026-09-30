@@ -705,3 +705,140 @@ html.js .build-row.open .bc-more > p{opacity:1;filter:blur(0)}
 @media(max-width:760px){
   .kept-page .video-hero .hero-video{object-position:64% center}
 }
+
+/* ==========================================================================
+   MOBILE COMPOSITION PASS
+   Desktop is intentionally untouched. These rules only recompose the existing
+   approved design for phone-sized viewports.
+   ========================================================================== */
+@media(max-width:760px){
+  .wrap{width:min(var(--max),calc(100% - 32px))}
+
+  /* navigation */
+  .nav-in{height:60px;gap:14px}
+  .brand{font-size:18px}
+  .nav-cta{margin-left:auto;padding:9px 12px;font-size:12px;line-height:1.15}
+  .home .nav:not(.scrolled),
+  .kept-page .nav:not(.scrolled){background:linear-gradient(to bottom,rgba(6,10,14,.58),rgba(6,10,14,0))}
+
+  /* cinematic heroes */
+  .video-hero{min-height:88svh}
+  .video-hero .hero-video{inset:0;width:100%;height:100%;transform:none;object-position:64% center}
+  .kept-page .video-hero .hero-video{object-position:62% center}
+  .video-hero .hero-copy{padding-top:128px;padding-bottom:64px}
+  .video-hero .kicker{margin-bottom:14px;font-size:10.5px}
+  .video-hero h1,
+  .hero h1,
+  .page-hero h1{font-size:clamp(38px,10.5vw,44px);line-height:.98;letter-spacing:-.045em;max-width:10.8ch}
+  .kept-page .video-hero h1{max-width:9.5ch}
+  .video-hero p,
+  .hero p,
+  .page-hero p{font-size:16px;line-height:1.48;margin-top:18px;max-width:31ch}
+  .video-hero .actions{margin-top:24px;gap:9px}
+  .video-hero .btn{padding:11px 15px;font-size:13px}
+  .hero-scroll{display:none}
+
+  /* general rhythm */
+  .section{padding:58px 0}
+  .section h2{font-size:clamp(30px,8.5vw,38px);line-height:1.02}
+  .section .intro{font-size:16px;line-height:1.52;margin-top:14px}
+  .kicker{margin-bottom:14px;font-size:10.5px}
+  .actions{margin-top:24px;gap:9px}
+  .btn{min-height:44px;padding:11px 15px;font-size:13px}
+
+  /* homepage problem grid */
+  .problem-grid{margin-top:28px}
+  .problem{min-height:72px;padding:18px 16px;font-size:18px;align-items:center}
+
+  /* homepage Kept proof */
+  .kept-stage{margin-top:28px;perspective:none}
+  .app-window{border-radius:13px;box-shadow:0 24px 58px rgba(0,0,0,.28)}
+  .app-chrome{grid-template-columns:44px minmax(0,1fr) 20px;padding:9px 10px}
+  .lights{gap:4px}.lights i{width:7px;height:7px}
+  .app-url{padding:4px 8px;font-size:9px;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .app-main{padding:13px 12px 14px}
+  .app-head{margin-bottom:11px}
+  .app-title{font-size:12px}
+  .app-range{font-size:9px;padding:4px 7px}
+  .app-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-bottom:9px}
+  .kpi{padding:9px 10px}
+  .kpi-l{font-size:8px;margin-bottom:5px}
+  .kpi-v{font-size:19px}
+  .app-panel{padding:10px;margin-bottom:8px}
+  .app-panel .preview-rooms{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .p-room{min-height:46px;font-size:11px}
+  .preview-activity{display:none}
+  .float-chip{display:none}
+  .caption{margin-top:10px;line-height:1.45}
+
+  /* capability cards */
+  .build-list{margin-top:28px;gap:10px}
+  .build-row{padding:20px 18px 54px;border-radius:15px}
+  .bc-icon{width:36px;height:36px;margin-bottom:16px}
+  .bc-icon svg{width:17px;height:17px}
+  .build-row h3{font-size:18px}
+  .build-row p{font-size:15px;line-height:1.5;max-width:none}
+  .bc-go{left:18px;bottom:16px;width:36px;height:36px}
+
+  /* process cards */
+  .steps{margin-top:28px;gap:10px}
+  .step{padding:20px 18px;border-radius:16px}
+  .step .n{margin-bottom:20px}
+  .step h3{font-size:21px;margin-bottom:6px}
+
+  /* secondary Kept pages */
+  .page-hero:not(.video-hero){padding:96px 0 50px}
+  .page-hero:not(.video-hero) h1{max-width:11ch}
+  .page-hero .mini{font-size:10.5px;margin-bottom:13px}
+  .product-strip,.tier-grid,.feature-grid{margin-top:28px;gap:10px}
+  .product-stat,.feature{padding:18px;border-radius:15px}
+  .feature h3{font-size:20px;margin-bottom:7px}
+  .tier{min-height:0;padding:22px 19px;border-radius:18px}
+  .tier h3{font-size:30px}
+  .tier .tagline{font-size:16px;margin-bottom:18px}
+  .price{font-size:36px;margin:8px 0 14px}
+  .record-stack{margin-top:28px}
+  .record-row{grid-template-columns:36px minmax(0,1fr);gap:12px;padding:20px 0}
+  .record-row h3{font-size:21px}
+  .longcopy h3{font-size:24px;margin-top:30px}
+  .longcopy p{font-size:16px}
+  .faq details{padding:17px 0}
+  .faq summary{font-size:17px}
+  .faq p{font-size:15px}
+
+  /* interactive demo */
+  .demo-section{padding-top:58px}
+  .demo-actions{margin-top:20px}
+  .kept-demo-shell{margin-top:22px;padding:6px;border-radius:16px}
+  .kept-board{border-radius:12px}
+  .demo-mods{overflow-x:auto;scrollbar-width:none}
+  .demo-mods::-webkit-scrollbar{display:none}
+  .demo-mod{font-size:10px;padding:10px 9px 8px}
+  .demo-board-top{padding:11px 12px;gap:8px}
+  .demo-board-title{font-size:11px}
+  .demo-counts{gap:9px;font-size:10px}
+  .demo-rooms{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;gap:7px}
+  .demo-room{padding:9px 8px}
+  .demo-room .rn{font-size:17px}
+  .demo-panel-head{padding:11px 12px 9px}
+  .demo-checklist{padding:11px 12px 12px}
+  .demo-zone{min-height:38px}
+  .demo-mark{min-height:44px}
+
+  /* calls to action and footer */
+  .cta-band{padding:66px 0}
+  .cta-band h2{font-size:clamp(30px,8.5vw,38px);line-height:1.05}
+  .footer{padding:38px 0 42px}
+  .footer-grid{gap:24px}
+  .footer small{margin-top:24px}
+}
+
+@media(max-width:420px){
+  .wrap{width:min(var(--max),calc(100% - 28px))}
+  .video-hero h1,
+  .hero h1,
+  .page-hero h1{font-size:38px}
+  .nav-cta{padding:8px 10px;font-size:11.5px}
+  .app-panel .preview-rooms{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
