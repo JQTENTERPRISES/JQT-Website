@@ -261,3 +261,61 @@ window.JQTHero = (function(){
   var v = document.querySelector('.hero-video:not(#keptHeroVideo)');
   if(v) window.JQTHero.attach(v);
 })();
+
+/* MOBILE NAVIGATION
+   Desktop nav remains untouched. On phone widths, expose the hidden nav links
+   behind a compact three-bar menu and mirror the existing destinations. */
+(function(){
+  var nav=document.querySelector('.nav');
+  if(!nav) return;
+  var navIn=nav.querySelector('.nav-in');
+  var links=nav.querySelector('.nav-links');
+  if(!navIn||!links) return;
+
+  var button=document.createElement('button');
+  button.className='mobile-menu-toggle';
+  button.type='button';
+  button.setAttribute('aria-label','Open navigation');
+  button.setAttribute('aria-expanded','false');
+  button.innerHTML='<span></span><span></span><span></span>';
+
+  var menu=document.createElement('div');
+  menu.className='mobile-menu';
+  menu.setAttribute('aria-hidden','true');
+
+  links.querySelectorAll('a').forEach(function(a){
+    menu.appendChild(a.cloneNode(true));
+  });
+
+  var cta=nav.querySelector('.nav-cta');
+  navIn.insertBefore(button,cta||null);
+  nav.appendChild(menu);
+
+  function close(){
+    nav.classList.remove('mobile-open');
+    button.setAttribute('aria-expanded','false');
+    button.setAttribute('aria-label','Open navigation');
+    menu.setAttribute('aria-hidden','true');
+  }
+
+  button.addEventListener('click',function(){
+    var open=!nav.classList.contains('mobile-open');
+    nav.classList.toggle('mobile-open',open);
+    button.setAttribute('aria-expanded',open?'true':'false');
+    button.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+    menu.setAttribute('aria-hidden',open?'false':'true');
+  });
+
+  menu.addEventListener('click',function(e){
+    if(e.target.closest('a')) close();
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape') close();
+  });
+
+  addEventListener('resize',function(){
+    if(innerWidth>900) close();
+  },{passive:true});
+})();
+
