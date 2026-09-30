@@ -1,1 +1,10 @@
+.DS_Store
+
+# Canva masters are archival source, not deployable.
+# They live outside this repository (~/jqt-masters) and are never served.
+# Only the production derivatives in assets/ ship.
+assets/jqt-city-hero.mp4
+assets/kept-hospitality-hero.mp4
+
+# local agent worktrees, not part of the site
 .claude/

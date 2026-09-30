@@ -14,9 +14,9 @@
 </div></nav>
 
 <header class="page-hero kept-hero video-hero">
-  <video id="keptHeroVideo" class="hero-video" autoplay muted playsinline preload="metadata" poster="../assets/kept-hospitality-hero.jpg" aria-hidden="true">
-    <source src="../assets/kept-hospitality-hero.mp4" type="video/mp4">
-  </video>
+  <video id="keptHeroVideo" class="hero-video" muted playsinline preload="none" poster="../assets/kept-hospitality-hero.jpg" aria-hidden="true"
+         data-hero-src-desktop="../assets/kept-hospitality-hero-1920.mp4"
+         data-hero-src-mobile="../assets/kept-hospitality-hero-1280.mp4"></video>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="wrap hero-copy">
     <div class="kicker">Kept · by JQT</div>
@@ -137,6 +137,14 @@
   if(!video)return;
   var START=5.0, END=29.0;
   var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Attach a source only if this visitor should get one. Returns null under
+     reduced motion or Save Data, in which case the poster stands alone and no
+     video bytes are ever requested. The derivative keeps the master's full
+     34s timeline, so START and END above are unchanged. */
+  var attached = window.JQTHero ? window.JQTHero.attach(video,{autoplay:false}) : null;
+  if(!attached) return;
+
   function enterSegment(){
     if(video.currentTime < START-0.15 || video.currentTime >= END){
       try{ video.currentTime=START; }catch(e){}
@@ -145,7 +153,8 @@
     var promise=video.play();
     if(promise&&promise.catch)promise.catch(function(){});
   }
-  video.addEventListener("loadedmetadata",enterSegment,{once:true});
+  if(video.readyState>=1){ enterSegment(); }
+  else { video.addEventListener("loadedmetadata",enterSegment,{once:true}); }
   video.addEventListener("timeupdate",function(){
     if(reduced) return;
     if(video.currentTime>=END){video.currentTime=START;video.play().catch(function(){});}

@@ -204,3 +204,60 @@ document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().g
   addEventListener('scroll',onScroll,{passive:true});
   addEventListener('resize',onScroll,{passive:true});
 })();
+
+
+/* ==========================================================================
+   HERO MEDIA DELIVERY
+   The <video> elements ship with no source at all. Nothing is requested until
+   this decides one is wanted, which is the only way to make reduced motion
+   and Save Data cost zero bytes: a hidden or paused <video> with a <source>
+   still downloads. Verified: a display:none autoplay video fired three
+   requests for the 97 MB master before this change.
+
+   Masters live outside the deployed tree as archival source and are never
+   served. Only the derivatives in assets/ ship.
+   ========================================================================== */
+window.JQTHero = (function(){
+  function reduced(){
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+  function saveData(){
+    var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    return !!(c && c.saveData === true);
+  }
+  function wantsMobile(){
+    /* the phone derivative is 1280 wide, so anything up to a large tablet
+       viewport is still being oversupplied by the desktop file */
+    return !!(window.matchMedia && window.matchMedia('(max-width: 900px)').matches);
+  }
+
+  function attach(video, opts){
+    if(!video) return null;
+    opts = opts || {};
+    if(reduced() || saveData()){
+      video.removeAttribute('autoplay');
+      return null;                       /* poster only, zero video requests */
+    }
+    var src = wantsMobile()
+      ? video.getAttribute('data-hero-src-mobile')
+      : video.getAttribute('data-hero-src-desktop');
+    if(!src) return null;
+
+    video.preload = 'auto';
+    video.src = src;
+    video.load();
+    if(opts.autoplay !== false){
+      var p = video.play();
+      if(p && p.catch) p.catch(function(){});
+    }
+    return src;
+  }
+
+  return { attach: attach, reduced: reduced, saveData: saveData, wantsMobile: wantsMobile };
+})();
+
+/* the homepage hero loops the whole clip, so it can start as soon as it has one */
+(function(){
+  var v = document.querySelector('.hero-video:not(#keptHeroVideo)');
+  if(v) window.JQTHero.attach(v);
+})();
