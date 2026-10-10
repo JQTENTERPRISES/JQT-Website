@@ -24,7 +24,9 @@ not a dev shop.
 > We build the software your operation runs on, then stay and run it.
 
 **The proof:** Kept. Hotel housekeeping and operations software, built inside a
-working hotel, live, with a public demo anyone can walk.
+working hotel, live. The full demo property, The Rowan, opens behind a short
+form at /kept/rowan/ (a soft gate: no account, no approval, straight in).
+The board simulation on /kept/ stays open to everyone.
 
 ---
 
@@ -148,11 +150,13 @@ its height against the one above it, it is cut, not shortened.
 ## 6. The centerpiece: let them use it
 
 The strongest reference Chris chose is Adaline: **you can use the product on the
-marketing page**. In June this was impossible. It is not any more. Kept has a
-public demo with three doors, real data, and a nightly reset.
+marketing page**. In June this was impossible. It is not any more. The board
+simulation on /kept/ is open to everyone; The Rowan, a full live property in
+every visitor's own copy, is one short form away at /kept/rowan/. The form is
+how leads reach The Rowan: it is never linked bare from the site.
 
-So the hero is not a screenshot of a board. It is a board, or it is one tap from
-the real one. This replaces testimonials and logo bars, which JQT cannot use
+So the hero is not a screenshot of a board. It is a board, or it is one form
+from the real one. This replaces testimonials and logo bars, which JQT cannot use
 anyway: the pilot property is a Wyndham franchise owned by family, and real
 client names are off the table.
 

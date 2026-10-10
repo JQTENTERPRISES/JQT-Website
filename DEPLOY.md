@@ -106,3 +106,47 @@ the part a prospect sees, but it is a reason not to treat it as an emergency.
 The two Kept hosts must stay grey. Caddy terminates TLS on the droplet and
 proxying them breaks its certificate renewal. That is why the header rule above
 is scoped to the apex hostname rather than applied zone wide.
+
+---
+
+## Lead capture (the `jqt-lead` Worker)
+
+Three forms post to `/api/lead` on this same origin: the Rowan gate
+(`/kept/rowan/`), the walkthrough request (`/kept/walkthrough/`) and the
+homepage form (`/#contact`). A Cloudflare Worker on the route
+`jqtenterprises.com/api/*` answers them. Every other path still goes to GitHub
+Pages untouched.
+
+What it does, in order: validates, drops bots quietly (honeypot, under two
+seconds to fill, six a minute per IP), answers the visitor at once, then writes
+People / Companies / Deals in Attio and emails the lead to
+`jqtenterprisesllc@gmail.com` with Reply-To set to the prospect. The email goes
+out whether or not Attio succeeded, and says which. If both fail, the
+submission is written to the Worker log as the last copy.
+
+Attio rules: a person matches on email, a property matches on its NAME (never
+the email domain, a chain shares one), and a repeat from the same person,
+property and line updates the open Deal instead of making a new one. A
+walkthrough request moves New or Qualified to Walkthrough and never moves a
+later stage back. Schema: `node worker/attio-schema.mjs` (safe to re-run).
+
+Deploy from `worker/`:
+
+    npx wrangler login                  # once, OAuth in the browser
+    npx wrangler secret put ATTIO_TOKEN # paste the Attio key; never in git
+    npx wrangler deploy
+
+Logs: `npx wrangler tail jqt-lead`.
+
+Attribution: `script.js` keeps a first touch per browser for 30 days (UTM tags,
+landing page, referring host, time). A new UTM-tagged link starts a new touch.
+It is sent with the form and lands on the Deal. Tag every link we send out:
+
+| Channel | Example |
+|---|---|
+| Promo video | `?utm_source=instagram&utm_medium=social&utm_campaign=kept-promo-01` |
+| Briefing | `?utm_source=linkedin&utm_medium=social&utm_campaign=briefing-001` |
+| Direct outreach | `?utm_source=email&utm_medium=outreach&utm_campaign=<batch>` |
+
+Untagged visits still carry the referring site, so organic search shows up as
+`google.com` with no campaign.

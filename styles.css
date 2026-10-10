@@ -924,3 +924,62 @@ html.js .build-row.open .bc-more > p{opacity:1;filter:blur(0)}
   .mobile-menu-toggle span{transition:none}
 }
 
+
+/* ==========================================================================
+   LEAD FORMS: the Rowan gate, the walkthrough request, the homepage form.
+   Native, hairline, no card. One column on a phone.
+   ========================================================================== */
+.lead{margin-top:40px;max-width:760px}
+.lead-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+.lead-grid .full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field label,.field legend{font-size:13px;font-weight:650;color:var(--ink);padding:0}
+.field input,.field select,.field textarea{
+  width:100%;min-height:50px;padding:12px 14px;border:1px solid var(--line2);border-radius:14px;
+  background:var(--paper);color:var(--ink);font-size:16px;line-height:1.4;
+  transition:border-color .33s var(--ease),box-shadow .33s var(--ease);
+}
+.field select{appearance:none;-webkit-appearance:none;padding-right:40px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%231a1a18' stroke-width='1.6'%3E%3Cpath d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center}
+.field textarea{min-height:130px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+.field[data-bad] input,.field[data-bad] select,.field[data-bad] textarea{border-color:#B5453A}
+.field .err{font-size:13px;color:#B5453A;min-height:0}
+.field .err:empty{display:none}
+fieldset.field{border:0;margin:0;padding:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills label{position:relative;font-size:14px;font-weight:600}
+.pills input{position:absolute;opacity:0;width:1px;height:1px}
+.pills span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line2);border-radius:999px;background:var(--paper);cursor:pointer;transition:background .33s var(--ease),border-color .33s var(--ease),color .33s var(--ease)}
+.pills input:checked+span{background:var(--accent);border-color:var(--accent);color:#fff}
+.pills input:focus-visible+span{box-shadow:0 0 0 3px var(--accent-dim);border-color:var(--accent)}
+.lead-hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.lead-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px}
+.lead-foot .btn{min-height:48px;padding:0 24px;font-size:15px;cursor:pointer}
+.lead-foot .btn[disabled]{opacity:.6;cursor:progress}
+.lead-fine{font-size:13px;color:var(--muted);max-width:520px;margin:0}
+.lead-fine a{text-decoration:underline;text-underline-offset:2px}
+.lead-known{display:none;font-size:18px;margin:0 0 6px}
+.lead-known button{font:inherit;font-size:14px;color:var(--accent);background:none;border:0;padding:0 0 0 8px;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.lead[data-known] .lead-known{display:block}
+.lead[data-known] .lead-who{display:none}
+.lead-status{margin-top:18px;font-size:15px}
+.lead-status:empty{display:none}
+.lead-status.bad{color:#B5453A}
+.lead-done{display:none;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:760px;margin-top:40px}
+.lead-done h3{margin:0 0 8px;font-size:24px;letter-spacing:-.02em}
+.lead-done p{margin:0;color:var(--muted)}
+.lead-wrap[data-done] .lead{display:none}
+.lead-wrap[data-done] .lead-done{display:block}
+.lead-alt{margin-top:22px;font-size:14px;color:var(--muted)}
+.lead-alt a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.bridge{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+.bridge p{margin:0;font-size:18px;font-weight:600;letter-spacing:-.01em}
+@media(max-width:640px){
+  .lead-grid{grid-template-columns:minmax(0,1fr)}
+  .lead-foot .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){.field input,.field select,.field textarea,.pills span{transition:none}}
+.section .lead-wrap>.lead:first-child{margin-top:0}
+.section .lead-done{margin-top:0}

@@ -319,3 +319,22 @@ window.JQTHero = (function(){
   },{passive:true});
 })();
 
+
+/* ATTRIBUTION
+   First touch within 30 days, kept in this browser only and sent with a lead
+   form so Attio knows which link produced the lead. A link carrying UTM tags
+   starts a new touch. Nothing here leaves the device until a form is sent. */
+(function(){
+  try{
+    var KEY='jqt_attr',q=new URLSearchParams(location.search),cur=JSON.parse(localStorage.getItem(KEY)||'null');
+    var tags=['utm_source','utm_medium','utm_campaign','utm_content'];
+    var tagged=tags.some(function(k){return q.get(k)});
+    if(cur&&!(Date.now()-Date.parse(cur.first_seen)<30*864e5))cur=null;
+    if(cur&&!tagged)return;
+    var ref='';
+    if(document.referrer){var h=new URL(document.referrer).hostname;if(h&&h!==location.hostname)ref=h}
+    var a={landing_page:location.pathname,referrer:ref,first_seen:new Date().toISOString()};
+    tags.forEach(function(k){a[k]=(q.get(k)||'').slice(0,160)});
+    localStorage.setItem(KEY,JSON.stringify(a));
+  }catch(e){}
+})();

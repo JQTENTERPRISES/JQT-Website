@@ -6,13 +6,14 @@
 <title>JQT · Operations software, automation and integration</title>
 <link rel="canonical" href="https://jqtenterprises.com/">
 <meta name="description" content="JQT builds custom operations software, automation and integrations.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="JQT Enterprises"><meta property="og:title" content="JQT · Software for the way your operation actually works"><meta property="og:description" content="Custom operations software, automation and integration. Kept, our hotel operations product, is the proof."><meta property="og:url" content="https://jqtenterprises.com/"><meta property="og:image" content="https://jqtenterprises.com/assets/og-jqt.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body class="home">
 <nav class="nav"><div class="wrap nav-in">
   <a class="brand" href="/"><span>J</span><span>Q</span><span>T</span></a>
   <div class="nav-links"><a href="/kept/">Kept</a><a href="#build">What we build</a><a href="#work">How we work</a></div>
-  <a class="nav-cta" href="mailto:hello@jqtenterprises.com?subject=JQT%20project">Start a project</a>
+  <a class="nav-cta" href="#contact">Tell us the problem</a>
 </div></nav>
 
 <header class="hero video-hero">
@@ -25,7 +26,7 @@
     <h1>Software for the way your operation actually works.</h1>
     <p>Custom operations software, automation and integration.</p>
     <div class="actions">
-      <a class="btn primary" href="mailto:hello@jqtenterprises.com?subject=Tell%20us%20the%20problem">Tell us the problem</a>
+      <a class="btn primary" href="#contact">Tell us the problem</a>
     </div>
   </div>
   <div class="hero-scroll" aria-hidden="true"><span></span>Scroll</div>
@@ -47,7 +48,7 @@
 <section class="section" id="kept"><div class="wrap">
   <div class="kicker">Product 01</div>
   <h2>Kept</h2>
-  <p class="intro">Hotel operations software for housekeeping, maintenance, supplies and the operational record.</p>
+  <p class="intro">Hotel operations software for housekeeping, maintenance, inventory and the operational record.</p>
   <div class="kept-stage">
     <span class="float-chip chip-a"><i class="tick">✓</i>Log verified<em>anchored 04:02a</em></span>
     <span class="float-chip chip-b"><i class="dot"></i>Live</span>
@@ -110,7 +111,7 @@
 
     <div class="caption">Desktop operations view. Mobile is built for task execution on the floor.</div>
   </div>
-  <div class="actions"><a class="btn primary" href="/kept/#demo">Run the Kept demo</a><a class="btn" href="/kept/">View Kept</a></div>
+  <div class="actions"><a class="btn primary" href="/kept/rowan/">Explore The Rowan</a><a class="btn" href="/kept/">View Kept</a></div>
 </div></section>
 
 <section class="section alt" id="build"><div class="wrap">
@@ -151,10 +152,18 @@
   </div>
 </div></section>
 
-<section class="cta-band"><div class="wrap">
+<section class="cta-band" id="contact"><div class="wrap lead-wrap">
   <div class="kicker">Start here</div>
   <h2>Tell us what is slowing the operation down.</h2>
-  <div class="actions"><a class="btn primary" href="mailto:hello@jqtenterprises.com?subject=JQT%20project">Start a conversation</a></div>
+  <form class="lead" data-lead="jqt_project" novalidate>
+<div class="lead-grid lead-who"><div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required maxlength="120"><span class="err"></span></div><div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254"><span class="err"></span></div><div class="field"><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization" required maxlength="160" placeholder=""><span class="err"></span></div><div class="field"><label for="f-role">Role</label><select id="f-role" name="role" required><option value="">Choose one</option><option>Owner</option><option>General Manager</option><option>Operations</option><option>Other</option></select><span class="err"></span></div></div>
+<div class="lead-grid" style="margin-top:18px"><div class="field full"><label for="f-message">What is slowing the operation down?</label><textarea id="f-message" name="message" required maxlength="4000" placeholder="Where the work gets lost, what gets re-typed, what you chase every morning"></textarea><span class="err"></span></div></div>
+<div class="lead-hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+<div class="lead-foot"><button class="btn primary" type="submit">Send</button><p class="lead-fine">We use this to follow up about your operation, and for nothing else. <a href="/kept/privacy/#site">Privacy</a></p></div>
+<p class="lead-status" role="status" aria-live="polite"></p>
+  </form>
+  <div class="lead-done"><h3>Got it.</h3><p>We will reply to <b data-done-email></b>.</p></div>
+  <p class="lead-alt">Or write to <a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a>.</p>
 </div></section>
 
 <footer class="footer"><div class="wrap footer-grid">
@@ -162,5 +171,5 @@
   <div><h4>Product</h4><a href="/kept/">Kept</a><a href="/kept/pricing/">Pricing</a></div>
   <div><h4>Connect</h4><a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a><a href="https://instagram.com/jqtenterprises">Instagram</a></div>
 </div><div class="wrap"><small>© <span data-year>2026</span> JQT Enterprises, LLC · Fort Lauderdale, Florida</small></div></footer>
-<script src="script.js"></script>
+<script src="script.js"></script><script src="lead.js"></script>
 </body></html>
