@@ -958,7 +958,7 @@ fieldset.field{border:0;margin:0;padding:0}
 .lead-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px}
 .lead-foot .btn{min-height:48px;padding:0 24px;font-size:15px;cursor:pointer}
 .lead-foot .btn[disabled]{opacity:.6;cursor:progress}
-.lead-fine{font-size:13px;color:var(--muted);max-width:520px;margin:0}
+.lead-fine{font-size:12px;color:var(--muted);max-width:520px;margin:0}
 .lead-fine a{text-decoration:underline;text-underline-offset:2px}
 .lead-known{display:none;font-size:18px;margin:0 0 6px}
 .lead-known button{font:inherit;font-size:14px;color:var(--accent);background:none;border:0;padding:0 0 0 8px;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
@@ -983,3 +983,9 @@ fieldset.field{border:0;margin:0;padding:0}
 @media(prefers-reduced-motion:reduce){.field input,.field select,.field textarea,.pills span{transition:none}}
 .section .lead-wrap>.lead:first-child{margin-top:0}
 .section .lead-done{margin-top:0}
+.policy{max-width:680px}
+.policy h3{margin:30px 0 8px;font-size:18px;letter-spacing:-.01em}
+.policy h3:first-child{margin-top:0}
+.policy p{margin:0;color:var(--muted);font-size:16px;line-height:1.6}
+.policy a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.policy .policy-foot{margin-top:36px;font-size:13px}

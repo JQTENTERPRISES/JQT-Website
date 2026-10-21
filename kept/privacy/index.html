@@ -27,7 +27,7 @@
   <p class="dek">Kept is used by people who did not choose it. Housekeepers, housemen, front desk and maintenance staff open it because their employer bought it, on phones they own themselves. That fact shapes every decision below, and it is why this document is specific instead of general.</p>
   <div class="dates">
     <span>Effective 6 September 2026</span>
-    <span>Version 1.1, website forms added 10 October 2026</span>
+    <span>Version 1.2, updated 20 October 2026</span>
     <span>JQT Enterprises, LLC</span>
   </div>
 </div></header>
@@ -71,7 +71,7 @@
       <tr><td>Photographs</td><td>Images taken inside rooms and attached to a maintenance fault, a lost item, or a step of a project. Stored with the room, the time, and who took them.</td></tr>
       <tr><td>Maintenance</td><td>Fault category, the note describing it, attached photographs, who raised it, who resolved it, when, and the resolution note.</td></tr>
       <tr><td>Lost and found</td><td>Description of the item, where it was found, who found it, where it is being held, and how it was closed out.</td></tr>
-      <tr><td>Supplies</td><td>Item, location, counts, and who reported something low or out.</td></tr>
+      <tr><td>Inventory</td><td>Each supply in the stockroom, its quantity on hand, its reorder point and target, and who counted or changed it.</td></tr>
       <tr><td>Safety alerts</td><td>Who raised the alert, the room they were in, when it was raised, who acknowledged it, when it was stood down, and any note added at the end.</td></tr>
       <tr><td>Audit log</td><td>Every action above, as an entry naming the person, the room, the time, and the type of event, chained by hash to the entry before it.</td></tr>
       <tr><td>Sessions</td><td>A session token per surface, the account it belongs to, and its expiry. Held in a cookie on the device.</td></tr>
@@ -145,9 +145,11 @@
       <tr><td>DigiCert</td><td>One SHA-256 hash, once a day. No names, no rooms, no photographs, no content of any kind. A hash cannot be turned back into what it summarises.</td></tr>
       <tr><td>FreeTSA</td><td>The same single hash, for the same reason. Two authorities rather than one, because an anchor that depends on a single free service stops working the day that service does.</td></tr>
       <tr><td>Google Fonts</td><td>Applies to this public website only, not to the Kept application. Your browser fetches two typefaces from Google, which means Google sees your IP address when you read this page. We are moving to self hosted fonts to close this.</td></tr>
+      <tr><td>Cloudflare</td><td>Applies to this public website only, not to the Kept application. Serves the site, carries mail sent to hello@jqtenterprises.com, receives the website forms, and counts page visits without cookies.</td></tr>
+      <tr><td>Attio</td><td>Applies to the website forms only. Our CRM. Receives what you type into a form and how you reached the site, so we can follow up.</td></tr>
     </tbody>
   </table>
-  <p>There is no one else. No analytics vendor, no advertising network, no data broker, no offshore support desk.</p>
+  <p>For the Kept application there is no one else. No analytics vendor, no advertising network, no data broker, no offshore support desk.</p>
 
   <h2 id="keep"><span class="num">10</span>How long it is kept</h2>
   <ul>
@@ -164,9 +166,8 @@
   <p>We do not charge for any of this and we do not require a particular form of words.</p>
 
   <h2 id="site"><span class="num">12</span>This website</h2>
-  <p>jqtenterprises.com sets no cookies and has no tracking pixels. It counts page visits with Cloudflare Web Analytics, which uses no cookies and does not identify you. It loads two typefaces from Google Fonts, which is the one disclosure in section 9.</p>
-  <p>If you send one of our forms, we receive what you typed into it: your name, email, company or property, role, room count where we ask, and any message. We also receive how you reached the site: the campaign tags on the link you followed, the first page you landed on, the site that sent you, and when. It goes to our inbox and to Attio, the CRM we use to follow up. We use it to answer you about Kept or JQT, and for nothing else.</p>
-  <p>Your browser keeps your own details and those campaign tags on your device, so a second form does not ask twice. Nothing in it leaves the device until you send a form, and clearing this site's data removes it. Write to <a href="mailto:hello@jqtenterprises.com">hello@jqtenterprises.com</a> and we will delete what we hold about you.</p>
+  <p>jqtenterprises.com, including its forms, has its own short notice at <a href="/privacy/">jqtenterprises.com/privacy</a>. This policy is about the Kept application.</p>
+
 
   <h2 id="changes"><span class="num">13</span>Changes, and contact</h2>
   <p>If we change this policy in a way that alters what Kept records or who receives it, we will tell the properties using it directly rather than relying on a new date at the top of a page. The version number above changes with it.</p>
