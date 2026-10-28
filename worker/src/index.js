@@ -45,12 +45,21 @@ export default {
       if (!success) return json(429, { ok: false, error: 'rate' });
     }
 
+    // Cap the body by what actually arrives, not by the Content-Length header,
+    // which a chunked request does not send.
     let body;
-    try { body = await req.json(); } catch { return json(400, { ok: false, error: 'json' }); }
+    try {
+      const text = await req.text();
+      if (text.length > 16384) return json(413, { ok: false, error: 'size' });
+      body = JSON.parse(text);
+    } catch { return json(400, { ok: false, error: 'json' }); }
+    if (!body || typeof body !== 'object' || Array.isArray(body)) return json(400, { ok: false, error: 'json' });
 
-    // Bots: a filled honeypot or a form "filled" in under two seconds gets the
-    // same answer a person gets, so there is nothing to learn from probing it.
-    if (body.website || (Number(body.elapsed) > 0 && Number(body.elapsed) < 2000)) return json(200, { ok: true });
+    // Bots: a filled honeypot, a form "filled" in under two seconds, or no fill
+    // time at all (the real form always sends one) gets the same answer a person
+    // gets, so there is nothing to learn from probing it.
+    const elapsed = Number(body.elapsed);
+    if (body.website || !Number.isFinite(elapsed) || elapsed < 2000) return json(200, { ok: true });
 
     const v = validate(body);
     if (v.errors) return json(422, { ok: false, error: 'invalid', fields: v.errors });
@@ -139,15 +148,23 @@ async function toAttio(lead, env) {
   const first = (rec, slug) => (rec.values[slug] || [])[0];
   const title = (rec, slug) => { const x = first(rec, slug); return x && (x.option?.title || x.status?.title || x.value); };
 
-  // Person, matched on email (Attio's unique key for people).
+  // Person, matched on email. Nobody proves they own the email they type, so a
+  // match is never overwritten: an existing person keeps their name and role,
+  // and what this submission claims goes in the note for a human to apply.
   const [given, ...rest] = lead.name.split(' ');
-  const person = await api('PUT', '/objects/people/records?matching_attribute=email_addresses', {
-    values: {
-      email_addresses: [lead.email],
-      name: [{ first_name: given, last_name: rest.join(' '), full_name: lead.name }],
-      jqt_role: lead.role,
-    },
-  });
+  const nameVal = [{ first_name: given, last_name: rest.join(' '), full_name: lead.name }];
+  let person = (await query('people', { filter: { email_addresses: lead.email }, limit: 1 }))[0];
+  const known = !!person;
+  if (!person) {
+    person = await api('POST', '/objects/people/records', {
+      values: { email_addresses: [lead.email], name: nameVal, jqt_role: lead.role },
+    });
+  } else {
+    const fill = {};
+    if (!first(person, 'name')) fill.name = nameVal;
+    if (!first(person, 'jqt_role')) fill.jqt_role = lead.role;
+    if (Object.keys(fill).length) await api('PATCH', `/objects/people/records/${person.id.record_id}`, { values: fill });
+  }
   const pid = person.id.record_id;
 
   // Company / property, matched on its NAME. The email domain is kept as a
@@ -160,7 +177,9 @@ async function toAttio(lead, env) {
     company = await api('POST', '/objects/companies/records', {
       values: { name: lead.company, email_domain: domain, ...(lead.rooms ? { rooms: lead.rooms } : {}) },
     });
-  } else if (lead.rooms && title(company, 'rooms') !== lead.rooms) {
+  } else if (lead.rooms && !title(company, 'rooms')) {
+    // Fill an empty rooms value only. An existing one is never changed from the
+    // public form; a different claim shows up in the note instead.
     await api('PATCH', `/objects/companies/records/${company.id.record_id}`, { values: { rooms: lead.rooms } });
   }
   const cid = company.id.record_id;
@@ -184,12 +203,13 @@ async function toAttio(lead, env) {
   if (open) {
     deal = open;
     const values = {};
-    if (walk) {
-      values.walkthrough_requested_at = lead.at;
-      if (OPEN_STAGES_THAT_ADVANCE.includes(title(open, 'stage'))) values.stage = 'Walkthrough';
-    }
+    // The stage of an existing deal is a human decision. The request is stamped
+    // and noted, and the notification says so, but the form never moves it.
+    if (walk) values.walkthrough_requested_at = lead.at;
     if (Object.keys(values).length) await api('PATCH', `/objects/deals/records/${open.id.record_id}`, { values });
-    action = values.stage ? 'Updated deal, moved to Walkthrough' : 'Updated existing open deal';
+    action = walk && OPEN_STAGES_THAT_ADVANCE.includes(title(open, 'stage'))
+      ? 'Walkthrough requested on an open deal: check it is really them, then move the stage'
+      : 'Updated existing open deal';
   } else {
     const owner = await ownerId(api, env);
     const attr = Object.fromEntries(Object.entries(lead.attr).filter(([, v]) => v));
@@ -214,6 +234,7 @@ async function toAttio(lead, env) {
     title: `${t.label} · ${lead.name}`, format: 'plaintext', content: noteBody(lead),
   });
 
+  if (known) action += ' (existing contact: name, role and rooms were not changed)';
   return { ok: true, action, url: deal.web_url || '' };
 }
 
